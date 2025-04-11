@@ -2,20 +2,12 @@ import './footer.css';
 
 export default function Footer() {
   return (
+    /*桌面*/
     <div>
-      {/* 分隔線 */}
-      <hr className="my-6 w-full border-t-2 border-primary rounded-sm opacity-100" />
-
       <footer className="footer bg-gray-900 text-white py-6">
         {/* 描述區塊 */}
         <div className="footer-content">
-          <p className="font-extrabold">DESCRIPTIONS</p>
-          <p className="indent-4 text-gray-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-            deleniti iste sit enim. Veniam eos sequi laudantium optio, saepe
-            excepturi illo autem quibusdam delectus illum ipsa? Nobis culpa
-            debitis error!
-          </p>
+          <img className="w-8 h-8" src="/img/logo.svg" alt="logo"/>
         </div>
 
         {/* 追蹤我們 */}
@@ -44,5 +36,6 @@ export default function Footer() {
         </p>
       </footer>
     </div>
+    /*手機*/
   );
 }
