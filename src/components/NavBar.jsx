@@ -29,20 +29,29 @@ export default function NavBar() {
   );
 
   return (
-    <div className="flex flex-wrap justify-center">
-      {navBarContent.map(({ to, label }) => (
-        <NavLink
-          key={to}
-          to={to}
-          className={({ isActive }) =>
-            `mx-6 text-white text-base transition-all duration-500 ease-in-out ${
-              isActive ? "opacity-100 font-normal" : "opacity-60"
-            } hover:opacity-100 hover:[text-shadow:0px_0px_30px_white]`
-          }
-        >
-          {label}
-        </NavLink>
-      ))}
-    </div>
+    <>
+      {/* 桌面版導覽列 */}
+      <div className="hidden md:flex justify-around mt-3 mb-8">
+        <NavBarContent />
+      </div>
+
+      {/* 手機版 Drawer */}
+      <div className="drawer md:hidden">
+        <input id="drawer-toggle" type="checkbox" className="drawer-toggle" checked={isOpen} readOnly />
+        <HamMenu
+          id="drawer-toggle" 
+          className="absolute transform -translate-y-37 translate-x-1 drawer-toggle"
+          onClick={() => setIsOpen(!isOpen)}
+          isOpen={isOpen}
+        />
+        <div className="drawer-side z-9999">
+          <label htmlFor="drawer-toggle" className="drawer-overlay" onClick={() => setIsOpen(false)}></label>
+          <div className="menu p-4 w-64 min-h-full drawer-bg">
+            <h2 className="text-xl font-bold mb-10">CATEGORY</h2>
+            <NavBarContent />
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

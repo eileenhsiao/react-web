@@ -13,8 +13,8 @@ function Home() {
         title="Welcome to the Bookstore"
         slogan="The best place to introduce you some great books"
       />
-      <BookList books ={books} className="content" />
-     /*map*/
+      
+     
       <Footer className="footer" />
     </div>
   )
