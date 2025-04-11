@@ -5,6 +5,7 @@ import Footer from "@/components/Footer"
 import BookDetail from "@/components/BookDetail";
 import books from "@/json/books.json";
 
+
 function Book() {
    const { bookId } = useParams();
    const book = books.find(
@@ -20,6 +21,7 @@ function Book() {
             title={title}
             slogan="More information for you."
          />
+         
          <BookDetail book={book} className="content" />
          <Footer className="footer" />
       </div>

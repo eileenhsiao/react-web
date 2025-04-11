@@ -4,6 +4,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import BookDetail from "@/components/BookDetail";
 import books from "@/json/books.json";
+import NavBar from "@/components/NavBar";
 
 function Book() {
    const { bookId } = useParams();
@@ -20,6 +21,7 @@ function Book() {
             title={title}
             slogan="More information for you."
          />
+         < NavBar/>
          <BookDetail book={book} className="content" />
          <Footer className="footer" />
       </div>
