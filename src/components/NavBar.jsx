@@ -5,9 +5,12 @@ import HamMenu from '@/components/HamMenu';
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const navBarContent = [
-    { to: "/books/category/SocialCriticism_Dystopia", label: "Social Criticism & Dystopia" },
-    { to: "/books/category/Romance_Society", label: "Romance & Society" },
-    { to: "/books/category/Coming-of-Age_Obsession", label: "Coming-of-Age & Obsession" }
+    { to: "/books/category/SocialCriticism_Dystopia", label: "全部" },
+    { to: "/books/category/Romance_Society", label: "蛋糕" },
+    { to: "/books/category/Coming-of-Age_Obsession", label: "派＆塔" },
+    { to: "/books/category/SocialCriticism_Dystopia", label: "泡芙" },
+    { to: "/books/category/Romance_Society", label: "其他" },
+    { to: "/books/category/Coming-of-Age_Obsession", label: "禮盒" }
   ];  
 
   const NavBarContent = () => (
@@ -47,8 +50,9 @@ export default function NavBar() {
         <div className="drawer-side z-9999">
           <label htmlFor="drawer-toggle" className="drawer-overlay" onClick={() => setIsOpen(false)}></label>
           <div className="menu p-4 w-64 min-h-full drawer-bg">
-            <h2 className="text-xl font-bold mb-10">CATEGORY</h2>
-            <NavBarContent />
+            <p>首頁</p>
+            <p>關於我們</p>
+            <p>商品列表</p>
           </div>
         </div>
       </div>
