@@ -3,18 +3,18 @@ import { useDispatch } from "react-redux";
 import { addCartItems } from "@/redux/cartSlice";
 import { ShoppingBasket } from "lucide-react";
 
-export default function AddToBasket({ book, qty }) {
+export default function AddToBasket({ products, qty }) {
   const dispatch = useDispatch();
   const [showToast, setShowToast] = useState(false);
 
   const addToCart = () => {
     setShowToast(true); // 顯示 toast
     dispatch(addCartItems({
-      id: book.id,
-      name: book.title,
-      image: book.cover,
-      price: book.price,
-      countInStock: book.stock,
+      id: products.id,
+      name: products.name,
+      image: products.image,
+      price: products.price,
+      countInStock: products.countInStock,
       qty,
     }))
     // 2 秒後自動關閉 toast
@@ -33,7 +33,7 @@ export default function AddToBasket({ book, qty }) {
         <div className="toast toast-end">
           <div className="alert">
             <span>
-              {qty} {qty > 1 ? "pieces" : "piece"} of {book.title} {qty > 1 ? "have" : "has"} been added to your cart.
+              {qty} {qty > 1 ? "pieces" : "piece"} of {products.name} {qty > 1 ? "have" : "has"} been added to your cart.
             </span>
           </div>
         </div>

@@ -2,30 +2,28 @@ import { useParams } from 'react-router';
 import { Helmet } from "react-helmet-async"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import BookDetail from "@/components/BookDetail";
-import books from "@/json/books.json";
+import ProductDetail from "@/components/ProductDetail";
+import products from "@/json/products.json";
 
 
-function Book() {
-   const { bookId } = useParams();
-   const book = books.find(
-      (x) => x.id === Number(bookId)
+function Product() {
+   const { productId } = useParams();
+   const product = products.find(
+      (x) => x.id === productId
    );
-   const title = "Book Detail";
+   const title = _.startCase(categoryName);
    return (
       <div className="container mx-auto main-layout bg-gray-900">
          <Helmet>
                <title>{title}</title>
             </Helmet>
-         <Header
-            title={title}
-            slogan="More information for you."
-         />
+            <Header/>
+            <div style={{ marginTop: '100px', padding: '20px' }}></div>
          
-         <BookDetail book={book} className="content" />
+            <ProductDetail product={product} className="content" />
          <Footer className="footer" />
       </div>
    );
 }
 
-export default Book;
+export default Product;

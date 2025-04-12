@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 
 import './App.css';
 import Home from '@/pages/Home'
-import Book from '@/pages/Book';
-import Category from '@/pages/Category'
+import Product from '@/pages/Detail';
+import Category from '@/pages/List'
 import store from '@/redux/store';
 
 function App() {
@@ -15,9 +15,9 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="books">
+            <Route path="products">
               <Route path="category/:categoryName" element={<Category />} />
-              <Route path="id/:bookId" element={<Book />} />
+              <Route path="id/:productId" element={<Product />} />
             </Route>
           </Routes>
         </BrowserRouter>

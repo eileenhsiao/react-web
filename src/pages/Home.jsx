@@ -1,22 +1,25 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header'
-import BookList from '@/components/BookList'
+import ProductList from '@/components/ProductList'
 import Footer from '@/components/Footer'
-import books from "@/json/books.json";
+import products from "@/json/products.json";
 
 function Home() {
+  const title = "Blissful Bites";
   return (
-    
     <div className="container mx-auto main-layout bg-gray-900 min-h-screen">
+      <Helmet>
+          <title>{title}</title>
+        </Helmet>
+      <Header/>
+      <div style={{ marginTop: '10px', padding: '20px' }}></div>
+      <img className="w-full" src="/img/home.svg" alt="logo"/>
       
-      <Header 
-        title="Welcome to the Bookstore"
-        slogan="The best place to introduce you some great books"
-      />
-      <BookList books ={books} className="content" />
-     /*map*/
+      <ProductList products={products} className="content" />
+     {/*map*/}
       <Footer className="footer" />
     </div>
+
   )
 }
 

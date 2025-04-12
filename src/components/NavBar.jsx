@@ -5,12 +5,12 @@ import HamMenu from '@/components/HamMenu';
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const navBarContent = [
-    { to: "/books/category/SocialCriticism_Dystopia", label: "全部" },
-    { to: "/books/category/Romance_Society", label: "蛋糕" },
-    { to: "/books/category/Coming-of-Age_Obsession", label: "派＆塔" },
-    { to: "/books/category/SocialCriticism_Dystopia", label: "泡芙" },
-    { to: "/books/category/Romance_Society", label: "其他" },
-    { to: "/books/category/Coming-of-Age_Obsession", label: "禮盒" }
+    { to: "/products/kind/all", label: "全部" },
+    { to: "/products/kind/cake", label: "蛋糕" },
+    { to: "/products/kind/pie_tart", label: "派＆塔" },
+    { to: "/products/kind/puff", label: "泡芙" },
+    { to: "/products/kind/other", label: "其他" },
+    { to: "/products/kind/gift_box", label: "禮盒" }
   ];  
 
   const NavBarContent = () => (
