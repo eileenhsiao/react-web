@@ -13,8 +13,8 @@ export default function Header() {
 
     return (
         <>
-        {/* HamMenu */}
-        <div className="drawer md:hidden">
+            {/* 手機顯示HamMenu */}
+            <div className="drawer md:hidden">
                 <input id="drawer-toggle" type="checkbox" className="drawer-toggle" checked={isOpen} readOnly />
                 <HamMenu
                     id="drawer-toggle"
@@ -25,9 +25,10 @@ export default function Header() {
                 <div className="drawer-side z-9999">
                     <label htmlFor="drawer-toggle" className="drawer-overlay" onClick={() => setIsOpen(false)}></label>
                     <div className="menu p-4 w-64 min-h-full drawer-bg">
-                        <p>首頁</p>
-                        <p>關於我們</p>
-                        <p>商品列表</p>
+                        <Link to="/">首頁</Link>
+
+                        <Link to="/about">關於我們</Link>
+                        <Link to="/list">商品列表</Link>
                     </div>
                 </div>
             </div>
@@ -36,17 +37,13 @@ export default function Header() {
                 <Link to="/">
                     <img className="w-full" src="/img/logo.svg" alt="logo" />
                 </Link>
-                <Link to="/">
-                    <p>關於我們</p>
-                </Link>
-                <Link to="/">
-                    <p>商品列表</p>
-                </Link>
+                <Link to="/about">關於我們</Link>
+                <Link to="/list">商品列表</Link>
                 <SetColorMode />
                 <CartSummary />
             </header>
 
-            
+
         </>
     );
 }
