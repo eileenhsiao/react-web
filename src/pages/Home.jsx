@@ -12,8 +12,10 @@ function Home() {
           <title>{title}</title>
         </Helmet>
       <Header/>
-      <div style={{ marginTop: '10px', padding: '20px' }}></div>
-      <img className="w-full" src="/img/home.svg" alt="logo"/>
+      <div style={{ marginTop: '10px', padding: '20px 0px' }}>
+      <img className="w-full" src="/img/home.svg" alt="logo"/>  
+      </div>
+      
       
       <ProductList products={products} className="content" />
      {/*map*/}

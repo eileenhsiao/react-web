@@ -11,8 +11,10 @@ function About() {
             <title>{title}</title>
           </Helmet>
         <Header/>
-        <div style={{ marginTop: '100px', padding: '20px' }}></div>
-        <img className="w-full" src="/img/aboutus.svg" alt="AboutUs" />
+        <div style={{ marginTop: '100px', padding: '20px 0px' }}>
+          <img className="w-full" src="/img/aboutus.svg" alt="AboutUs" />
+        </div>
+        
         <Footer className="footer" />
       </div>
   
