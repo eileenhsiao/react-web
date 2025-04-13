@@ -27,7 +27,7 @@ export default function Footer() {
         {/* 聯絡我們 */}
         <div className="footer-contactUs">
           <p className="font-extrabold">門市資訊</p>
-          <p >Blissful Bites門市地址｜106320 臺北市大安區和平東路2段134號<br/>電話｜02-00000000<br/>營業時間｜12:30-20:30（無固定公休日）</p>
+          <p >Blissful Bites門市地址｜106320 106台北市大安區和平東路二段<br/>電話｜02-00000000<br/>營業時間｜12:30-20:30（無固定公休日）</p>
         </div>
         
       </footer> 
