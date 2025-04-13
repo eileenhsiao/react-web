@@ -5,6 +5,7 @@ import CartSummary from "./CartSummary";
 import './style.css';
 import HamMenu from '@/components/HamMenu';
 import SetColorMode from "@/components/SetColorMode";
+import '@/index.css';
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);

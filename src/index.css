@@ -25,6 +25,15 @@
   .drawer-bg {
     background-color: #fff;
   }
+
+  .c-text {
+    color: #000000;
+  }
+
+  .custom-border {
+    border: 1px solid #DBB985;
+  }
+  
 }
 
 [data-theme="dark"] {

@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Sun, Moon } from "lucide-react";
 import { selectLightMode, setColorMode } from "@/redux/colorSLice";
+import '@/index.css';
 
 export default function SetColorMode() {
    const lightMode = useSelector(selectLightMode);

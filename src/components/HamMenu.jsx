@@ -1,3 +1,5 @@
+import '@/index.css';
+
 export default function HamMenu({ onClick, isOpen, className }) {
     return (
        <span

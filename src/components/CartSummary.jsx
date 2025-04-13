@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import BasketModal from "@/components/BasketModal"
 import { selectCartItems } from "@/redux/cartSlice";
 import { ShoppingBasket } from "lucide-react";
+import '@/index.css';
 
 function CartSummary() {
    const [isOpen, setIsOpen] = useState(false);

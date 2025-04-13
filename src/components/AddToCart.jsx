@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addCartItems } from "@/redux/cartSlice";
 import { ShoppingBasket } from "lucide-react";
+import '@/index.css';
 
 export default function AddToBasket({ products, qty }) {
   const dispatch = useDispatch();

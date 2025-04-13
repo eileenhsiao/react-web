@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router';
 import { useState } from 'react';
 import HamMenu from '@/components/HamMenu';
+import '@/index.css';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);

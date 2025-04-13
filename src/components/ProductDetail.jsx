@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AddToBasket from "@/components/AddToCart"
+import '@/index.css';
 
 function ProductDetail({ product }) {
 

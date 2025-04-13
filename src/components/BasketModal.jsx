@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartItems, removeCartItems, selectCartItems } from "@/redux/cartSlice";
 import { ShoppingBasket } from "lucide-react";
+import '@/index.css';
 
 export default function BasketModal({ isOpen, toggleModal }) {
    const dispatch = useDispatch();
