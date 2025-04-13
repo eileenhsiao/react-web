@@ -13,7 +13,7 @@ function Home() {
           <title>{title}</title>
         </Helmet>
       <Header/>
-      <div style={{ marginTop: '10px', padding: '0px' }}>
+      <div style={{ marginTop: '61.6px', padding: '0px' }}>
       <img className="w-full content" src="/img/home.svg" alt="logo"/>  
       </div>
       
