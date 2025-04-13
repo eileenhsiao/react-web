@@ -4,7 +4,7 @@ import { addCartItems } from "@/redux/cartSlice";
 import { ShoppingBasket } from "lucide-react";
 import '@/index.css';
 
-export default function AddToBasket({ products, qty }) {
+export default function AddToCart({ products, qty }) {
   const dispatch = useDispatch();
   const [showToast, setShowToast] = useState(false);
 
