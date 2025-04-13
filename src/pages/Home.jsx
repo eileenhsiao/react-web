@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router';
 import Header from '../components/Header'
 import ProductList from '@/components/ProductList'
 import Footer from '@/components/Footer'
@@ -17,7 +18,13 @@ function Home() {
         <img className="w-full content" src="/img/home.svg" alt="logo" />
       </div>
 
-      <ProductList products={products} className="content" />
+      <ProductList products={products.slice(0, 4)} className="content" />
+      <Link to="/products/list/all">
+      <button className="btn btn-primary px-8 py-5">
+        <span className="font-thin ml-3">查看全部商品</span>
+      </button>
+      </Link>
+      
       {/*map*/}
       <div className="w-full h-[400px]">
         <iframe
