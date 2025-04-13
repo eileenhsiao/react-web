@@ -5,8 +5,8 @@ import '@/index.css';
 
 function ProductItem({ product }) {
    return (
-      <section className="pt-4 px-3 lg:px-4">
-         <div className="custom-border overflow-hidden">
+      <section className="w-full max-w-[280px] mx-auto pt-4 px-3 lg:px-4 ">
+         <div className="custom-border overflow-hidden pbox">
             <Link to={`/products/id/${product.id}`}>
                <img className="w-full max-w-[250px] mx-auto" src={product.image} alt={product.name} />
             </Link>
