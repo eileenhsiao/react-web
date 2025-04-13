@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AddToBasket from "@/components/AddToCart"
+import AddToCart from "@/components/AddToCart"
 import '@/index.css';
 
 function ProductDetail({ product }) {
@@ -43,7 +43,7 @@ function ProductDetail({ product }) {
           <p>
             <span className="font-bold">總價:</span>: {product.price * qty}
           </p>
-          <AddToBasket  product={product} qty={qty} />
+          <AddToCart products={product} qty={qty} />
         </div>
       </div>
     </div>

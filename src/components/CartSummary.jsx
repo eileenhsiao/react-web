@@ -15,16 +15,16 @@ function CartSummary() {
 
    return (
       <>
-         <nav
+         <div
             onClick={toggleOpen}
-            className="inline-block absolute top-6 right-2 md:right-6 cursor-pointer"
+            className="inline-flex items-center gap-x-1 cursor-pointer"
          >
-            <div className="indicator">
-               {count > 0 && <span className="indicator-item badge badge-primary text-white">{count}</span>}
-               <ShoppingBasket strokeWidth={1.5} className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:scale-105 transition-transform" />
+            <div className="indicator relative">
+            {count > 0 && <span className="indicator-item badge badge-primary text-white">{count}</span>}
+               <ShoppingBasket strokeWidth={1.5} className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-105 transition-transform " />
             </div>
-            <p className="text-white text-xs opacity-60 mt-[-4px]">Shopping bag</p>
-         </nav>
+            
+         </div>
          <BasketModal
             isOpen={isOpen}
             toggleModal={toggleOpen}
