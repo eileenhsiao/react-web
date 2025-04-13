@@ -59,8 +59,41 @@
 
 /*深色模式*/
 [data-theme="dark"] {
+  .header{
+    background-color: #000000;
+    color: #D0BFAA;
+  }
+
+  .footer{
+    background-color: #121212;
+    color: #D0BFAA;
+  }
+
+  .footer-copyRight{
+    background-color: #000000;
+    color: #F5F5F5;
+  }
+
   .drawer-bg {
-    background-color: #222;
+    background-color: #000000;
+  }
+
+  .c-text {
+    color: #F5F5F5;
+  }
+
+  .custom-border {
+    border: 1px solid #B08968;
+  }
+
+  .pbox{
+    background-color: #2F2F2F;
+    color: #F5F5F5;
+  }
+
+  .content{
+    background-color: #1E1E1E;
+    color: #F5F5F5;
   }
 }
 
