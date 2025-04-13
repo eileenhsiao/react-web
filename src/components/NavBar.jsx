@@ -35,7 +35,7 @@ export default function NavBar() {
   return (
     <>
       {/* 桌面版導覽列 */}
-      <div className="hidden md:flex justify-around mt-3 mb-8">
+      <div className="hidden md:flex justify-around mt-2 mb-2">
         <NavBarContent />
       </div>
 
