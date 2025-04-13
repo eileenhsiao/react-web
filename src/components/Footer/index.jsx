@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     /*桌面*/
     <div className="w-full m-0">
-      <footer className="footer bg-gray-900 text-white py-6">
+      <footer className="footer  text-white py-6">
         {/* 描述區塊 */}
         <div className="footer-content">
           <img className="w-8 h-8" src="/img/logo.svg" alt="logo"/>
@@ -32,7 +32,7 @@ export default function Footer() {
         
       </footer> 
       {/* 版權聲明 */}
-      <p className="w-full footer-copyRight text-center text-gray-400 opacity-60">
+      <p className="w-full footer-copyRight text-center ">
         Copyright 2025 © Blissful Bites
         </p>
     </div>
