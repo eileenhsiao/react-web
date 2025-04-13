@@ -24,12 +24,9 @@ function ProductDetail({ product }) {
 
         {/* 價格與按鈕 */}
         <div className="flex flex-col gap-4">
-          <p className="text-2xl font-semibold">US${product.price}.00</p>
-          <p>
-            <span className="font-bold" >Status</span>: {product.countInStock > 0 ? "In Stock" : "Unavailable."}
-          </p>
+          <p className="text-2xl font-semibold">TWD {product.price}元</p>
           <div className="flex items-center gap-2">
-            <span className="font-bold" >Qty:</span>
+            <span className="font-bold" >數量:</span>
             <select
               className="select select-bordered w-20"
               defaultValue={product.countInStock > 0 ? 1 : 0}
@@ -43,7 +40,7 @@ function ProductDetail({ product }) {
             </select>
           </div>
           <p>
-            <span className="font-bold">Total Price</span>: {product.price * qty}
+            <span className="font-bold">總價:</span>: {product.price * qty}
           </p>
           <AddToBasket  product={product} qty={qty} />
         </div>

@@ -5,12 +5,12 @@ import HamMenu from '@/components/HamMenu';
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const navBarContent = [
-    { to: "/products/kind/all", label: "全部" },
-    { to: "/products/kind/cake", label: "蛋糕" },
-    { to: "/products/kind/pie_tart", label: "派＆塔" },
-    { to: "/products/kind/puff", label: "泡芙" },
-    { to: "/products/kind/other", label: "其他" },
-    { to: "/products/kind/gift_box", label: "禮盒" }
+    { to: "/products/list/all", label: "全部" },
+    { to: "/products/list/cake", label: "蛋糕" },
+    { to: "/products/list/pie_tart", label: "派＆塔" },
+    { to: "/products/list/puff", label: "泡芙" },
+    { to: "/products/list/other", label: "其他" },
+    { to: "/products/list/gift_box", label: "禮盒" }
   ];  
 
   const NavBarContent = () => (

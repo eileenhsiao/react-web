@@ -9,11 +9,13 @@ function ProductItem({ product }) {
             <Link to={`/products/id/${product.id}`}>
                <img className="w-full" src={product.image} alt={product.name} />
             </Link>
+            <Link to={`/products/id/${product.id}`}>
             <div className="p-4">
                <h5 className="mb-3">
                   {product.name}
                </h5>         
             </div>
+            </Link>
          </div>
       </section>
    );

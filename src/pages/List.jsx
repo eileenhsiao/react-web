@@ -9,11 +9,12 @@ import NavBar from "@/components/NavBar";
 
 function Category() {
   const { categoryName } = useParams();
-  const _products = products.filter(
-    x => x?.category.toUpperCase() === categoryName.toUpperCase()
-  );
 
-  const title = "商品列表-"+_.startCase(categoryName);
+const _products = products.filter(x =>
+  (x.kind || []).map(k => k.toLowerCase()).includes(categoryName.toLowerCase())
+);
+
+const title = `商品列表 - ${_.startCase(categoryName)}`;
 
   return (
     <div>

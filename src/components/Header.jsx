@@ -38,7 +38,7 @@ export default function Header() {
                     <img className="w-full" src="/img/logo.svg" alt="logo" />
                 </Link>
                 <Link to="/about">關於我們</Link>
-                <Link to="/list">商品列表</Link>
+                <Link to="/products/list/all">商品列表</Link>
                 <SetColorMode />
                 <CartSummary />
             </header>

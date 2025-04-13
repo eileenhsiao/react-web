@@ -74,12 +74,14 @@ export default function BasketModal({ isOpen, toggleModal }) {
                   </div>
 
                   {/* Checkout Button */}
+                  <Link to="/cart">
                   <button
                      className="btn btn-primary w-full text-base font-light py-3 mt-8 flex justify-center items-center"
                   >
                      <ShoppingBasket strokeWidth={1} className="w-5 h-5 md:w-6 md:h-6 text-current group-hover:scale-105 transition-transform" />
                      <span className="font-thin ml-3">START CHECKOUT</span>
                   </button>
+                  </Link>
 
                   {/* Close button */}
                   <div className="absolute right-4 top-4 modal-action mt-4">

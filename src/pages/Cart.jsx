@@ -13,7 +13,7 @@ function Cart() {
           </Helmet>
         <Header/>
         <div style={{ marginTop: '100px', padding: '20px' }}></div>
-        <ProductDetail products={products} className="content" />
+        
         <Footer className="footer" />
       </div>
   
