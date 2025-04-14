@@ -6,10 +6,12 @@ import './style.css';
 import HamMenu from '@/components/HamMenu';
 import SetColorMode from "@/components/SetColorMode";
 import '@/index.css';
+import { useSelector } from "react-redux";
+import { selectLightMode } from "@/redux/colorSlice";
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
-
+    const lightMode = useSelector(selectLightMode);
 
 
     return (
@@ -38,7 +40,11 @@ export default function Header() {
                 <div className="flex items-center justify-between px-4 py-2">
                     {/* 左邊的 logo */}
                     <Link to="/">
-                        <img className="h-6" src="/img/logo.svg" alt="logo" />
+                    <img
+                        src={lightMode ? "/img/logo.svg" : "/img/logodark.svg"}
+                        alt="logo"
+                        className="h-6"
+                    />
                     </Link>
 
                     {/* 右邊的導航區塊 */}

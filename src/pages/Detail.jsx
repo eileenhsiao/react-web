@@ -5,15 +5,20 @@ import Footer from "@/components/Footer"
 import ProductDetail from "@/components/ProductDetail";
 import products from "@/json/products.json";
 import _ from 'lodash';
+import { useEffect } from 'react';
 
 
 function Product() {
+   useEffect(() => {
+      window.scrollTo(0, 0); // 滾動到頁面頂部
+    }, []);
+    
    const { productId } = useParams();
    const product = products.find((x) => x.id === Number(productId));
    console.log(productId, product);
    const title = product ? _.startCase(product.name) : '商品詳細';
    return (
-      <div className="container mx-auto main-layout bg-gray-900">
+      <div className="container mx-auto main-layout">
          <Helmet>
                <title>{title}</title>
             </Helmet>

@@ -8,16 +8,20 @@
 
 @plugin "daisyui/theme" {
   name: "dark";
-  --color-primary: #6366F2;
+  --color-primary: #B08968;
 }
 
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #6366F2;
+  --color-primary: #DBB985;
 }
 /*淺色模式*/
 [data-theme="light"] {
+  body{
+    background-color: #FFFEFD;
+  }
+
   .header{
     background-color: #fff;
     color: #DBB985;
@@ -54,13 +58,66 @@
     background-color: #FFFEFD;
     color: #000000;
   }
+
+  .btext{
+    color: #ffffff;
+  }
+
+  .bottom-border {
+    border-bottom: 2px solid #DBB985;
+  }
   
 }
 
 /*深色模式*/
 [data-theme="dark"] {
+  body{
+    background-color: #1E1E1E;
+  }
+
+  .header{
+    background-color: #000000;
+    color: #D0BFAA;
+  }
+
+  .footer{
+    background-color: #121212;
+    color: #D0BFAA;
+  }
+
+  .footer-copyRight{
+    background-color: #000000;
+    color: #F5F5F5;
+  }
+
   .drawer-bg {
-    background-color: #222;
+    background-color: #000000;
+  }
+
+  .c-text {
+    color: #F5F5F5;
+  }
+
+  .custom-border {
+    border: 1px solid #B08968;
+  }
+
+  .pbox{
+    background-color: #2F2F2F;
+    color: #F5F5F5;
+  }
+
+  .content{
+    background-color: #1E1E1E;
+    color: #F5F5F5;
+  }
+
+  .btext{
+    color: #F5F5F5;
+  }
+
+  .bottom-border {
+    border-bottom: 2px solid #B08968;
   }
 }
 

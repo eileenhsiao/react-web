@@ -5,6 +5,10 @@ import Footer from '@/components/Footer'
 import CartList from '@/components/CartList';
 
 function Cart() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // 滾動到頁面頂部
+  }, []);
+  
   const title = "購物車";
     return (
       <div className="container mx-auto main-layout bg-gray-900 min-h-screen">
