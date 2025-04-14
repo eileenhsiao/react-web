@@ -21,7 +21,7 @@ export default function CartList() {
     return (
         <div className="p-4 content">
             {cartItems.length === 0 ? (
-                <div className="text-center text-2xl">購物車是空的</div>
+                <div className="text-center text-2xl text-empty">購物車是空的</div>
             ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                     {/* 左 */}
