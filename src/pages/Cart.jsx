@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
+import '@/index.css';
 import Header from '../components/Header'
 import Footer from '@/components/Footer'
-import ProductDetail from "@/components/ProductDetail";
-import products from "@/json/products.json";
+import CartList from '@/components/CartList';
 import { useEffect } from 'react';
 
 function Cart() {
@@ -18,7 +18,7 @@ function Cart() {
           </Helmet>
         <Header/>
         <div style={{ marginTop: '100px', padding: '20px' }}></div>
-        
+        <CartList className="content"/>
         <Footer className="footer" />
       </div>
   
