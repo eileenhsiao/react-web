@@ -52,7 +52,7 @@ function About() {
       </div>
 
       
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-4 mb-10 max-w-2xl mx-auto">
+      <div className="grid grid-cols-4 md:grid-cols-4 gap-4 px-4 mb-10 max-w-2xl mx-auto">
         <img src="/img/bite1.svg" alt="bite1" className=" object-cover w-full" />
         <img src="/img/bite2.svg" alt="bite2" className=" object-cover w-full" />
         <img src="/img/bite3.svg" alt="bite3" className=" object-cover w-full" />
