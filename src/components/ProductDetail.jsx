@@ -7,9 +7,9 @@ function ProductDetail({ product }) {
   const [qty, setQty] = useState(product.countInStock > 0 ? 1 : 0);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-24 gap-8 justify-center">
+    <div className="grid grid-cols-1 lg:grid-cols-24 gap-8 justify-center content mb-30">
       {/* 左側：產品圖片（佔6/24） */}
-      <div className="lg:col-span-6 lg:col-start-3">
+      <div className="lg:col-span-6 lg:col-start-6">
         <img
           alt={product.name}
           className="w-full h-96 object-cover object-center rounded-md"
@@ -18,7 +18,7 @@ function ProductDetail({ product }) {
       </div>
 
       {/* 右側：產品資訊（佔14/24） */}
-      <div className="lg:col-span-14 px-4">
+      <div className="lg:col-span-8 lg:col-start-12 px-4">
         <h2 className="opacity-60 mb-1 text-lg">{product.category}</h2>
         <h1 className="text-2xl font-bold mb-2">{product.name}</h1>
         <p className="opacity-60 text-base mb-4">{product.intro}</p>

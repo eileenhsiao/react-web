@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import ProductList from '@/components/ProductList'
 import Footer from '@/components/Footer'
 import products from "@/json/products.json";
-import '@/index.css';
+
 
 function Home() {
   const title = "Blissful Bites";

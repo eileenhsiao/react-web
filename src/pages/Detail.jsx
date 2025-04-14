@@ -7,13 +7,14 @@ import products from "@/json/products.json";
 import _ from 'lodash';
 
 
+
 function Product() {
    const { productId } = useParams();
    const product = products.find((x) => x.id === Number(productId));
    console.log(productId, product);
    const title = product ? _.startCase(product.name) : '商品詳細';
    return (
-      <div className="container mx-auto main-layout bg-gray-900">
+      <div className="container mx-auto main-layout">
          <Helmet>
                <title>{title}</title>
             </Helmet>
