@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import BasketModal from "@/components/BasketModal"
 import { selectCartItems } from "@/redux/cartSlice";
-import { ShoppingBasket } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import '@/index.css';
 
 function CartSummary() {
@@ -21,7 +21,7 @@ function CartSummary() {
          >
             <div className="indicator relative">
             {count > 0 && <span className="indicator-item badge badge-primary text-white">{count}</span>}
-               <ShoppingBasket strokeWidth={1.5} className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-105 transition-transform " />
+               <ShoppingCart strokeWidth={1.5} className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-105 transition-transform " />
             </div>
             
          </div>

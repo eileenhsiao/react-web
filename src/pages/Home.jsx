@@ -22,8 +22,8 @@ function Home() {
       </div>
 
       <PopularList products={products} className="content" />
-      <div className="my-10 px-4">
-        <div className="w-full h-[400px]">
+      
+        <div className="w-full h-[300px]">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2149.657085887979!2d121.5430963775525!3d25.024642280173644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1szh-TW!2stw!4v1744645054150!5m2!1szh-TW!2stw"
             width="100%"
@@ -34,7 +34,7 @@ function Home() {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
-      </div>
+      
       <Footer className="footer" />
     </div>
 

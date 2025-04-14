@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartItems, removeCartItems, selectCartItems } from "@/redux/cartSlice";
-import { ShoppingBasket } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import '@/index.css';
 
 export default function BasketModal({ isOpen, toggleModal }) {
@@ -79,7 +79,7 @@ export default function BasketModal({ isOpen, toggleModal }) {
                   <button
                      className="btn btn-primary w-full text-base font-light py-3 mt-8 flex justify-center items-center"
                   >
-                     <ShoppingBasket strokeWidth={1} className="btext w-5 h-5 md:w-6 md:h-6 text-current group-hover:scale-105 transition-transform" />
+                     <ShoppingCart strokeWidth={1} className="btext w-5 h-5 md:w-6 md:h-6 text-current group-hover:scale-105 transition-transform" />
                      <span className="font-thin ml-3 btext">去結帳</span>
                   </button>
                   </Link>
