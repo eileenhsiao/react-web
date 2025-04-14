@@ -34,7 +34,7 @@ export default function AddToCart({ products, qty }) {
         <div className="toast toast-end">
           <div className="alert">
             <span>
-              {qty} {qty > 1 ? "pieces" : "piece"} 個 {products.name} {qty > 1 ? "have" : "has"} 已加入購物車
+              {qty}個 {products.name} 已加入購物車
             </span>
           </div>
         </div>
