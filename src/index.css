@@ -18,6 +18,10 @@
 }
 /*淺色模式*/
 [data-theme="light"] {
+  body{
+    background-color: #FFFEFD;
+  }
+
   .header{
     background-color: #fff;
     color: #DBB985;
@@ -67,6 +71,10 @@
 
 /*深色模式*/
 [data-theme="dark"] {
+  body{
+    background-color: #1E1E1E;
+  }
+
   .header{
     background-color: #000000;
     color: #D0BFAA;

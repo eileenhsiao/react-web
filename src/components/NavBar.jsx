@@ -15,15 +15,16 @@ export default function NavBar() {
   ];  
 
   const NavBarContent = () => (
-    <div className="flex flex-col md:flex-row md:justify-around md:space-x-6">
+    <div className="flex flex-col md:flex-row md:justify-around md:space-x-6 content">
       {navBarContent.map(({ to, label }) => (
         <NavLink
           key={to}
           to={to}
           onClick={() => setIsOpen(false)}
           className={({ isActive }) =>
-            `my-3 md:my-0 text-lg transition-all duration-500 ease-in-out ${isActive ? " opacity-100" : "opacity-60"
-            } hover:opacity-100 hover:text-shadow-lg`
+            `my-3 md:my-0 text-lg transition-all duration-500 ease-in-out 
+            ${isActive ? "opacity-100 border-b-2 border-primary" : "opacity-60"}
+            hover:opacity-100 hover:text-shadow-lg focus:outline-none focus:ring-2 focus:ring-primary`
           }
         >
           {label}
@@ -31,6 +32,7 @@ export default function NavBar() {
       ))}
     </div>
   );
+  
 
   return (
     <>
