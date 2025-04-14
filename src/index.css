@@ -8,7 +8,7 @@
 
 @plugin "daisyui/theme" {
   name: "dark";
-  --color-primary: #D0BFAA;
+  --color-primary: #B08968;
 }
 
 @plugin "daisyui/theme" {
@@ -54,6 +54,10 @@
     background-color: #FFFEFD;
     color: #000000;
   }
+
+  .btext{
+    color: #ffffff;
+  }
   
 }
 
@@ -95,6 +99,11 @@
     background-color: #1E1E1E;
     color: #F5F5F5;
   }
+
+  .btext{
+    color: #F5F5F5;
+  }
+
 }
 
 
