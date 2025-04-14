@@ -3,6 +3,7 @@ import '@/index.css';
 import Header from '../components/Header'
 import Footer from '@/components/Footer'
 import CartList from '@/components/CartList';
+import { useEffect } from 'react';
 
 function Cart() {
   useEffect(() => {
