@@ -58,6 +58,10 @@
   .btext{
     color: #ffffff;
   }
+
+  .bottom-border {
+    border-bottom: 2px solid #DBB985;
+  }
   
 }
 
@@ -104,6 +108,9 @@
     color: #F5F5F5;
   }
 
+  .bottom-border {
+    border-bottom: 2px solid #B08968;
+  }
 }
 
 
