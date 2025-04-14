@@ -1,4 +1,5 @@
 import ProductItem from '@/components/ProductItem';
+import { Link } from "react-router";
 
 function PopularList({ products }) {
    return (
@@ -7,6 +8,15 @@ function PopularList({ products }) {
             {products.slice(0, 6).map((product) => (
                <ProductItem key={product.id} product={product} />
             ))}
+         </div>
+
+         <div className="flex justify-center mt-8">
+            <Link
+            to="/products/list/all"
+            className="btn btn-primary flex items-center justify-center px-8 py-5"
+            >
+            <span className="btext">查看全部商品</span>
+            </Link>
          </div>
       </div>
    );

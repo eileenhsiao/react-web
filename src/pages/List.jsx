@@ -6,6 +6,7 @@ import Footer from "@/components/Footer"
 import ProductList from '@/components/ProductList'
 import products from "@/json/products.json";
 import NavBar from "@/components/NavBar";
+import { useEffect } from 'react';
 
 function Category() {
   const { categoryName } = useParams();
@@ -15,6 +16,10 @@ const _products = products.filter(x =>
 );
 
 const title = `商品列表 - ${_.startCase(categoryName)}`;
+
+useEffect(() => {
+  window.scrollTo(0, 0); // 滾動到頁面頂部
+}, []);
 
   return (
     <div>

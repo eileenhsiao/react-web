@@ -5,10 +5,14 @@ import Footer from "@/components/Footer"
 import ProductDetail from "@/components/ProductDetail";
 import products from "@/json/products.json";
 import _ from 'lodash';
-
+import { useEffect } from 'react';
 
 
 function Product() {
+   useEffect(() => {
+      window.scrollTo(0, 0); // 滾動到頁面頂部
+    }, []);
+    
    const { productId } = useParams();
    const product = products.find((x) => x.id === Number(productId));
    console.log(productId, product);
