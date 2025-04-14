@@ -26,7 +26,7 @@ export default function CartList() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                     {/* 左 */}
                     <div>
-                        <div className="grid grid-cols-[40px_100px_1fr_80px_100px_80px] items-center font-bold border-b border-[#d4b180] pb-2 mb-4">
+                        <div className="grid grid-cols-[40px_40px_1fr_80px_100px_80px] items-center font-bold border-b border-[#d4b180] pb-2 mb-4">
                             <div></div>
                             <div></div>
                             <div>商品</div>
@@ -72,9 +72,10 @@ export default function CartList() {
                     </div>
 
                     {/* 右 */}
-                    <div className="p-4 border-l-2 border-[#d4b180] flex flex-col justify-between">
+                    <div className="p-4 border-l-2 border-[#d4b180] flex flex-col justify-between h-full">
+                    <div className="text-xl font-semibold mb-6 font-bold border-b border-[#d4b180]">購物車總計</div>
                         <div>
-                            <div className="text-xl font-semibold mb-6">購物車總計</div>
+                            
 
                             <div className="flex justify-between mb-2">
                                 <span>小計</span>
@@ -87,8 +88,8 @@ export default function CartList() {
                                     <button
                                         onClick={() => setShippingMethod("pickup")}
                                         className={`border px-3 py-1 rounded text-sm ${shippingMethod === "pickup"
-                                                ? "bg-[#d4b180] text-white border-[#d4b180]"
-                                                : "border-gray-400"
+                                            ? "bg-[#d4b180] text-white border-[#d4b180]"
+                                            : "border-gray-400"
                                             }`}
                                     >
                                         自取 <span className="text-xs ml-1">(運費+0)</span>
@@ -96,16 +97,15 @@ export default function CartList() {
                                     <button
                                         onClick={() => setShippingMethod("home")}
                                         className={`border px-3 py-1 rounded text-sm ${shippingMethod === "home"
-                                                ? "bg-[#d4b180] text-white border-[#d4b180]"
-                                                : "border-gray-400"
+                                            ? "bg-[#d4b180] text-white border-[#d4b180]"
+                                            : "border-gray-400"
                                             }`}
                                     >
                                         宅配 <span className="text-xs ml-1">(運費+60)</span>
                                     </button>
                                 </div>
                             </div>
-
-
+                            <div></div>
                             <div className="flex justify-between font-semibold mt-4">
                                 <span>總計</span>
                                 <span>NT${getTotalPrice()}</span>
