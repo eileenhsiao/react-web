@@ -72,12 +72,8 @@ export default function CartList() {
                     </div>
 
                     {/* 右 */}
-<<<<<<< HEAD
-                    <div className="p-4 border-l-2 border-primary flex flex-col justify-between">
-=======
                     <div className="p-4 border-l-2 border-[#d4b180] flex flex-col justify-between h-full">
                     <div className="text-xl font-semibold mb-6 font-bold border-b border-[#d4b180]">購物車總計</div>
->>>>>>> 6dfe69915aa7bd9981d034eb393368c105d21ea6
                         <div>
                             
 
@@ -91,35 +87,19 @@ export default function CartList() {
                                 <div className="flex gap-2">
                                     <button
                                         onClick={() => setShippingMethod("pickup")}
-<<<<<<< HEAD
-                                        className={`border px-3 py-1 rounded text-sm ${
-                                            shippingMethod === "pickup"
-                                                ? "bg-primary btext border"
-                                                : "border"
-                                        }`}
-=======
                                         className={`border px-3 py-1 rounded text-sm ${shippingMethod === "pickup"
                                             ? "bg-[#d4b180] text-white border-[#d4b180]"
                                             : "border-gray-400"
                                             }`}
->>>>>>> 6dfe69915aa7bd9981d034eb393368c105d21ea6
                                     >
                                         自取 <span className="text-xs ml-1">(運費+0)</span>
                                     </button>
                                     <button
                                         onClick={() => setShippingMethod("home")}
-<<<<<<< HEAD
-                                        className={`border px-3 py-1 rounded text-sm ${
-                                            shippingMethod === "home"
-                                                ? "bg-primary btext border"
-                                                : "border"
-                                        }`}
-=======
                                         className={`border px-3 py-1 rounded text-sm ${shippingMethod === "home"
                                             ? "bg-[#d4b180] text-white border-[#d4b180]"
                                             : "border-gray-400"
                                             }`}
->>>>>>> 6dfe69915aa7bd9981d034eb393368c105d21ea6
                                     >
                                         宅配 <span className="text-xs ml-1">(運費+60)</span>
                                     </button>
