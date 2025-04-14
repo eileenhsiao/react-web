@@ -26,7 +26,7 @@ export default function CartList() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                     {/* 左 */}
                     <div>
-                        <div className="grid grid-cols-[40px_40px_1fr_80px_100px_80px] items-center font-bold border-b-2 border-primary pb-2 mb-4">
+                        <div className="text-xl grid grid-cols-[40px_40px_1fr_80px_100px_80px] items-center font-bold border-b-2 border-primary pb-2 mb-4">
                             <div></div>
                             <div></div>
                             <div>商品</div>
@@ -72,8 +72,8 @@ export default function CartList() {
                     </div>
 
                     {/* 右 */}
-                    <div className="p-4 border-l-2 border-primary flex flex-col justify-between h-full">
-                    <div className="text-xl font-semibold mb-6 font-bold border-b border-primary">購物車總計</div>
+                    <div className="pl-4 border-l-2 border-primary flex flex-col justify-between h-full">
+                    <div className="text-xl font-semibold mb-6 font-bold border-b-2 border-primary pb-2 ">購物車總計</div>
                         <div>
                             
 
