@@ -21,10 +21,10 @@ export default function BasketModal({ isOpen, toggleModal }) {
          {isOpen && (
             <div className="modal modal-open">
                <div className="modal-box max-w-md">
-                  <h3 className="font-thin text-[2rem] mb-4 text-left">Shopping Basket</h3>
+                  <h3 className="font-thin text-[2rem] mb-4 text-left">購物車總計</h3>
                   {/* Cart Items */}
                   {cartItems.length === 0 ? (
-                     <div className="text-center">Cart is empty</div>
+                     <div className="text-center">購物車是空的</div>
                   ) : (
                      cartItems.map(item => (
                         <li key={item.id} className="flex justify-between items-center pb-4 mb-4 border-b border-gray-400">
@@ -34,7 +34,7 @@ export default function BasketModal({ isOpen, toggleModal }) {
                            <div className="ml-8 flex-8 w-48 text-left">
                               <div className="font-medium mb-1">{item.name}</div>
                               <div className="flex items-center space-x-2">
-                                 <span>Qty:</span>
+                                 <span>數量:</span>
                                  <select
                                     defaultValue={item.qty}
                                     onChange={(e) =>
@@ -70,7 +70,7 @@ export default function BasketModal({ isOpen, toggleModal }) {
 
                   {/* Total */}
                   <div className="flex justify-between items-center mt-4">
-                     <div className="font-semibold">Total</div>
+                     <div className="font-semibold">總計:</div>
                      <div className="font-bold text-right">${getTotalPrice()}</div>
                   </div>
 
@@ -80,7 +80,7 @@ export default function BasketModal({ isOpen, toggleModal }) {
                      className="btn btn-primary w-full text-base font-light py-3 mt-8 flex justify-center items-center"
                   >
                      <ShoppingBasket strokeWidth={1} className="w-5 h-5 md:w-6 md:h-6 text-current group-hover:scale-105 transition-transform" />
-                     <span className="font-thin ml-3">START CHECKOUT</span>
+                     <span className="font-thin ml-3">去結帳</span>
                   </button>
                   </Link>
 

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartItems, removeCartItems, selectCartItems } from "@/redux/cartSlice";
@@ -7,10 +8,14 @@ export default function CartList() {
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
 
+    const [shippingMethod, setShippingMethod] = useState("pickup"); // 自取為預設
+    const shippingFee = shippingMethod === "home" ? 60 : 0;
+
     const getTotalPrice = () => {
-        return cartItems.length > 0
+        const itemsTotal = cartItems.length > 0
             ? cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)
             : 0;
+        return itemsTotal + shippingFee;
     };
 
     return (
@@ -18,10 +23,10 @@ export default function CartList() {
             {cartItems.length === 0 ? (
                 <div className="text-center">購物車是空的</div>
             ) : (
-                <>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        {/* 表頭 */}
-                        <div className="grid grid-cols-[40px_80px_1fr_80px_100px_80px] items-center font-bold border-b border-[#d4b180] pb-2 mb-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                    {/* 左 */}
+                    <div>
+                        <div className="grid grid-cols-[40px_100px_1fr_80px_100px_80px] items-center font-bold border-b border-[#d4b180] pb-2 mb-4">
                             <div></div>
                             <div></div>
                             <div>商品</div>
@@ -30,47 +35,25 @@ export default function CartList() {
                             <div>小計</div>
                         </div>
 
-                        {/* 商品列表 */}
                         <ul>
                             {cartItems.map(item => (
-                                <li
-                                    key={item.id}
-                                    className="grid grid-cols-[40px_80px_1fr_80px_100px_80px] items-center mb-4 pb-4 border-b border-gray-200"
-                                >
-                                    {/* 刪除按鈕 */}
-                                    <div
-                                        className="text-xl text-gray-500 cursor-pointer"
-                                        onClick={() => dispatch(removeCartItems(item.id))}
-                                    >
-                                        x
-                                    </div>
+                                <li key={item.id} className="grid grid-cols-[40px_100px_1fr_80px_100px_80px] items-center gap-2 border-b border-gray-300 py-3">
+                                    <div className="text-xl text-gray-500 cursor-pointer" onClick={() => dispatch(removeCartItems(item.id))}>x</div>
 
-                                    {/* 商品圖片 */}
                                     <Link to={`/products/id/${item.id}?qtyFromBasket=${item.qty}`}>
-                                        <img
-                                            src={item.image}
-                                            alt={item.name}
-                                            className="w-[80px] h-[80px] object-cover rounded cursor-pointer"
-                                        />
+                                        <img src={item.image} alt={item.name} className="w-[80px] h-[80px] object-cover mx-auto" />
                                     </Link>
 
-                                    {/* 商品名稱 */}
-                                    <div className="ml-2">{item.name}</div>
+                                    <div className="text-left">{item.name}</div>
 
-                                    {/* 單價 */}
                                     <div className="text-sm">NT${item.price}</div>
 
-                                    {/* 數量選單 */}
                                     <div>
                                         <select
                                             defaultValue={item.qty}
                                             onChange={(e) =>
                                                 dispatch(addCartItems({
-                                                    id: item.id,
-                                                    name: item.name,
-                                                    image: item.image,
-                                                    price: item.price,
-                                                    countInStock: item.countInStock,
+                                                    ...item,
                                                     qty: Number(e.target.value),
                                                 }))
                                             }
@@ -82,41 +65,59 @@ export default function CartList() {
                                         </select>
                                     </div>
 
-                                    {/* 小計 */}
-                                    <div className="text-sm font-medium">NT${item.price * item.qty}</div>
+                                    <div className="text-sm font-semibold">NT${item.price * item.qty}</div>
                                 </li>
                             ))}
                         </ul>
+                    </div>
 
-                        {/* 總結區塊 */}
-                        <div className="mt-8 p-4 border-l-2 border-[#d4b180]">
-                            <h2 className="text-xl font-semibold mb-4">購物車總計</h2>
+                    {/* 右 */}
+                    <div className="p-4 border-l-2 border-[#d4b180] flex flex-col justify-between">
+                        <div>
+                            <div className="text-xl font-semibold mb-6">購物車總計</div>
 
                             <div className="flex justify-between mb-2">
                                 <span>小計</span>
-                                <span>NT${getTotalPrice()}</span>
+                                <span>NT${cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)}</span>
                             </div>
 
                             <div className="mb-2">
                                 <span className="block mb-1">出貨方式</span>
-                                <button className="border border-gray-400 px-3 py-1 rounded text-sm">
-                                    自取 <span className="text-xs ml-1">(運費+0)</span>
-                                </button>
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={() => setShippingMethod("pickup")}
+                                        className={`border px-3 py-1 rounded text-sm ${
+                                            shippingMethod === "pickup"
+                                                ? "bg-[#d4b180] text-white border-[#d4b180]"
+                                                : "border-gray-400"
+                                        }`}
+                                    >
+                                        自取 <span className="text-xs ml-1">(運費+0)</span>
+                                    </button>
+                                    <button
+                                        onClick={() => setShippingMethod("home")}
+                                        className={`border px-3 py-1 rounded text-sm ${
+                                            shippingMethod === "home"
+                                                ? "bg-[#d4b180] text-white border-[#d4b180]"
+                                                : "border-gray-400"
+                                        }`}
+                                    >
+                                        宅配 <span className="text-xs ml-1">(運費+60)</span>
+                                    </button>
+                                </div>
                             </div>
 
                             <div className="flex justify-between font-semibold mt-4">
                                 <span>總計</span>
                                 <span>NT${getTotalPrice()}</span>
                             </div>
-
-                            <button
-                                className="w-full bg-[#d4b180] text-white py-3 rounded mt-6 hover:opacity-90"
-                            >
-                                結帳
-                            </button>
                         </div>
+
+                        <button className="w-full bg-[#d4b180] text-white py-3 rounded mt-6 hover:opacity-90">
+                            結帳
+                        </button>
                     </div>
-                </>
+                </div>
             )}
         </div>
     );
