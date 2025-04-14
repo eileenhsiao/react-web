@@ -8,7 +8,7 @@ export default function CartList() {
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
 
-    const [shippingMethod, setShippingMethod] = useState("pickup"); // 自取為預設
+    const [shippingMethod, setShippingMethod] = useState("pickup");
     const shippingFee = shippingMethod === "home" ? 60 : 0;
 
     const getTotalPrice = () => {
@@ -81,31 +81,30 @@ export default function CartList() {
                                 <span>NT${cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)}</span>
                             </div>
 
-                            <div className="mb-2">
-                                <span className="block mb-1">出貨方式</span>
+                            <div className="mb-2 flex justify-between items-center">
+                                <span className="whitespace-nowrap">出貨方式：</span>
                                 <div className="flex gap-2">
                                     <button
                                         onClick={() => setShippingMethod("pickup")}
-                                        className={`border px-3 py-1 rounded text-sm ${
-                                            shippingMethod === "pickup"
+                                        className={`border px-3 py-1 rounded text-sm ${shippingMethod === "pickup"
                                                 ? "bg-[#d4b180] text-white border-[#d4b180]"
                                                 : "border-gray-400"
-                                        }`}
+                                            }`}
                                     >
                                         自取 <span className="text-xs ml-1">(運費+0)</span>
                                     </button>
                                     <button
                                         onClick={() => setShippingMethod("home")}
-                                        className={`border px-3 py-1 rounded text-sm ${
-                                            shippingMethod === "home"
+                                        className={`border px-3 py-1 rounded text-sm ${shippingMethod === "home"
                                                 ? "bg-[#d4b180] text-white border-[#d4b180]"
                                                 : "border-gray-400"
-                                        }`}
+                                            }`}
                                     >
                                         宅配 <span className="text-xs ml-1">(運費+60)</span>
                                     </button>
                                 </div>
                             </div>
+
 
                             <div className="flex justify-between font-semibold mt-4">
                                 <span>總計</span>
