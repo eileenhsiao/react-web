@@ -13,7 +13,7 @@ function PopularList({ products }) {
          <div className="flex justify-center mt-8">
             <Link
             to="/products/list/all"
-            className="btn btn-primary flex items-center justify-center px-8 py-5"
+            className="btn btn-primary flex items-center justify-center px-8 py-5 mb-20"
             >
             <span className="btext">查看全部商品</span>
             </Link>
