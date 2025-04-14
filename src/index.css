@@ -8,13 +8,13 @@
 
 @plugin "daisyui/theme" {
   name: "dark";
-  --color-primary: #6366F2;
+  --color-primary: #D0BFAA;
 }
 
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #6366F2;
+  --color-primary: #DBB985;
 }
 /*淺色模式*/
 [data-theme="light"] {
