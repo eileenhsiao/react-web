@@ -8,7 +8,7 @@ export default function CartList() {
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
 
-    const [shippingMethod, setShippingMethod] = useState("pickup"); // 自取為預設
+    const [shippingMethod, setShippingMethod] = useState("pickup");
     const shippingFee = shippingMethod === "home" ? 60 : 0;
 
     const getTotalPrice = () => {
@@ -26,7 +26,11 @@ export default function CartList() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                     {/* 左 */}
                     <div>
+<<<<<<< HEAD
                         <div className="grid grid-cols-[40px_100px_1fr_80px_100px_80px] items-center font-bold border-b-2 border-primary pb-2 mb-4">
+=======
+                        <div className="grid grid-cols-[40px_40px_1fr_80px_100px_80px] items-center font-bold border-b border-[#d4b180] pb-2 mb-4">
+>>>>>>> 6dfe69915aa7bd9981d034eb393368c105d21ea6
                             <div></div>
                             <div></div>
                             <div>商品</div>
@@ -72,41 +76,60 @@ export default function CartList() {
                     </div>
 
                     {/* 右 */}
+<<<<<<< HEAD
                     <div className="p-4 border-l-2 border-primary flex flex-col justify-between">
+=======
+                    <div className="p-4 border-l-2 border-[#d4b180] flex flex-col justify-between h-full">
+                    <div className="text-xl font-semibold mb-6 font-bold border-b border-[#d4b180]">購物車總計</div>
+>>>>>>> 6dfe69915aa7bd9981d034eb393368c105d21ea6
                         <div>
-                            <div className="text-xl font-semibold mb-6">購物車總計</div>
+                            
 
                             <div className="flex justify-between mb-2">
                                 <span>小計</span>
                                 <span>NT${cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)}</span>
                             </div>
 
-                            <div className="mb-2">
-                                <span className="block mb-1">出貨方式</span>
+                            <div className="mb-2 flex justify-between items-center">
+                                <span className="whitespace-nowrap">出貨方式：</span>
                                 <div className="flex gap-2">
                                     <button
                                         onClick={() => setShippingMethod("pickup")}
+<<<<<<< HEAD
                                         className={`border px-3 py-1 rounded text-sm ${
                                             shippingMethod === "pickup"
                                                 ? "bg-primary btext border"
                                                 : "border"
                                         }`}
+=======
+                                        className={`border px-3 py-1 rounded text-sm ${shippingMethod === "pickup"
+                                            ? "bg-[#d4b180] text-white border-[#d4b180]"
+                                            : "border-gray-400"
+                                            }`}
+>>>>>>> 6dfe69915aa7bd9981d034eb393368c105d21ea6
                                     >
                                         自取 <span className="text-xs ml-1">(運費+0)</span>
                                     </button>
                                     <button
                                         onClick={() => setShippingMethod("home")}
+<<<<<<< HEAD
                                         className={`border px-3 py-1 rounded text-sm ${
                                             shippingMethod === "home"
                                                 ? "bg-primary btext border"
                                                 : "border"
                                         }`}
+=======
+                                        className={`border px-3 py-1 rounded text-sm ${shippingMethod === "home"
+                                            ? "bg-[#d4b180] text-white border-[#d4b180]"
+                                            : "border-gray-400"
+                                            }`}
+>>>>>>> 6dfe69915aa7bd9981d034eb393368c105d21ea6
                                     >
                                         宅配 <span className="text-xs ml-1">(運費+60)</span>
                                     </button>
                                 </div>
                             </div>
-
+                            <div></div>
                             <div className="flex justify-between font-semibold mt-4">
                                 <span>總計</span>
                                 <span>NT${getTotalPrice()}</span>
