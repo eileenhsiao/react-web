@@ -19,14 +19,14 @@ export default function CartList() {
     };
 
     return (
-        <div className="p-4 text-[#333]">
+        <div className="p-4 content">
             {cartItems.length === 0 ? (
-                <div className="text-center">購物車是空的</div>
+                <div className="text-center text-2xl">購物車是空的</div>
             ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                     {/* 左 */}
                     <div>
-                        <div className="grid grid-cols-[40px_100px_1fr_80px_100px_80px] items-center font-bold border-b border-[#d4b180] pb-2 mb-4">
+                        <div className="grid grid-cols-[40px_100px_1fr_80px_100px_80px] items-center font-bold border-b-2 border-primary pb-2 mb-4">
                             <div></div>
                             <div></div>
                             <div>商品</div>
@@ -37,8 +37,8 @@ export default function CartList() {
 
                         <ul>
                             {cartItems.map(item => (
-                                <li key={item.id} className="grid grid-cols-[40px_100px_1fr_80px_100px_80px] items-center gap-2 border-b border-gray-300 py-3">
-                                    <div className="text-xl text-gray-500 cursor-pointer" onClick={() => dispatch(removeCartItems(item.id))}>x</div>
+                                <li key={item.id} className="grid grid-cols-[40px_100px_1fr_80px_100px_80px] items-center gap-2 border-b py-3">
+                                    <div className="text-xl cursor-pointer ml-5" onClick={() => dispatch(removeCartItems(item.id))}>x</div>
 
                                     <Link to={`/products/id/${item.id}?qtyFromBasket=${item.qty}`}>
                                         <img src={item.image} alt={item.name} className="w-[80px] h-[80px] object-cover mx-auto" />
@@ -57,7 +57,7 @@ export default function CartList() {
                                                     qty: Number(e.target.value),
                                                 }))
                                             }
-                                            className="border border-gray-300 rounded px-2 py-1"
+                                            className="select select-bordered select-sm w-[4rem]"
                                         >
                                             {[...Array(item.countInStock).keys()].map((x) => (
                                                 <option key={x + 1} value={x + 1}>{x + 1}</option>
@@ -72,7 +72,7 @@ export default function CartList() {
                     </div>
 
                     {/* 右 */}
-                    <div className="p-4 border-l-2 border-[#d4b180] flex flex-col justify-between">
+                    <div className="p-4 border-l-2 border-primary flex flex-col justify-between">
                         <div>
                             <div className="text-xl font-semibold mb-6">購物車總計</div>
 
@@ -88,8 +88,8 @@ export default function CartList() {
                                         onClick={() => setShippingMethod("pickup")}
                                         className={`border px-3 py-1 rounded text-sm ${
                                             shippingMethod === "pickup"
-                                                ? "bg-[#d4b180] text-white border-[#d4b180]"
-                                                : "border-gray-400"
+                                                ? "bg-primary btext border"
+                                                : "border"
                                         }`}
                                     >
                                         自取 <span className="text-xs ml-1">(運費+0)</span>
@@ -98,8 +98,8 @@ export default function CartList() {
                                         onClick={() => setShippingMethod("home")}
                                         className={`border px-3 py-1 rounded text-sm ${
                                             shippingMethod === "home"
-                                                ? "bg-[#d4b180] text-white border-[#d4b180]"
-                                                : "border-gray-400"
+                                                ? "bg-primary btext border"
+                                                : "border"
                                         }`}
                                     >
                                         宅配 <span className="text-xs ml-1">(運費+60)</span>
@@ -113,7 +113,7 @@ export default function CartList() {
                             </div>
                         </div>
 
-                        <button className="w-full bg-[#d4b180] text-white py-3 rounded mt-6 hover:opacity-90">
+                        <button className="w-full bg-primary text-white py-3 rounded mt-6 ">
                             結帳
                         </button>
                     </div>

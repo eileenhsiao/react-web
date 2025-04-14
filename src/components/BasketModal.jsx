@@ -58,7 +58,7 @@ export default function BasketModal({ isOpen, toggleModal }) {
                            <div className="text-right">
                               <div className="font-bold text-base">${item.price * item.qty}</div>
                               <div
-                                 className="text-xl opacity-60 cursor-pointer"
+                                 className="text-xl  cursor-pointer"
                                  onClick={() => dispatch(removeCartItems(item.id))}
                               >
                                  x
@@ -79,8 +79,8 @@ export default function BasketModal({ isOpen, toggleModal }) {
                   <button
                      className="btn btn-primary w-full text-base font-light py-3 mt-8 flex justify-center items-center"
                   >
-                     <ShoppingBasket strokeWidth={1} className="w-5 h-5 md:w-6 md:h-6 text-current group-hover:scale-105 transition-transform" />
-                     <span className="font-thin ml-3">去結帳</span>
+                     <ShoppingBasket strokeWidth={1} className="btext w-5 h-5 md:w-6 md:h-6 text-current group-hover:scale-105 transition-transform" />
+                     <span className="font-thin ml-3 btext">去結帳</span>
                   </button>
                   </Link>
 
