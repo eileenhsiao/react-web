@@ -18,7 +18,7 @@ function Cart() {
           </Helmet>
         <Header/>
         <div style={{ marginTop: '100px', padding: '20px' }}></div>
-        <CartList/>
+        <CartList className="content"/>
         <Footer className="footer" />
       </div>
   
