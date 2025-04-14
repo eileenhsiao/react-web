@@ -12,7 +12,7 @@ function Cart() {
   
   const title = "購物車";
     return (
-      <div className="container mx-auto main-layout bg-gray-900 min-h-screen">
+      <div className="container mx-auto main-layout min-h-screen">
         <Helmet>
             <title>{title}</title>
           </Helmet>
