@@ -14,7 +14,7 @@ export default function NavBar() {
   ];  
 
   const NavBarContent = () => (
-    <div className="grid grid-cols-3 gap-2 text-center md:flex md:flex-row md:justify-around md:space-x-6 content">
+    <div className="grid grid-cols-3 gap-2 text-center md:flex md:flex-row md:justify-evenly content">
       {navBarContent.map(({ to, label }) => (
         <NavLink
           key={to}
@@ -37,7 +37,7 @@ export default function NavBar() {
     <>
       
       {/* 桌面版導覽列 */}
-      <div className="flex flex-col md:flex md:justify-around mt-2 mb-2">
+      <div className="flex flex-col md:flex  mt-2 mb-2 ">
         <NavBarContent />
       </div>
     
