@@ -51,8 +51,8 @@ export default function Header() {
             </div>
 
             {/* 桌面版 Header */}
-            <header className="hidden md:block relative text-center f header sticky-header">
-                <div className="flex items-center justify-between px-4 py-2">
+            <header className="container mx-auto hidden md:block relative text-center header sticky-header">
+                <div className="container mx-auto flex items-center justify-between px-4 py-2">
                     {/* 左側：logo */}
                     <Link to="/">
                         <img
