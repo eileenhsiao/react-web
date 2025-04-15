@@ -21,7 +21,7 @@ export default function CartList() {
     return (
         <div className="p-4 content">
             {cartItems.length === 0 ? (
-                <div className="text-center text-2xl">購物車是空的</div>
+                <div className="text-center text-2xl text-empty">購物車是空的</div>
             ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                     {/* 左 */}
@@ -50,7 +50,7 @@ export default function CartList() {
 
                                     <div>
                                         <select
-                                            defaultValue={item.qty}
+                                            value={item.qty}
                                             onChange={(e) =>
                                                 dispatch(addCartItems({
                                                     ...item,
@@ -73,7 +73,7 @@ export default function CartList() {
 
                     {/* 右 */}
                     <div className="pl-4 border-l-2 border-primary flex flex-col justify-between h-full">
-                    <div className="text-xl font-semibold mb-6 font-bold border-b-2 border-primary pb-2 ">購物車總計</div>
+                    <div className="text-xl font-semibold mb-6 font-bold bottom-border border-primary pb-2 ">購物車總計</div>
                         <div>
                             
 

@@ -18,9 +18,9 @@ export default function Header() {
             <div className="drawer md:hidden">
                 {/* 漢堡選單 */}
                 <div className="drawer-content flex items-center justify-between px-4 py-3 relative">
-                    <label htmlFor="drawer-toggle" className="z-10">
-                        <HamMenu isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
-                    </label>
+                    <button onClick={() => setIsOpen(!isOpen)} className="z-10">
+                        <HamMenu isOpen={isOpen} />
+                    </button>
 
                     {/* LOGO */}
                     <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
@@ -37,13 +37,15 @@ export default function Header() {
                         <CartSummary />
                     </div>
                 </div>
-
+                {isOpen && (
+                    <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setIsOpen(false)} />
+                )}
                 {/* 側邊選單 */}
-                <div className={`drawer-side z-50 ${isOpen ? 'block' : 'hidden'} transition-all duration-300`}>
-                    <label htmlFor="drawer-toggle" className="drawer-overlay" onClick={() => setIsOpen(false)}></label>
-                    <ul className="menu p-4 w-64 min-h-full bg-base-100 text-base-content">
-                        <li><Link to="/about">關於我們</Link></li>
-                        <li><Link to="/products/list/all">商品列表</Link></li>
+                <div className={`fixed top-0 left-0 h-full w-64 bg-white z-50 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                    <ul className="p-4">
+                        <li><Link to="/" onClick={() => setIsOpen(false)}>首頁</Link></li>
+                        <li><Link to="/about" onClick={() => setIsOpen(false)}>關於我們</Link></li>
+                        <li><Link to="/products/list/all" onClick={() => setIsOpen(false)}>商品列表</Link></li>
                     </ul>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartItems, removeCartItems, selectCartItems } from "@/redux/cartSlice";
-import { ShoppingBasket } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import '@/index.css';
 
 export default function BasketModal({ isOpen, toggleModal }) {
@@ -19,8 +19,11 @@ export default function BasketModal({ isOpen, toggleModal }) {
       <>
          {/* DaisyUI Modal */}
          {isOpen && (
-            <div className="modal modal-open">
-               <div className="modal-box max-w-md">
+            <div className="modal modal-open" onClick={handleCancel}>
+               <div
+                  className="modal-box max-w-md"
+                  onClick={(e) => e.stopPropagation()}
+               >
                   <h3 className="font-thin text-[2rem] mb-4 text-left">購物車總計</h3>
                   {/* Cart Items */}
                   {cartItems.length === 0 ? (
@@ -36,7 +39,7 @@ export default function BasketModal({ isOpen, toggleModal }) {
                               <div className="flex items-center space-x-2">
                                  <span>數量:</span>
                                  <select
-                                    defaultValue={item.qty}
+                                    value={item.qty}
                                     onChange={(e) =>
                                        dispatch(addCartItems({
                                           id: item.id,
@@ -76,12 +79,12 @@ export default function BasketModal({ isOpen, toggleModal }) {
 
                   {/* Checkout Button */}
                   <Link to="/cart">
-                  <button
-                     className="btn btn-primary w-full text-base font-light py-3 mt-8 flex justify-center items-center"
-                  >
-                     <ShoppingBasket strokeWidth={1} className="btext w-5 h-5 md:w-6 md:h-6 text-current group-hover:scale-105 transition-transform" />
-                     <span className="font-thin ml-3 btext">去結帳</span>
-                  </button>
+                     <button
+                        className="btn btn-primary w-full text-base font-light py-3 mt-8 flex justify-center items-center"
+                     >
+                        <ShoppingCart strokeWidth={1} className="btext w-5 h-5 md:w-6 md:h-6 text-current group-hover:scale-105 transition-transform" />
+                        <span className="font-thin ml-3 btext">去結帳</span>
+                     </button>
                   </Link>
 
                   {/* Close button */}
