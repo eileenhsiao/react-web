@@ -50,7 +50,7 @@ export default function CartList() {
 
                                     <div>
                                         <select
-                                            defaultValue={item.qty}
+                                            value={item.qty}
                                             onChange={(e) =>
                                                 dispatch(addCartItems({
                                                     ...item,
@@ -73,7 +73,7 @@ export default function CartList() {
 
                     {/* 右 */}
                     <div className="pl-4 border-l-2 border-primary flex flex-col justify-between h-full">
-                    <div className="text-xl font-semibold mb-6 font-bold border-b-2 border-primary pb-2 ">購物車總計</div>
+                    <div className="text-xl font-semibold mb-6 font-bold bottom-border border-primary pb-2 ">購物車總計</div>
                         <div>
                             
 

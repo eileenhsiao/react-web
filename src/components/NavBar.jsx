@@ -41,24 +41,6 @@ export default function NavBar() {
         <NavBarContent />
       </div>
 
-      {/* 手機版 Drawer */}
-      <div className="drawer md:hidden">
-        <input id="drawer-toggle" type="checkbox" className="drawer-toggle" checked={isOpen} readOnly />
-        <HamMenu
-          id="drawer-toggle" 
-          className="absolute transform -translate-y-37 translate-x-1 drawer-toggle"
-          onClick={() => setIsOpen(!isOpen)}
-          isOpen={isOpen}
-        />
-        <div className="drawer-side z-9999">
-          <label htmlFor="drawer-toggle" className="drawer-overlay" onClick={() => setIsOpen(false)}></label>
-          <div className="menu p-4 w-64 min-h-full drawer-bg">
-            <p>首頁</p>
-            <p>關於我們</p>
-            <p>商品列表</p>
-          </div>
-        </div>
-      </div>
     </>
   );
 }
