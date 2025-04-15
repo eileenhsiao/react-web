@@ -30,8 +30,9 @@ useEffect(() => {
       <Header/>
       <div style={{ marginTop: '150px',padding: '0px' }}>
         <NavBar />
-      </div>
         <ProductList products={_products} className="content" />
+      </div>
+        
       </div>
       <Footer className="footer" />
     </div>

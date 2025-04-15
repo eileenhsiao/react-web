@@ -5,7 +5,12 @@ import products from "@/json/products.json";
 import PopularList from '@/components/PopularList'
 import { useEffect } from 'react';
 import Map from '@/components/Map';
+import SlideShow from "@/components/SlideShow";
 
+const images = [
+  "/img/home.svg",
+  "/img/aboutus.svg"
+];
 function Home() {
   useEffect(() => {
     window.scrollTo(0, 0); // 滾動到頁面頂部
@@ -19,10 +24,12 @@ function Home() {
       </Helmet>
       <Header />
       <div style={{ marginTop: '61.6px', padding: '0px' }} >
-        <img className="w-full content" src="/img/home.svg" alt="logo" />
+        
+        <SlideShow images={images} />
+        <PopularList products={products} className="content" />
       </div>
 
-      <PopularList products={products} className="content" />
+      
       
       <Map/>
       
