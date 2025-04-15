@@ -14,14 +14,14 @@ export default function NavBar() {
   ];  
 
   const NavBarContent = () => (
-    <div className="grid grid-cols-3 gap-2 text-center md:flex md:flex-row md:justify-evenly content">
+    <div className="grid grid-cols-3 gap-5 text-center md:grid-cols-6 md:gap-1 content w-[70%] md:w-[40%] mx-auto">
       {navBarContent.map(({ to, label }) => (
         <NavLink
           key={to}
           to={to}
           onClick={() => setIsOpen(false)}
           className={({ isActive }) =>
-            `my-3 md:my-0 text-lg transition-all duration-500 ease-in-out 
+            `inline-block mx-auto my-3 md:my-0 text-lg transition-all duration-500 ease-in-out 
             ${isActive ? "opacity-100 border-b-2 border-primary" : "opacity-60"}
             hover:opacity-100 hover:text-shadow-lg focus:outline-none focus:ring-2 focus:ring-primary`
           }
