@@ -20,7 +20,8 @@ function CartSummary() {
             className="inline-flex items-center gap-x-1 cursor-pointer"
          >
             <div className="indicator relative">
-            {count > 0 && <span className="indicator-item badge badge-primary text-white">{count}</span>}
+            {count > 0 && <span className="indicator-item badge badge-primary text-white w-[16px] h-[16px] text-[10px] 
+      md:w-[28px] md:h-[24px] rounded-sm  md:rounded-lg">{count}</span>}
                <ShoppingCart strokeWidth={1.5} className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-105 transition-transform " />
             </div>
             
