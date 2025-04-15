@@ -9,8 +9,35 @@
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
+@media (max-width: 424px) {
+  .footer {
+    grid-template-areas:
+      "content content"
+      "contactUs followUs"
+      "copyRight copyRight";
+      grid-template-columns: 2fr 1fr;
+  }
 
-@media (min-width: 1024px) {
+  .footer-content {
+    grid-area: content;
+    
+  }
+  
+  .footer-followUs {
+    grid-area: followUs;
+    
+  }
+  
+  .footer-contactUs {
+    grid-area: contactUs;
+  }
+  
+  .footer-copyRight {
+    grid-area: copyRight;
+  }
+}
+
+@media (min-width: 425px) {
   .footer {
     grid-template-areas:
       "content contactUs"

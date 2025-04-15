@@ -10,11 +10,11 @@ export default function Footer() {
     <div className="w-full m-0">
       <footer className="footer  text-white py-6">
         {/* 描述區塊 */}
-        <div className="footer-content">
+        <div className="footer-content ">
           <img
                         src={lightMode ? "/img/logo.svg" : "/img/logodark.svg"}
                         alt="logo"
-                        className="w-55"
+                        className="w-33 md:w-55"
                     />
         </div>
 
