@@ -1,5 +1,6 @@
 import ProductItem from '@/components/ProductItem';
 import { Link } from "react-router";
+import '@/index.css';
 
 function PopularList({ products }) {
    return (
