@@ -72,7 +72,7 @@ export default function CartList() {
                     </div>
                     {/* 左 手機*/}
                     <div className="md:hidden">
-                        <div className="text-l grid grid-cols-[2fr_130px__3fr_40px] items-center font-bold border-b-2 border-primary pb-2 mb-4">
+                        <div className="text-lg grid grid-cols-[2fr_130px__3fr_40px] items-center font-bold border-b-2 border-primary pb-2 mb-4">
                             <div></div>
                             <div>商品</div>
                             <div></div>
@@ -82,7 +82,7 @@ export default function CartList() {
                         <ul>
                             {cartItems.map(item => (
                                 <li key={item.id} className="grid grid-cols-[20px_4fr_6fr_4fr] items-center gap-2 border-b py-3">
-                                    <div className="text-l cursor-pointer ml-2" onClick={() => dispatch(removeCartItems(item.id))}>x</div>
+                                    <div className="text-lg cursor-pointer ml-2" onClick={() => dispatch(removeCartItems(item.id))}>x</div>
 
                                     <Link to={`/products/id/${item.id}?qtyFromBasket=${item.qty}`}>
                                         <img src={item.image} alt={item.name} className="w-[80px] h-[80px] object-cover mx-auto" />
