@@ -3,11 +3,12 @@ import { useSelector } from 'react-redux';
 import { selectLightMode } from '@/redux/colorSlice';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import '@/index.css';
 
 export default function Map() {
   const lightMode = useSelector(selectLightMode);
 
-  const position = [25.0246, 121.5431];
+  const position = [25.0247, 121.5442];
 
   const tileUrl = lightMode
     ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
@@ -35,7 +36,16 @@ export default function Map() {
       <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
         <TileLayer url={tileUrl} />
         <Marker position={position} icon={customIcon}>
-          <Popup>Blissful Bites 在這裡</Popup>
+        <Popup>
+            <a 
+                href="https://www.google.com/maps?q=25.0247,121.5442" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ color: '#1E1E1E', textDecoration: 'none' }} 
+            >
+                點擊查看 Blissful Bites 在 Google 地圖上的位置
+            </a>
+        </Popup>
         </Marker>
       </MapContainer>
     </div>
