@@ -17,7 +17,7 @@ function Cart() {
             <title>{title}</title>
           </Helmet>
         <Header/>
-        <div style={{ marginTop: '100px', padding: '20px' }}></div>
+        <div style={{ marginTop: '100px', padding: '10px' }}></div>
         <CartList className="content"/>
         <Footer className="footer" />
       </div>
