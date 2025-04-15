@@ -1,7 +1,7 @@
 .footer {
   display: grid;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 10%;
+  padding-right: 10%;
   grid-template-areas:
     "content contactUs"
     "followUs contactUs"
@@ -15,17 +15,21 @@
       "content content"
       "contactUs followUs"
       "copyRight copyRight";
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 4fr 1fr;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+  padding-right: 1rem;
   }
 
   .footer-content {
     grid-area: content;
     
+    margin-top: 1rem;
   }
   
   .footer-followUs {
     grid-area: followUs;
-    
+    margin-top: 6rem;
   }
   
   .footer-contactUs {
@@ -43,29 +47,31 @@
       "content contactUs"
       "followUs contactUs"
       "copyRight copyRight";
-    grid-template-columns: 6fr minmax(400px, 1fr);
+    grid-template-columns: 1fr 2fr ;
+    
   }
+  .footer-content {
+    grid-area: content;
+    
+    margin-top: 2.5rem;
+  }
+
+  .footer-followUs {
+    grid-area: followUs;
+    
+    margin-top: 7%;
+  }
+
+  .footer-contactUs {
+    grid-area: contactUs;
+    padding-left: 40%;
+    margin-top: 12%;
+  }
+
+  .footer-copyRight {
+    grid-area: copyRight;
+  }
+
 }
 
-.footer-content {
-  grid-area: content;
-  margin-left: 5rem;
-  margin-top: 2.5rem;
-}
-
-.footer-followUs {
-  grid-area: followUs;
-  margin-left: 5rem;
-  margin-top: 1rem;
-}
-
-.footer-contactUs {
-  grid-area: contactUs;
-  margin-right: 2rem;
-  margin-top: 5rem;
-}
-
-.footer-copyRight {
-  grid-area: copyRight;
-}
 

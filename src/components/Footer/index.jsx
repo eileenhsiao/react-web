@@ -20,7 +20,7 @@ export default function Footer() {
 
         {/* 追蹤我們 */}
         <div className="footer-followUs">
-          <p className="font-extrabold">FOLLOW US</p>
+          
           <div className="flex items-center space-x-4">
             <a href="#">
               <img className="w-8 h-8" src={lightMode ? "/img/fb.svg" : "/img/fbdark.svg"} alt="facebook" />
