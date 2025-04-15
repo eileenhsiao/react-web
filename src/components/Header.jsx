@@ -41,7 +41,7 @@ export default function Header() {
                     <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setIsOpen(false)} />
                 )}
                 {/* 側邊選單 */}
-                <div className={`text-xl fixed top-0 left-0 h-full w-64 pt-15 header z-50 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                <div className={`text-xl fixed top-0 left-0 h-full w-46 pt-15 header z-50 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                     <ul className="p-4">
                         <li className="mb-3"><Link to="/" onClick={() => setIsOpen(false)}>首頁</Link></li>
                         <li className="mb-3"><Link to="/about" onClick={() => setIsOpen(false)}>關於我們</Link></li>

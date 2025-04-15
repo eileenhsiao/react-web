@@ -36,7 +36,6 @@ export default function NavBar() {
   return (
     <>
       
-      {/* 桌面版導覽列 */}
       <div className="flex flex-col md:flex  mt-2 mb-2 ">
         <NavBarContent />
       </div>
