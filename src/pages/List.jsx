@@ -28,7 +28,7 @@ useEffect(() => {
           <title>{title}</title>
         </Helmet>
       <Header/>
-      <div style={{ marginTop: '150px',padding: '0px' }}>
+      <div style={{ marginTop: '100px',padding: '0px' }}>
         <NavBar />
         <ProductList products={_products} className="content" />
       </div>
