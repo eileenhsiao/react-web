@@ -32,7 +32,7 @@ export default function Map() {
   });
 
   return (
-    <div className="w-full h-[300px] mb-0" >
+    <div className="w-full h-[300px] mb-0 z-10" >
       <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
         <TileLayer url={tileUrl} />
         <Marker position={position} icon={customIcon}>

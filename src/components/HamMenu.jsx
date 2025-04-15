@@ -4,7 +4,7 @@ export default function HamMenu({ onClick, isOpen, className }) {
     return (
        <span
           onClick={onClick}
-          className={`inline-block absolute z-10 w-10 h-10 rounded-full opacity-70 left-4 top-0 hover:opacity-100 md:hidden flex items-center justify-center ${className}`}
+          className={`mt-5 inline-block absolute z-10 w-10 h-10 rounded-full opacity-70 left-4 top-0 hover:opacity-100 md:hidden flex items-center justify-center ${className}`}
        >
           <span className="w-8 h-6 flex flex-col justify-between hover:cursor-pointer">
              {/* 第一條線 */}
