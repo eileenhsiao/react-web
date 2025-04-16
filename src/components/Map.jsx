@@ -12,8 +12,8 @@ export default function Map() {
   const apiKey = import.meta.env.VITE_STADIA_API_KEY;
   
   const tileUrl = lightMode
-    ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
-    : 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png';
+    ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=${apiKey}'
+    : 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=${apiKey}';
 
   
   const iconColor = lightMode ? '#DBB985' : '#B08968';
