@@ -53,6 +53,8 @@ function ProductDetail({ product }) {
           <AddToCart products={product} qty={qty} />
         </div>
       </div>
+      <div className="mb-10px md:mb-0px"></div>
+      <div className="mb-10px md:mb-0px"></div>
     </div>
   );
 }

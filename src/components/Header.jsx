@@ -15,7 +15,7 @@ export default function Header() {
     return (
         <>
             {/* 手機版漢堡選單 */}
-            <div className="drawer md:hidden header shadow-md sticky-header">
+            <div className="drawer md:hidden header shadow-md sticky">
                 {/* 漢堡選單 */}
                 <div className="drawer-content flex items-center justify-between px-4 py-3 relative">
                     <button onClick={() => setIsOpen(!isOpen)} className="z-60">
