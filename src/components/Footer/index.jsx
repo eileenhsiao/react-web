@@ -39,7 +39,7 @@ export default function Footer() {
         
       </footer> 
       {/* 版權聲明 */}
-      <p className="w-full footer-copyRight text-center ">
+      <p className="w-full footer-copyRight text-center text-sm md:text-base">
         Copyright 2025 © Blissful Bites
         </p>
     </div>
