@@ -35,8 +35,8 @@ export default function BasketModal({ isOpen, toggleModal }) {
                               <img className="max-w-16 max-h-16 flex-1 cursor-pointer" src={item.image} alt={item.name} />
                            </Link>
                            <div className="ml-8 flex-8 w-48 text-left">
-                              <div className="font-medium mb-1">{item.name}</div>
-                              <div className="flex items-center space-x-2">
+                              <div className="font-medium mb-1 c-text">{item.name}</div>
+                              <div className="flex items-center space-x-2 c-text">
                                  <span>數量:</span>
                                  <select
                                     value={item.qty}
@@ -58,7 +58,7 @@ export default function BasketModal({ isOpen, toggleModal }) {
                                  </select>
                               </div>
                            </div>
-                           <div className="text-right">
+                           <div className="text-right c-text">
                               <div className="font-bold text-base">${item.price * item.qty}</div>
                               <div
                                  className="text-xl  cursor-pointer"
