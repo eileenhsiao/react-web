@@ -26,7 +26,7 @@ function About() {
       <Header />
 
       
-      <div style={{ marginTop: '61.6px', padding: '0px' }}>
+      <div className="mt-[0px] md:mt-[61.6px] p-0">
         <img className="w-full content" src="/img/aboutus.svg" alt="AboutUs" />
       </div>
 
