@@ -37,7 +37,7 @@ export default function BasketModal({ isOpen, toggleModal }) {
                            <div className="ml-8 flex-8 w-48 text-left">
                               <div className="font-medium mb-1 c-text">{item.name}</div>
                               <div className="flex items-center space-x-2 c-text">
-                                 <span>數量:</span>
+                                 <span>數量：</span>
                                  <select
                                     value={item.qty}
                                     onChange={(e) =>
@@ -73,7 +73,7 @@ export default function BasketModal({ isOpen, toggleModal }) {
 
                   {/* Total */}
                   <div className="flex justify-between items-center mt-4">
-                     <div className="font-semibold">總計:</div>
+                     <div className="font-semibold">總計：</div>
                      <div className="font-bold text-right">${getTotalPrice()}</div>
                   </div>
 
