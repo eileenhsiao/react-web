@@ -61,7 +61,7 @@ export default function BasketModal({ isOpen, toggleModal }) {
                            <div className="text-right c-text">
                               <div className="font-bold text-base">${item.price * item.qty}</div>
                               <div
-                                 className="text-xl  cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
+                                 className="text-xl  cursor-pointer opacity-50 hover:opacity-100 transition-opacity"
                                  onClick={() => dispatch(removeCartItems(item.id))}
                               >
                                  x
