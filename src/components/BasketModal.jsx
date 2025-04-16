@@ -27,7 +27,7 @@ export default function BasketModal({ isOpen, toggleModal }) {
                   <h3 className="font-thin text-[2rem] mb-4 text-left">購物車總計</h3>
                   {/* Cart Items */}
                   {cartItems.length === 0 ? (
-                     <div className="text-center">購物車是空的</div>
+                     <div className="text-center mt-100px md:mt-0px">購物車是空的</div>
                   ) : (
                      cartItems.map(item => (
                         <li key={item.id} className="flex justify-between items-center pb-4 mb-4 border-b border-gray-400">

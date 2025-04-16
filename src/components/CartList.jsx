@@ -19,7 +19,7 @@ export default function CartList() {
     };
 
     return (
-        <div className="p-4 content w-[90%] mx-auto">
+        <div className="p-4 content w-[98%] mx-auto">
             {cartItems.length === 0 ? (
                 <div className="text-center text-2xl text-empty">購物車是空的</div>
             ) : (
@@ -38,7 +38,7 @@ export default function CartList() {
                         <ul>
                             {cartItems.map(item => (
                                 <li key={item.id} className="grid grid-cols-[40px_100px_1fr_80px_100px_80px] items-center gap-2 border-b py-3">
-                                    <div className="text-xl cursor-pointer ml-5" onClick={() => dispatch(removeCartItems(item.id))}>x</div>
+                                    <div className="text-xl cursor-pointer ml-5 opacity-50 hover:opacity-100 transition-opacity" onClick={() => dispatch(removeCartItems(item.id))}>x</div>
 
                                     <Link to={`/products/id/${item.id}?qtyFromBasket=${item.qty}`}>
                                         <img src={item.image} alt={item.name} className="w-[80px] h-[80px] object-cover mx-auto" />
@@ -72,7 +72,7 @@ export default function CartList() {
                     </div>
                     {/* 左 手機*/}
                     <div className="md:hidden">
-                        <div className="text-lg grid grid-cols-[2fr_130px__3fr_40px] items-center font-bold border-b-2 border-primary pb-2 mb-4">
+                        <div className="text-lg grid grid-cols-[2fr_180px__3fr_40px] items-center font-bold border-b-2 border-primary pb-2 mb-4">
                             <div></div>
                             <div>商品</div>
                             <div></div>
@@ -81,17 +81,18 @@ export default function CartList() {
 
                         <ul>
                             {cartItems.map(item => (
-                                <li key={item.id} className="grid grid-cols-[20px_4fr_6fr_4fr] items-center gap-2 border-b py-3">
-                                    <div className="text-lg cursor-pointer ml-2" onClick={() => dispatch(removeCartItems(item.id))}>x</div>
+                                <li key={item.id} className="grid grid-cols-[20px_4fr_8fr_4fr] items-center gap-2 border-b py-3">
+                                    <div className="text-lg cursor-pointer ml-2 opacity-50 hover:opacity-100 transition-opacity" onClick={() => dispatch(removeCartItems(item.id))}>x</div>
 
                                     <Link to={`/products/id/${item.id}?qtyFromBasket=${item.qty}`}>
                                         <img src={item.image} alt={item.name} className="w-[80px] h-[80px] object-cover mx-auto" />
                                     </Link>
                                     <div>
-                                    <div className="text-left">{item.name}</div>
-                                    <div className="flex flex-row">
-                                        <div className="text-sm w-[50%] ">NT${item.price} × </div>
-
+                                    <div className="text-sm text-left items-start h-[40px]">{item.name}</div>
+                                    
+                                    <div className="flex flex-row items-end">
+                                        <div className="text-sm w-[50%] h-[30px]">NT${item.price} ×  </div>
+                                        
                                         <div className="text-right w-[40%]">
                                             <select
                                                 value={item.qty}
@@ -101,7 +102,7 @@ export default function CartList() {
                                                         qty: Number(e.target.value),
                                                     }))
                                                 }
-                                                className="select select-bordered select-sm w-[4rem]"
+                                                className="select select-bordered select-sm w-[3.5rem] "
                                             >
                                                 {[...Array(item.countInStock).keys()].map((x) => (
                                                     <option key={x + 1} value={x + 1}>{x + 1}</option>
@@ -134,7 +135,7 @@ export default function CartList() {
                                     <button
                                         onClick={() => setShippingMethod("pickup")}
                                         className={`border px-3 py-1 rounded text-sm ${shippingMethod === "pickup"
-                                            ? "bg-primary btext border"
+                                            ? "bg-primary "
                                             : "border"
                                             }`}
                                     >
@@ -143,7 +144,7 @@ export default function CartList() {
                                     <button
                                         onClick={() => setShippingMethod("home")}
                                         className={`border px-3 py-1 rounded text-sm ${shippingMethod === "home"
-                                            ? "bg-primary btext border"
+                                            ? "bg-primary "
                                             : "border"
                                             }`}
                                     >
