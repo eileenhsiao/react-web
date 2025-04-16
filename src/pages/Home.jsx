@@ -8,8 +8,8 @@ import Map from '@/components/Map';
 import SlideShow from "@/components/SlideShow";
 
 const images = [
-  "/img/home.svg",
-  "/img/aboutus.svg"
+  "/img/homes.svg",
+  "/img/homepie.svg"
 ];
 function Home() {
   useEffect(() => {
