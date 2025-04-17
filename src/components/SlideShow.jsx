@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 const Slideshow = ({ images = [], interval = 6000 }) => {
   const [current, setCurrent] = useState(0);
@@ -21,9 +22,9 @@ const Slideshow = ({ images = [], interval = 6000 }) => {
       {/* 設定為 3.07:1 比例容器 */}
       <div className="relative w-full aspect-[307/100]">
         {images.map((img, index) => (
-          <a
+          <Link
             key={index}
-            href={img.link}
+            to={img.link}
             className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ease-in-out
               ${index === current ? "opacity-100 z-10" : "opacity-0 z-0"}
             `}
@@ -33,9 +34,10 @@ const Slideshow = ({ images = [], interval = 6000 }) => {
               alt={`slide-${index}`}
               className="w-full h-full object-contain"
             />
-          </a>
+          </Link>
         ))}
       </div>
+
 
 
 

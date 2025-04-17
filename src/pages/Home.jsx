@@ -11,6 +11,7 @@ const images = [
   { src: "/img/homes.svg", link: "/about" },
   { src: "/img/homepie.svg", link: "/products/id/10" }
 ];
+
 function Home() {
   useEffect(() => {
     window.scrollTo(0, 0); // 滾動到頁面頂部
