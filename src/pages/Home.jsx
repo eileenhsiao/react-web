@@ -6,11 +6,11 @@ import PopularList from '@/components/PopularList'
 import { useEffect } from 'react';
 import Map from '@/components/Map';
 import SlideShow from "@/components/SlideShow";
-import { Link } from "react-router";
+
 
 
 const images = [
-  { src: "/img/homes.svg", link: "/about" },
+  { src: "/img/homes.svg", link: "/" },
   { src: "/img/homepie.svg", link: "/products/id/10" }
 ];
 
