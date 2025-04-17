@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router"; 
 
 const Slideshow = ({ images = [], interval = 6000 }) => {
   const [current, setCurrent] = useState(0);
@@ -19,7 +19,6 @@ const Slideshow = ({ images = [], interval = 6000 }) => {
 
   return (
     <div className="relative w-full mx-auto overflow-hidden">
-      {/* 設定為 3.07:1 比例容器 */}
       <div className="relative w-full aspect-[307/100]">
         {images.map((img, index) => (
           <Link
@@ -38,15 +37,12 @@ const Slideshow = ({ images = [], interval = 6000 }) => {
         ))}
       </div>
 
-
-
-
       {/* 點點指示器 */}
       <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
         {images.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`custom-border w-3 h-3 rounded-full transition-all duration-300 ${
               current === index ? "bg-white scale-110" : "bg-white opacity-40"
             }`}
             onClick={() => goToSlide(index)}
