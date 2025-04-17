@@ -8,8 +8,8 @@ import Map from '@/components/Map';
 import SlideShow from "@/components/SlideShow";
 
 const images = [
-  "/img/homes.svg",
-  "/img/homepie.svg"
+  { src: "/img/homes.svg", link: "/about" },
+  { src: "/img/homepie.svg", link: "/products/id/10" }
 ];
 function Home() {
   useEffect(() => {
@@ -23,7 +23,7 @@ function Home() {
         <title>{title}</title>
       </Helmet>
       <Header />
-      <div className="mt-[92px] md:mt-[61.6px] p-0" >
+      <div className="mt-[72px] md:mt-[61.6px] p-0" >
         
         <SlideShow images={images} />
         <PopularList products={products} className="content" />

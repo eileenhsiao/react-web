@@ -28,7 +28,7 @@ useEffect(() => {
           <title>{title}</title>
         </Helmet>
       <Header/>
-      <div className="mt-[40px] md:mt-[100px] p-0">
+      <div className="mt-[82px] md:mt-[100px] p-0">
         <NavBar />
         <ProductList products={_products} className="content" />
       </div>

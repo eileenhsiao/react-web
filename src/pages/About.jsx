@@ -26,7 +26,7 @@ function About() {
       <Header />
 
       
-      <div className="mt-[0px] md:mt-[61.6px] p-0">
+      <div className="mt-[72px] md:mt-[61.6px] p-0">
         <img className="w-full content" src="/img/aboutus.svg" alt="AboutUs" />
       </div>
 

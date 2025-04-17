@@ -21,16 +21,23 @@ const Slideshow = ({ images = [], interval = 6000 }) => {
       {/* 設定為 3.07:1 比例容器 */}
       <div className="relative w-full aspect-[307/100]">
         {images.map((img, index) => (
-          <img
+          <a
             key={index}
-            src={img}
-            alt={`slide-${index}`}
-            className={`absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-1000 ease-in-out
+            href={img.link}
+            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ease-in-out
               ${index === current ? "opacity-100 z-10" : "opacity-0 z-0"}
             `}
-          />
+          >
+            <img
+              src={img.src}
+              alt={`slide-${index}`}
+              className="w-full h-full object-contain"
+            />
+          </a>
         ))}
       </div>
+
+
 
       {/* 點點指示器 */}
       <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">

@@ -23,7 +23,7 @@ function Product() {
                <title>{title}</title>
             </Helmet>
             <Header/>
-            <div style={{ marginTop: '100px', padding: '20px' }}></div>
+            <div className="mt-[0px] p-10 md:mt-[40px] md:p-20"></div>
          
             <ProductDetail product={product} className="content" />
          <Footer className="footer" />
