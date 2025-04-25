@@ -9,10 +9,12 @@ export default function Map() {
   const lightMode = useSelector(selectLightMode);
 
   const position = [25.0247, 121.5442];
-  
+
+  const apiKey = import.meta.env.VITE_STADIA_API_KEY;
+
   const tileUrl = lightMode
-    ? 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-    : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+    ? `https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png?api_key=${apiKey}`
+    : `https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png?api_key=${apiKey}`;
 
   
   const iconColor = lightMode ? '#DBB985' : '#B08968';
