@@ -66,6 +66,7 @@ export default function Header() {
                     <div className="flex items-center gap-x-6">
                         <Link to="/about">關於我們</Link>
                         <Link to="/products/list/all">商品列表</Link>
+                        <Link to="/login">登入</Link>
                         <SetColorMode />
                         <CartSummary />
                     </div>
