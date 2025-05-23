@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
 import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from "react-redux";
+import { feedProducts } from "@/api/fireStore";
 
 import './App.css';
 import Home from '@/pages/Home'
@@ -9,6 +10,8 @@ import Category from '@/pages/List'
 import store from '@/redux/store';
 import About from '@/pages/About';
 import Cart from '@/pages/Cart';
+
+//feedProducts();
 
 function App() {
   return (
