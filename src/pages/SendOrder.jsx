@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import '@/index.css';
 import Header from '../components/Header'
 import Footer from '@/components/Footer'
-import SendOrder from '@/components/SendOrder';
+import SendOrderCard from '@/components/SendOrder';
 import { useEffect } from 'react';
 
 function SendOrder() {
@@ -10,7 +10,7 @@ function SendOrder() {
     window.scrollTo(0, 0); // 滾動到頁面頂部
   }, []);
   
-  const title = "購物車";
+  const title = "送出訂單";
     return (
       <div className="container mx-auto main-layout min-h-screen">
         <Helmet>
@@ -18,7 +18,7 @@ function SendOrder() {
           </Helmet>
         <Header/>
         <div style={{ marginTop: '100px', padding: '10px' }}></div>
-        <SendOrder className="content"/>
+        <SendOrderCard className="content"/>
         <Footer className="footer" />
       </div>
   

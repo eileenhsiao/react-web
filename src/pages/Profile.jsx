@@ -17,7 +17,7 @@ function Profile() {
  const redirect = searchParams.get('redirect');
 
 
-  const title = "個人頁面";
+  const title = "個人資料";
   return (
     <div className="container mx-auto main-layout min-h-screen">
       <Helmet>
@@ -28,7 +28,6 @@ function Profile() {
       <div className="layoutContent container">
             <ProfileCard redirect={redirect} />
          </div>
-         <ProfileCard redirect={redirect} />
       
       <Footer className="footer" />
     </div>

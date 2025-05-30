@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCartItems, removeCartItems, selectCartItems } from "@/redux/cartSlice";
 import '@/index.css';
 
-export default function SendOrder() {
+export default function SendOrderCard() {
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
 
@@ -157,9 +157,11 @@ export default function SendOrder() {
                             </div>
                         </div>
 
-                        <button className="w-full bg-primary text-white py-3 rounded mt-6 ">
-                            結帳
-                        </button>
+                        <Link to="/">
+                            <button className="w-full bg-primary text-white py-3 rounded mt-6 ">
+                                回首頁
+                            </button>
+                        </Link>
                     </div>
                 </div>
             

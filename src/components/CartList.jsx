@@ -88,30 +88,30 @@ export default function CartList() {
                                         <img src={item.image} alt={item.name} className="w-[80px] h-[80px] object-cover mx-auto" />
                                     </Link>
                                     <div>
-                                    <div className="text-sm text-left items-start h-[40px]">{item.name}</div>
-                                    
-                                    <div className="flex flex-row items-end">
-                                        <div className="text-sm w-[50%] h-[30px]">NT${item.price} ×  </div>
-                                        
-                                        <div className="text-right w-[40%]">
-                                            <select
-                                                value={item.qty}
-                                                onChange={(e) =>
-                                                    dispatch(addCartItems({
-                                                        ...item,
-                                                        qty: Number(e.target.value),
-                                                    }))
-                                                }
-                                                className="select select-bordered select-sm w-[3.5rem] "
-                                            >
-                                                {[...Array(item.countInStock).keys()].map((x) => (
-                                                    <option key={x + 1} value={x + 1}>{x + 1}</option>
-                                                ))}
-                                            </select>
+                                        <div className="text-sm text-left items-start h-[40px]">{item.name}</div>
+
+                                        <div className="flex flex-row items-end">
+                                            <div className="text-sm w-[50%] h-[30px]">NT${item.price} ×  </div>
+
+                                            <div className="text-right w-[40%]">
+                                                <select
+                                                    value={item.qty}
+                                                    onChange={(e) =>
+                                                        dispatch(addCartItems({
+                                                            ...item,
+                                                            qty: Number(e.target.value),
+                                                        }))
+                                                    }
+                                                    className="select select-bordered select-sm w-[3.5rem] "
+                                                >
+                                                    {[...Array(item.countInStock).keys()].map((x) => (
+                                                        <option key={x + 1} value={x + 1}>{x + 1}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    </div>
-                                    
+
                                     <div className="text-sm font-semibold text-right">NT${item.price * item.qty}</div>
                                 </li>
                             ))}
@@ -120,9 +120,9 @@ export default function CartList() {
 
                     {/* 右 */}
                     <div className="md:pl-4 md:border-l-2 md:border-primary md:flex md:flex-col md:justify-between md:h-full">
-                    <div className="text-xl font-semibold mb-6 font-bold bottom-border border-primary pb-2 ">購物車總計</div>
+                        <div className="text-xl font-semibold mb-6 font-bold bottom-border border-primary pb-2 ">購物車總計</div>
                         <div>
-                            
+
 
                             <div className="flex justify-between mb-2">
                                 <span>小計</span>
@@ -158,10 +158,12 @@ export default function CartList() {
                                 <span>NT${getTotalPrice()}</span>
                             </div>
                         </div>
+                        <Link to="/payment">
+                            <button className="w-full bg-primary text-white py-3 rounded mt-6 ">
+                                結帳
+                            </button>
+                        </Link>
 
-                        <button className="w-full bg-primary text-white py-3 rounded mt-6 ">
-                            結帳
-                        </button>
                     </div>
                 </div>
             )}

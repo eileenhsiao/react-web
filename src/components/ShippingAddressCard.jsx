@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Form, Input, Button } from "antd";
+import { Form, Input } from "antd";
 import { selectShippingAddress, saveShippingAddress } from "../redux/cartSlice";
 
 export default function ShippingAddressCard() {
@@ -18,7 +18,7 @@ export default function ShippingAddressCard() {
     <Form
       onFinish={handleSubmit}
       name="normal_login"
-      className={styles.shippingForm}
+      /*className={styles.shippingForm}*/
       initialValues={shippingAddress}
       form={form}
     >

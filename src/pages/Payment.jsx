@@ -11,7 +11,7 @@ function Payment() {
     window.scrollTo(0, 0); // 滾動到頁面頂部
   }, []);
   
-  const title = "購物車";
+  const title = "結帳";
     return (
       <div className="container mx-auto main-layout min-h-screen">
         <Helmet>
