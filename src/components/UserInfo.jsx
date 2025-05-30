@@ -15,12 +15,12 @@ export default function UserInfo(props) {
 
    return (
 
-      <div onClick={goToProfile} style={{ ...props.style }} className={styles.userInfo} >
+      <div onClick={goToProfile} style={{ ...props.style }}  >
          {userInfo
-            ? <UserOutlined className={styles.userInfoOutlined} />
-            : <UserSwitchOutlined className={styles.userInfoOutlined} />
+            ? <UserOutlined />
+            : <UserSwitchOutlined  />
          }
-         <p className={styles.userInfoText}>
+         <p>
             {!!userInfo?.name
                ? `${userInfo.name}'s`
                : `請登入`

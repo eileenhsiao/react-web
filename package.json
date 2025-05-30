@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
-    "@tanstack/react-query": "^5.76.2",
+    "@tanstack/react-query": "^4.24.6",
     "antd": "^5.25.2",
     "firebase": "^11.6.1",
     "leaflet": "^1.9.4",
