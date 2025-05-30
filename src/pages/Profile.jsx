@@ -17,7 +17,7 @@ function Profile() {
  const redirect = searchParams.get('redirect');
 
 
-  const title = "登入";
+  const title = "個人頁面";
   return (
     <div className="container mx-auto main-layout min-h-screen">
       <Helmet>

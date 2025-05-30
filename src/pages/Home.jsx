@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import Map from '@/components/Map';
 import SlideShow from "@/components/SlideShow";
 import { useProducts } from '../react-query';
-import AdminFeedButton from "@/components/Button";
+
 
 
 const images = [
@@ -34,7 +34,6 @@ function Home() {
         <SlideShow images={images} />
         <PopularList products={products}isLoading={isLoading} className="content" />
       </div>
-      <AdminFeedButton/>
       
       <Map/>
       

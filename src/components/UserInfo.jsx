@@ -8,9 +8,9 @@ export default function UserInfo(props) {
 
    const goToProfile = () => {
       if(userInfo?.name)
-         navigate("/auth/profile")
+         navigate("/profile")
       else
-         navigate("/auth/login?redirect=/auth/profile");
+         navigate("/login");
    };
 
    return (

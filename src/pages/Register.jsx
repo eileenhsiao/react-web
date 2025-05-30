@@ -3,21 +3,14 @@ import { useSearchParams } from 'react-router-dom';
 import Header from '../components/Header'
 import Footer from '@/components/Footer'
 import RegisterCard from '../components/RegisterCard';
-import { useEffect } from 'react';
 
 
 function Register() {
-  useEffect(() => {
-    window.scrollTo(0, 0); // 滾動到頁面頂部
-  }, []);
-  const {
-    token: { colorBgBase, colorTextBase },
- } = theme.useToken();
  const [searchParams] = useSearchParams();
  const redirect = searchParams.get('redirect');
 
 
-  const title = "登入";
+  const title = "註冊";
   return (
     <div className="container mx-auto main-layout min-h-screen">
       <Helmet>
@@ -25,10 +18,9 @@ function Register() {
       </Helmet>
       <Header />
       
-      <div className="layoutContent container">
+      <div className="mt-[72px] md:mt-[61.6px] p-0 layoutContent container">
             <RegisterCard redirect={redirect} />
          </div>
-         <RegisterCard redirect={redirect} />
       
       <Footer className="footer" />
     </div>

@@ -7,7 +7,7 @@ import { useSignInWithEmailPassword } from "../react-query";
 //import styles from './style.css';
 
 
-const LoginCard = ({ redirect }) => {
+const ForgetPasswordCard = ({ redirect }) => {
    const { mutate, error, isLoading, isError, isSuccess, data } = useSignInWithEmailPassword();
    const [isRemember, setIsRemember] = useState(false);
    const [form] = Form.useForm();
@@ -69,6 +69,24 @@ const LoginCard = ({ redirect }) => {
                type="password"
                placeholder="Password"
             />
+            
+         </Form.Item>
+         <Form.Item
+            name="password_again"
+            rules={[
+               {
+                  required: true,
+                  message: "Please input your Password again",
+               },
+            ]}
+            hasFeedback
+         >
+            <Input.Password
+               prefix={<LockOutlined />}
+               type="password"
+               placeholder="Input Password Again"
+            />
+            
          </Form.Item>
          <Form.Item>
             <Link to={"/forget_password"}>
@@ -128,4 +146,4 @@ const LoginCard = ({ redirect }) => {
    );
 };
 
-export default LoginCard;
+export default ForgetPasswordCard;
