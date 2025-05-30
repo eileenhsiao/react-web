@@ -2,11 +2,10 @@ import { Helmet } from 'react-helmet-async';
 import '@/index.css';
 import Header from '../components/Header'
 import Footer from '@/components/Footer'
-import ShippingAddressCard from '../components/ShippingAddressCard';
-import PaymentMethodCard from '@/components/PaymentCard';
+import SendOrder from '@/components/SendOrder';
 import { useEffect } from 'react';
 
-function Payment() {
+function SendOrder() {
   useEffect(() => {
     window.scrollTo(0, 0); // 滾動到頁面頂部
   }, []);
@@ -19,12 +18,11 @@ function Payment() {
           </Helmet>
         <Header/>
         <div style={{ marginTop: '100px', padding: '10px' }}></div>
-        <ShippingAddressCard className="content"/>
-        <PaymentMethodCard className="content"/>
+        <SendOrder className="content"/>
         <Footer className="footer" />
       </div>
   
     )
 }
 
-export default Payment
+export default SendOrder
