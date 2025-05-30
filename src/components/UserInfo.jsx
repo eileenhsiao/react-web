@@ -20,12 +20,6 @@ export default function UserInfo(props) {
             ? <UserOutlined />
             : <UserSwitchOutlined  />
          }
-         <p>
-            {!!userInfo?.name
-               ? `${userInfo.name}'s`
-               : `請登入`
-            }
-         </p>
       </div>
 
    );

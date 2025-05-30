@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import _ from 'lodash';
 import '@/index.css';
 
+
 function ProductItem({ product }) {
    return (
       <section className="w-full max-w-[280px] mx-auto pt-4 px-3 lg:px-4 ">
