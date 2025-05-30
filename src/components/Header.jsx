@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useState } from 'react';
 import CartSummary from "./CartSummary";
+import UserInfo from "./UserInfo";
 import './style.css';
 import HamMenu from '@/components/HamMenu';
 import SetColorMode from "@/components/SetColorMode";
@@ -66,8 +67,9 @@ export default function Header() {
                     <div className="flex items-center gap-x-6">
                         <Link to="/about">關於我們</Link>
                         <Link to="/products/list/all">商品列表</Link>
-                        <Link to="/login">登入</Link>
+                        
                         <SetColorMode />
+                        <UserInfo/>
                         <CartSummary />
                     </div>
                 </div>

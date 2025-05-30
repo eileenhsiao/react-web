@@ -5,7 +5,7 @@ import Footer from '@/components/Footer'
 import { useEffect } from 'react';
 
 
-function Payment() {
+function ForgetPassword() {
   useEffect(() => {
     window.scrollTo(0, 0); // 滾動到頁面頂部
   }, []);
@@ -27,4 +27,4 @@ function Payment() {
   )
 }
 
-export default Payment
+export default ForgetPassword

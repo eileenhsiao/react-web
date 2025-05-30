@@ -6,6 +6,7 @@ import PopularList from '@/components/PopularList'
 import { useEffect } from 'react';
 import Map from '@/components/Map';
 import SlideShow from "@/components/SlideShow";
+import { useProducts } from '../react-query';
 
 
 
@@ -19,6 +20,9 @@ function Home() {
     window.scrollTo(0, 0); // 滾動到頁面頂部
   }, []);
 
+  const { data, isLoading } = useProducts();
+  const products = data || [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6}];
+
   const title = "Blissful Bites";
   return (
     <div className="container mx-auto main-layout min-h-screen">
@@ -29,7 +33,7 @@ function Home() {
       <div className="mt-[72px] md:mt-[61.6px] p-0" >
         
         <SlideShow images={images} />
-        <PopularList products={products} className="content" />
+        <PopularList products={products}isLoading={isLoading} className="content" />
       </div>
 
       
