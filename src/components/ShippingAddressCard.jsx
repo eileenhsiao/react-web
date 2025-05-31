@@ -23,7 +23,7 @@ export default function ShippingAddressCard() {
     // 儲存付款方式與地址
     dispatch(saveShippingAddress(values));
     dispatch(savePaymentMethod(values.paymentMethod));
-    navigate("/placeorder");
+    
   };
 
   return (
@@ -160,11 +160,15 @@ export default function ShippingAddressCard() {
               <Input placeholder="Enter country" />
             </Form.Item>
             <div className="content text-xl mb-4">其他</div>
-            <Form.Item>
-              <Button htmlType="submit" className="w-full button1 py-3 rounded mt-6">
+            <button
+             onClick={() => {
+              
+               navigate("/SendOrder"); // 導向下一頁
+                }}
+                className="w-full bg-primary text-white py-3 rounded mt-6"
+                >
                 送出訂單
-              </Button>
-            </Form.Item>
+                </button>                       
           </div>
 
         </div>
