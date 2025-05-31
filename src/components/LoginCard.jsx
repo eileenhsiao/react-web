@@ -69,7 +69,7 @@ const LoginCard = ({ redirect }) => {
 
             {/* 忘記密碼 + 記得我 */}
             <div className="login-options">
-               <Link to="/forget_password" className="forgot-link word1">忘記密碼?</Link>
+               <Link to="/ForgetPassword" className="forgot-link word1">忘記密碼?</Link>
                <Form.Item name="remember" valuePropName="checked" noStyle>
                <Checkbox
                   checked={isRemember}

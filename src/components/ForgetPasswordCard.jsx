@@ -1,149 +1,122 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { WarningOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
-
+import '@/index.css';
 import { useSignInWithEmailPassword } from "../react-query";
-//import styles from './style.css';
-
 
 const ForgetPasswordCard = ({ redirect }) => {
-   const { mutate, error, isLoading, isError, isSuccess, data } = useSignInWithEmailPassword();
-   const [isRemember, setIsRemember] = useState(false);
-   const [form] = Form.useForm();
-   const navigate = useNavigate();
+  const { mutate, error, isLoading, isError, isSuccess } = useSignInWithEmailPassword();
+  const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-   const onFinish = (values) => {
-      console.log("Received values of form: ", values);
-      mutate(values);
-   };
+  const rePasswordRef = useRef(null);
 
-   useEffect(() => {
-      if (isSuccess) {
-         navigate(redirect);
-      }
-   }, [isSuccess, redirect]);
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
+    mutate(values);
+  };
 
-   return (
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(redirect);
+    }
+  }, [isSuccess, redirect]);
+
+  return (
+    <div className="login-wrapper">
       <Form
-         name="normal_login"
-         //className={styles.loginForm}
-         form={form}
-         initialValues={{
-            isRemember: true,
-         }}
-         onFinish={onFinish}
-      // onFihishFailed={onFinishFailed}
+        name="reset_password"
+        form={form}
+        onFinish={onFinish}
       >
-         <Form.Item
-            name="email"
-            rules={[
-               {
-                  type: "email",
-                  message: "The input is not valid E-mail!",
-               },
-               {
-                  required: true,
-                  message: "Please input your E-mail!",
-               },
-            ]}
-            hasFeedback
-         >
-            <Input
-               prefix={<MailOutlined />}
-               placeholder="E-Mail"
-            />
-         </Form.Item>
-         <Form.Item
-            name="password"
-            rules={[
-               {
-                  required: true,
-                  message: "Please input your Password!",
-               },
-            ]}
-            hasFeedback
-         >
-            <Input.Password
-               prefix={<LockOutlined />}
-               type="password"
-               placeholder="Password"
-            />
-            
-         </Form.Item>
-         <Form.Item
-            name="password_again"
-            rules={[
-               {
-                  required: true,
-                  message: "Please input your Password again",
-               },
-            ]}
-            hasFeedback
-         >
-            <Input.Password
-               prefix={<LockOutlined />}
-               type="password"
-               placeholder="Input Password Again"
-            />
-            
-         </Form.Item>
-         <Form.Item>
-            <Link to={"/forget_password"}>
-               Forgot password
-            </Link>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-               <Checkbox onChange={() => setIsRemember(!isRemember)} checked={isRemember}>
-                  Remember me
-               </Checkbox>
-            </Form.Item>
-         </Form.Item>
+        <div className="title text-2xl">重設密碼</div>
 
-         <Form.Item>
-            {isLoading ? (
-               <Button
-                  type="primary"
-                  htmlType="submit"
-                  //className={styles.loginForm__button}
-                  loading
-               >
-                  Log in
-               </Button>
-            ) : (
-               <Link to="/">
-                  <Button
-                     type="primary"
-                     htmlType="submit"
-                  //className={styles.loginForm__button}
-                  >
-                     Log in
-                  </Button>
-               </Link>
+        {/* 電子郵件 */}
+        <Form.Item
+          name="email"
+          rules={[
+            { type: "email", message: "不是有效的電子郵件" },
+            { required: true, message: "請輸入你的電子郵件" },
+          ]}
+          hasFeedback
+        >
+          <Input
+            prefix={<MailOutlined />}
+            placeholder="電子郵件"
+            onPressEnter={() => form.validateFields(["email"]).then(() => form.getFieldInstance("password")?.focus())}
+          />
+        </Form.Item>
 
-            )}
-            Or <Link to="/register">
-               <Button
-                  type="primary"
-                  htmlType="submit"
-               //className={styles.loginForm__button}
-               >
-                  register now
-               </Button>
-            </Link>
-            {!isError ? (
-               <div></div>
-            ) : (
-               <div /*className={styles.loginForm__errorWrap}*/ >
-                  <h3 className={styles.loginForm__errorTitle}>
-                     <WarningOutlined />
-                     {"  "}There was a problem
-                  </h3>
-                  <p /*className={styles.loginForm__errorMessage}*/>{error.message}</p>
-               </div>
-            )}
-         </Form.Item>
+        {/* 新密碼 */}
+        <Form.Item
+          name="password"
+          rules={[{ required: true, message: "請輸入你的新密碼" }]}
+          hasFeedback
+        >
+          <Input.Password
+            prefix={<LockOutlined />}
+            placeholder="新密碼"
+            onPressEnter={() => rePasswordRef.current?.focus()}
+          />
+        </Form.Item>
+
+        {/* 確認新密碼 */}
+        <Form.Item
+          name="rePassword"
+          dependencies={["password"]}
+          hasFeedback
+          rules={[
+            { required: true, message: "請再次輸入你的密碼" },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error("兩次輸入的密碼不一致"));
+              },
+            }),
+          ]}
+        >
+          <Input.Password
+            ref={rePasswordRef}
+            prefix={<LockOutlined />}
+            placeholder="請再次輸入你的密碼"
+            onPressEnter={() => form.submit()}
+          />
+        </Form.Item>
+
+        {/* 提交按鈕 */}
+        <Form.Item>
+          <Button
+            className="button1"
+            htmlType="submit"
+            loading={isLoading}
+            block
+          >
+            重設密碼
+          </Button>
+        </Form.Item>
+
+        {/* 錯誤訊息額外顯示 */}
+        {isError && (
+          <div className="login-error">
+            <WarningOutlined /> 出了一點問題
+            <p>{error.message}</p>
+          </div>
+        )}
+
+        {/* 返回登入 */}
+        <div className="register-section">
+          <Link to="/login">
+            <Button className="button2" block>
+              返回登入
+            </Button>
+          </Link>
+        </div>
       </Form>
-   );
+    </div>
+  );
 };
 
 export default ForgetPasswordCard;

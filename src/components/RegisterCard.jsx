@@ -51,7 +51,7 @@ const RegisterCard = ({ redirect }) => {
           ]}
           hasFeedback
         >
-          <Input prefix={<MailOutlined />} placeholder="電子郵件" />
+          <Input  placeholder="電子郵件" />
         </Form.Item>
 
         {/* 密碼 */}
@@ -61,13 +61,13 @@ const RegisterCard = ({ redirect }) => {
           rules={[{ required: true, message: "請輸入你的密碼" }]}
           hasFeedback
         >
-          <Input.Password prefix={<LockOutlined />} placeholder="密碼" />
+          <Input.Password  placeholder="密碼" />
         </Form.Item>
 
         {/* 再次輸入密碼 */}
         <Form.Item
           name="rePassword"
-          label="再次輸入密碼"
+          label="請再次輸入密碼"
           dependencies={["password"]}
           hasFeedback
           rules={[
@@ -95,7 +95,7 @@ const RegisterCard = ({ redirect }) => {
               : Promise.reject(new Error("請勾選同意使用者條款"))
           }]}
         >
-          <Checkbox className="content "> 
+          <Checkbox className="word2"> 
             我已閱讀 <Link to="/">使用者條款</Link>
           </Checkbox>
         </Form.Item>

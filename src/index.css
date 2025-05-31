@@ -106,7 +106,7 @@
     }
 
    .login-wrapper .ant-form-item-label > label {
-    color: #000000;
+    color: #7D6E5B;
   }
 
   .login-options {
@@ -160,6 +160,9 @@
   .word1{
     color: #7D6E5B;
   }
+  .word2{
+    color: #7D6E5B;
+  }
 
   .title{
     color: #DBB985;
@@ -176,6 +179,23 @@
   /* 滑鼠懸停時 */
   .login-wrapper .ant-checkbox-wrapper a:hover {
     color: #B28F62;
+  }
+
+  /* Tooltip 圖示顏色 */
+  .ant-form-item-label .anticon {
+    color: #7D6E5B !important; /* 圖示顏色 */
+  }
+
+  /* Tooltip 提示框的背景與文字 */
+  .ant-tooltip-inner {
+    background-color: #DBB985 !important; /* 背景色 */
+    color: #fff !important; /* 文字顏色 */
+    font-size: 14px;
+  }
+
+  /* Tooltip 箭頭顏色 */
+  .ant-tooltip-arrow::before {
+    background-color: #DBB985 !important;
   }
 
 }
@@ -294,6 +314,9 @@
   .word1{
     color: #D0BFAA;
   }
+  .word2{
+    color: #F5F5F5;
+  }
 
   .title{
     color: #B08968;
@@ -343,6 +366,25 @@
   .login-wrapper .ant-checkbox-wrapper a:hover {
     color: #B08968;
   }
+
+  /* Tooltip 圖示顏色 */
+  .ant-form-item-label .anticon {
+    color: #F5F5F5 !important; /* 圖示顏色 */
+  }
+
+  /* Tooltip 提示框的背景與文字 */
+  .ant-tooltip-inner {
+    background-color: #B08968 !important; /* 背景色 */
+    color: #1E1E1E !important; /* 文字顏色 */
+    font-size: 14px;
+  }
+
+  /* Tooltip 箭頭顏色 */
+  .ant-tooltip-arrow::before {
+    background-color: #B08968 !important;
+  }
+
+
 
 
 html,
