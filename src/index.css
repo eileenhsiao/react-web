@@ -101,7 +101,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      margin: 60px;
       padding: 16px;
     }
 
@@ -256,8 +256,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    
     padding: 16px;
+    margin: 60px;
   }
 
    .login-wrapper .ant-form-item-label > label {
@@ -301,13 +302,13 @@
   }
   .button2{
     background-color: #1E1E1E;
-    color: #B08968;
-    border: 1px solid #B08968;
+    color: #D0BFAA;
+    border: 1px solid #D0BFAA;
   }
   .button2:hover {
     background-color: #1E1E1E!important;
-    color: #B08968!important;
-    border: 1px solid #B08968!important;
+    color: #D0BFAA!important;
+    border: 1px solid #D0BFAA!important;
     filter: brightness(93%);
   }
 
