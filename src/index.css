@@ -8,13 +8,13 @@
 
 @plugin "daisyui/theme" {
   name: "dark";
-  --color-primary: #B08968;
+  --color-primary: #B08968 !important;
 }
 
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #DBB985;
+  --color-primary: #DBB985 !important;
 }
 /*淺色模式*/
 [data-theme="light"] {
@@ -67,35 +67,47 @@
     border-bottom: 2px solid #DBB985;
   }
 
+  .ant-input,
+  .ant-input-affix-wrapper {
+    border-color: #DBB985 !important;
+  }
+
+  /* 滑鼠滑過 */
   .ant-input:hover,
+  .ant-input-affix-wrapper:hover {
+    border-color: #DBB985 !important;
+  }
+
+  /* 聚焦時 */
   .ant-input:focus,
-  .ant-input-affix-wrapper:hover,
   .ant-input-affix-wrapper:focus {
     border-color: #DBB985 !important;
+    box-shadow: 0 0 0 2px rgba(219, 185, 133, 0.3) !important;
   }
 
-  .ant-checkbox-input:focus ,.ant-checkbox-inner {
-    border-color: #DBB985 !important;
-  }
+  ant-checkbox-input:focus , .ant-checkbox-inner {
+      border-color: #DBB985 !important;
+    }
 
-  .ant-checkbox-checked .ant-checkbox-inner {
-    background-color: #DBB985 !important;
-    border-color: #DBB985 !important;
-  }
+    .ant-checkbox-checked .ant-checkbox-inner {
+      background-color: #DBB985 !important;
+      border-color: #DBB985 !important;
+    }
 
-  .ant-checkbox-checked .ant-checkbox-inner::after {
-    border-color: #fff !important;
-  }
+    .ant-checkbox-checked .ant-checkbox-inner::after {
+      border-color: #ffffff !important;
+    }
+    .login-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 16px;
+    }
 
-  .login-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 16px;
+   .login-wrapper .ant-form-item-label > label {
+    color: #000000;
   }
-
-  
 
   .login-options {
     display: flex;
@@ -153,6 +165,17 @@
     color: #DBB985;
     text-align: center;
     margin-bottom: 18px;
+  }
+
+  /* 一般狀態下的顏色 */
+  .login-wrapper .ant-checkbox-wrapper a {
+    color: #DBB985;
+    
+  }
+
+  /* 滑鼠懸停時 */
+  .login-wrapper .ant-checkbox-wrapper a:hover {
+    color: #B28F62;
   }
 
 }
@@ -217,7 +240,9 @@
     padding: 16px;
   }
 
-  
+   .login-wrapper .ant-form-item-label > label {
+    color: #F5F5F5;
+  }
 
   .login-options {
     display: flex;
@@ -235,7 +260,7 @@
   .not-member-text {
     text-align: left;
     font-size: 14px;
-    color: #1E1E1E;
+    color: #D0BFAA;
     margin-bottom: 8px;
   }
 
@@ -276,12 +301,24 @@
     margin-bottom: 18px;
   }
 
-  .ant-input:hover,
-  .ant-input:focus,
-  .ant-input-affix-wrapper:hover,
-  .ant-input-affix-wrapper:focus {
-    border-color: #B08968 !important;
-  }
+   .ant-input,
+    .ant-input-affix-wrapper {
+      border-color: #B08968 !important;
+    }
+
+    /* 滑鼠滑過 */
+    .ant-input:hover,
+    .ant-input-affix-wrapper:hover {
+      border-color: #B08968 !important;
+    }
+
+    /* 聚焦時 */
+    .ant-input:focus,
+    .ant-input-affix-wrapper:focus {
+      border-color: #B08968 !important;
+      box-shadow: 0 0 0 2px rgba(219, 185, 133, 0.3) !important;
+    }
+
 
   .ant-checkbox-input:focus , .ant-checkbox-inner {
     border-color: #B08968 !important;
@@ -294,6 +331,17 @@
 
   .ant-checkbox-checked .ant-checkbox-inner::after {
     border-color: #1E1E1E !important;
+  }
+
+  /* 一般狀態下的顏色 */
+  .login-wrapper .ant-checkbox-wrapper a {
+    color: #D0BFAA;
+    
+  }
+
+  /* 滑鼠懸停時 */
+  .login-wrapper .ant-checkbox-wrapper a:hover {
+    color: #B08968;
   }
 
 
