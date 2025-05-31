@@ -23,12 +23,13 @@ export default function PaymentMethodCard() {
         <Form
             onFinish={handleSubmit}
             name="normal_login"
-            /*className={styles.paymentForm}*/
+            
             initialValues={paymentMethod}
             form={form}
         >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch ">
             {/* 左邊欄位 */}
+            <div className="md:pr-8 md:border-r-2 md:border-primary">
             {shippingMethod === "pickup" && (
                 <div>
                     <Form.Item name="paymentMethod" label="Payment Method: "
@@ -65,18 +66,10 @@ export default function PaymentMethodCard() {
                     </Form.Item>
                 </div>
             )}
+            </div>
 
             {/* 右邊欄位 */}
-            <div className="md:pl-4 md:border-l-2 md:border-primary md:flex md:flex-col md:justify-between md:h-full">
-            <Form.Item>
-            <Button
-                htmlType="submit"
-                className="w-full button1 py-3 rounded mt-6"
-            >
-                付款
-            </Button>
-            </Form.Item>
-            </div></div>
+            </div>
         </Form>
         
     );
