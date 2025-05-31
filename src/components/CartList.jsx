@@ -3,6 +3,8 @@ import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartItems, removeCartItems, selectCartItems } from "@/redux/cartSlice";
 import '@/index.css';
+import { saveShippingMethod } from "@/redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function CartList() {
     const dispatch = useDispatch();
@@ -17,12 +19,40 @@ export default function CartList() {
             : 0;
         return itemsTotal + shippingFee;
     };
-
+    const navigate = useNavigate();
+    
     return (
         <div className="p-4 content w-[98%] mx-auto">
             {cartItems.length === 0 ? (
                 <div className="text-center text-2xl text-empty">購物車是空的</div>
             ) : (
+                <div>
+                    <div className="flex items-center justify-center gap-8 mb-20 text-sm text-primary font-semibold">
+                        {/* 步驟 1 */}
+                        <div className="flex flex-col items-center">
+                            <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">1</div>
+                            <div className="mt-2 text-xl">確認訂單</div>
+                        </div>
+
+                        {/* 線 */}
+                        <div className="flex-1 h-[1px] bg-primary max-w-[60px] mb-7"></div>
+
+                        {/* 步驟 2 */}
+                        <div className="flex flex-col items-center">
+                            <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">2</div>
+                            <div className="mt-2 text-xl">填寫資料</div>
+                        </div>
+
+                        {/* 線 */}
+                        <div className="flex-1 h-[1px] bg-primary max-w-[60px] mb-7"></div>
+
+                        {/* 步驟 3 */}
+                        <div className="flex flex-col items-center">
+                            <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">3</div>
+                            <div className="mt-2 text-xl">送出訂單</div>
+                        </div>
+                        </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                     {/* 左 電腦*/}
                     <div className="hidden md:block">
@@ -158,13 +188,18 @@ export default function CartList() {
                                 <span>NT${getTotalPrice()}</span>
                             </div>
                         </div>
-                        <Link to="/payment">
-                            <button className="w-full bg-primary text-white py-3 rounded mt-6 ">
-                                結帳
-                            </button>
-                        </Link>
+                        <button
+                        onClick={() => {
+                            dispatch(saveShippingMethod(shippingMethod)); // 存進 redux
+                            navigate("/Payment"); // 導向下一頁
+                        }}
+                        className="w-full bg-primary text-white py-3 rounded mt-6"
+                        >
+                        結帳
+                        </button>
 
                     </div>
+                </div>
                 </div>
             )}
         </div>

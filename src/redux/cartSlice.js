@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 // Part1: Define Slice (including reducers and actions)
+const shippingMethod = 'pickup'; // 預設為 pickup
+
 const cartItems = [];
 const shippingAddress = {};
 const price = {};
 const paymentMethod = 'Google';
-const initialState = { cartItems, shippingAddress, paymentMethod, price };
+const initialState = { cartItems, shippingAddress, paymentMethod, price, shippingMethod  };
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -34,6 +36,9 @@ const cartSlice = createSlice({
     savePrice: (state, action) => {
       state.price = action.payload;
     },
+    saveShippingMethod: (state, action) => {
+      state.shippingMethod = action.payload;
+    },
   },
 });
 
@@ -48,3 +53,6 @@ export const { addCartItems, removeCartItems, saveShippingAddress, savePaymentMe
 
 // export reducer to global
 export default cartSlice.reducer;
+
+export const selectShippingMethod = (state) => state.cart.shippingMethod;
+export const { saveShippingMethod } = cartSlice.actions;
