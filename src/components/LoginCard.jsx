@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Button, Checkbox } from 'antd';
 import { WarningOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
-
+import '@/index.css';
 import { useSignInWithEmailPassword } from "../react-query";
-//import styles from './style.css';
-
 
 const LoginCard = ({ redirect }) => {
-   const { mutate, error, isLoading, isError, isSuccess, data } = useSignInWithEmailPassword();
+   const { mutate, error, isLoading, isError, isSuccess } = useSignInWithEmailPassword();
    const [isRemember, setIsRemember] = useState(false);
    const [form] = Form.useForm();
    const navigate = useNavigate();
+
+   const passwordInputRef = useRef(null); // 密碼欄位的 ref
 
    const onFinish = (values) => {
       console.log("Received values of form: ", values);
@@ -25,106 +25,91 @@ const LoginCard = ({ redirect }) => {
    }, [isSuccess, redirect]);
 
    return (
-      <Form
-         name="normal_login"
-         //className={styles.loginForm}
-         form={form}
-         initialValues={{
-            isRemember: true,
-         }}
-         onFinish={onFinish}
-      // onFihishFailed={onFinishFailed}
-      >
-         <Form.Item
-            name="email"
-            rules={[
-               {
-                  type: "email",
-                  message: "The input is not valid E-mail!",
-               },
-               {
-                  required: true,
-                  message: "Please input your E-mail!",
-               },
-            ]}
-            hasFeedback
+      <div className="login-wrapper">
+         <Form
+            name="normal_login"
+            form={form}
+            initialValues={{ isRemember: true }}
+            onFinish={onFinish}
          >
-            <Input
+            <div className="title text-2xl">會員登入</div>
+            {/* 電子郵件 */}
+            <Form.Item
+               name="email"
+               rules={[
+               { type: "email", message: "不是有效的電子郵件" },
+               { required: true, message: "請輸入你的電子郵件" },
+               ]}
+               hasFeedback
+            >
+               <Input
                prefix={<MailOutlined />}
-               placeholder="E-Mail"
-            />
-         </Form.Item>
-         <Form.Item
-            name="password"
-            rules={[
-               {
-                  required: true,
-                  message: "Please input your Password!",
-               },
-            ]}
-            hasFeedback
-         >
-            <Input.Password
-               prefix={<LockOutlined />}
-               type="password"
-               placeholder="Password"
-            />
-         </Form.Item>
-         <Form.Item>
-            <Link to={"/forget_password"}>
-               Forgot password
-            </Link>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-               <Checkbox onChange={() => setIsRemember(!isRemember)} checked={isRemember}>
-                  Remember me
-               </Checkbox>
+               placeholder="電子郵件"
+               onPressEnter={() => {
+                  form.validateFields(["email"])
+                     .then(() => passwordInputRef.current?.focus())
+                     .catch(() => {});
+               }}
+               />
             </Form.Item>
-         </Form.Item>
 
-         <Form.Item>
-            {isLoading ? (
-               <Button
-                  type="primary"
-                  htmlType="submit"
-                  //className={styles.loginForm__button}
-                  loading
+            {/* 密碼 */}
+            <Form.Item
+               name="password"
+               rules={[{ required: true, message: "請輸入你的密碼" }]}
+               hasFeedback
+            >
+               <Input.Password
+               ref={passwordInputRef}
+               prefix={<LockOutlined />}
+               placeholder="密碼"
+               onPressEnter={() => form.submit()}
+               />
+            </Form.Item>
+
+            {/* 忘記密碼 + 記得我 */}
+            <div className="login-options">
+               <Link to="/forget_password" className="forgot-link word1">忘記密碼?</Link>
+               <Form.Item name="remember" valuePropName="checked" noStyle>
+               <Checkbox
+                  checked={isRemember}
+                  onChange={() => setIsRemember(!isRemember)}
+                  className="word1"
                >
-                  Log in
+                  記得我
+               </Checkbox>
+               </Form.Item>
+            </div>
+
+            {/* 登入按鈕 */}
+            <Form.Item>
+               <Button className="button1" htmlType="submit" loading={isLoading} block>
+               登入
                </Button>
-            ) : (
-               <Link to="/">
-                  <Button
-                     type="primary"
-                     htmlType="submit"
-                  //className={styles.loginForm__button}
-                  >
-                     Log in
-                  </Button>
+            </Form.Item>
+
+            {/* 提示小字 */}
+            <div className="not-member-text">還不是會員？</div>
+
+            {/*  註冊帳號按鈕 */}
+            <div className="register-section ">
+               <Link to="/register">
+               <Button className="button2" block>
+                  註冊帳號
+               </Button>
                </Link>
+            </div>
 
-            )}
-            Or <Link to="/register">
-               <Button
-                  type="primary"
-                  htmlType="submit"
-               //className={styles.loginForm__button}
-               >
-                  register now
-               </Button>
-            </Link>
-            {!isError ? (
-               <div></div>
-            ) : (
-               <div /*className={styles.loginForm__errorWrap}*/ >
-                  <h3 className={styles.loginForm__errorTitle}>
-                     <WarningOutlined />
-                     {"  "}There was a problem
-                  </h3>
-                  <p /*className={styles.loginForm__errorMessage}*/>{error.message}</p>
+            {/* 錯誤訊息額外顯示 */}
+            {isError && (
+               <div className="login-error">
+               <WarningOutlined /> 出了一點問題
+               <p>{error.message}</p>
                </div>
             )}
-         </Form.Item>
-      </Form>
+         </Form>
+      </div>
+
    );
 };
 

@@ -66,8 +66,95 @@
   .bottom-border {
     border-bottom: 2px solid #DBB985;
   }
+
+  .ant-input:hover,
+  .ant-input:focus,
+  .ant-input-affix-wrapper:hover,
+  .ant-input-affix-wrapper:focus {
+    border-color: #DBB985 !important;
+  }
+
+  .ant-checkbox-input:focus ,.ant-checkbox-inner {
+    border-color: #DBB985 !important;
+  }
+
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #DBB985 !important;
+    border-color: #DBB985 !important;
+  }
+
+  .ant-checkbox-checked .ant-checkbox-inner::after {
+    border-color: #fff !important;
+  }
+
+  .login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 16px;
+  }
+
   
+
+  .login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .login-error {
+    margin-top: 16px;
+    color: #d93025;
+    font-size: 14px;
+  }
+
+  .not-member-text {
+    text-align: left;
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 8px;
+  }
+
+  .register-section {
+    text-align: center;
+  }
+  .button1:hover {
+    background-color: #DBB985 !important;
+    color: #FFFFFF !important;
+    border-color: #DBB985 !important;
+    filter: brightness(93%);
+  }
+  .button1{
+    background-color: #DBB985;
+    color: #FFFFFF;
+    border: 1px solid #DBB985;
+  }
   
+  .button2{
+    background-color: #FFFFFF;
+    color: #DBB985;
+    border: 1px solid #DBB985;
+  }
+
+  .button2:hover {
+    background-color: #FFFFFF!important;
+    color: #DBB985!important;
+    border: 1px solid #DBB985!important;
+    filter: brightness(93%);
+  }
+
+  .word1{
+    color: #7D6E5B;
+  }
+
+  .title{
+    color: #DBB985;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
 }
 
 /*深色模式*/
@@ -121,6 +208,93 @@
     border-bottom: 2px solid #B08968;
   }
 }
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 16px;
+  }
+
+  
+
+  .login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .login-error {
+    margin-top: 16px;
+    color: #d93025;
+    font-size: 14px;
+  }
+
+  .not-member-text {
+    text-align: left;
+    font-size: 14px;
+    color: #1E1E1E;
+    margin-bottom: 8px;
+  }
+
+  .register-section {
+    text-align: center;
+  }
+
+  .button1{
+    background-color: #B08968;
+    color: #1E1E1E;
+    border: 1px solid #B08968;
+  }
+  .button1:hover {
+    background-color: #B08968!important;
+    color: #1E1E1E!important;
+    border: 1px solid #B08968!important;
+    filter: brightness(93%);
+  }
+  .button2{
+    background-color: #1E1E1E;
+    color: #B08968;
+    border: 1px solid #B08968;
+  }
+  .button2:hover {
+    background-color: #1E1E1E!important;
+    color: #B08968!important;
+    border: 1px solid #B08968!important;
+    filter: brightness(93%);
+  }
+
+  .word1{
+    color: #D0BFAA;
+  }
+
+  .title{
+    color: #B08968;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .ant-input:hover,
+  .ant-input:focus,
+  .ant-input-affix-wrapper:hover,
+  .ant-input-affix-wrapper:focus {
+    border-color: #B08968 !important;
+  }
+
+  .ant-checkbox-input:focus , .ant-checkbox-inner {
+    border-color: #B08968 !important;
+  }
+
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #B08968 !important;
+    border-color: #B08968 !important;
+  }
+
+  .ant-checkbox-checked .ant-checkbox-inner::after {
+    border-color: #1E1E1E !important;
+  }
 
 
 html,
