@@ -30,7 +30,7 @@ const ForgetPasswordCard = ({ redirect }) => {
         form={form}
         onFinish={onFinish}
       >
-        <div className="title text-2xl">重設密碼</div>
+        <div className="title text-2xl">忘記密碼?</div>
 
         {/* 電子郵件 */}
         <Form.Item
@@ -107,10 +107,17 @@ const ForgetPasswordCard = ({ redirect }) => {
         )}
 
         {/* 返回登入 */}
-        <div className="register-section">
-          <Link to="/login">
+        <div className="register-section mt-10">
+          <Link to="/Login">
             <Button className="button2" block>
-              返回登入
+              會員登入
+            </Button>
+          </Link>
+        </div>
+        <div className="register-section">
+          <Link to="/Register">
+            <Button className="button2 mt-3" block>
+              註冊帳號
             </Button>
           </Link>
         </div>

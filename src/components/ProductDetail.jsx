@@ -18,10 +18,10 @@ function ProductDetail({ product }) {
       </div>
 
       {/* 右側：產品資訊（佔14/24） */}
-      <div className="md:col-span-8 md:col-start-12 px-4">
+      <div className="md:col-span-8 md:col-start-12 px-4 md:m-0 m-3">
         <h2 className="opacity-60 mb-1 text-lg">{product.category}</h2>
         <h1 className="text-xl md:text-2xl font-bold mb-2x bottom-border inline-block mb-3">{product.name}</h1>
-        <p className="text-xs md:text-base c-text mb-4 leading-relaxed">
+        <p className="text-s md:text-base c-text mb-4 leading-relaxed">
           {product.intro.split('\n').map((line, idx) => (
             <span key={idx}>
               {line}
