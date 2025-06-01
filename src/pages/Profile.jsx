@@ -10,9 +10,6 @@ function Profile() {
   useEffect(() => {
     window.scrollTo(0, 0); // 滾動到頁面頂部
   }, []);
-  const {
-    token: { colorBgBase, colorTextBase },
- } = theme.useToken();
  const [searchParams] = useSearchParams();
  const redirect = searchParams.get('redirect');
 
@@ -25,7 +22,8 @@ function Profile() {
       </Helmet>
       <Header />
       
-      <div className="layoutContent container">
+      <div className="mt-[82px] md:mt-[100px] p-0">
+             
             <ProfileCard redirect={redirect} />
          </div>
       

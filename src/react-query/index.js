@@ -54,9 +54,15 @@ export const useRegisterWithEmailPassword = () => {
   return useMutation(register, {
     onSuccess: () => {
       queryClient.invalidateQueries(["uid"]);
+      window.location.href = '/profile'; // 或用 navigate() 方式
     },
+    onError: (error) => {
+      // 傳出錯誤，讓外層顯示
+      throw error;
+    }
   });
 };
+
 
 export const useUpdateProfile = () => {
   const queryClient = useQueryClient();

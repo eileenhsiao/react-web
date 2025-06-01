@@ -28,7 +28,7 @@ const ProfileCard = ({ redirect }) => {
     <Form
       onFinish={onUpdate}
       name="normal_login"
-      className={styles.profileForm}
+      /*className={styles.profileForm}*/
       form={form}
       initialValues={userInfo}
     >
@@ -82,7 +82,7 @@ const ProfileCard = ({ redirect }) => {
         <Button
           type="primary"
           htmlType="submit"
-          className={styles.profileForm__button}
+          /*className={styles.profileForm__button}*/
         >
           Submit
         </Button>
@@ -91,7 +91,7 @@ const ProfileCard = ({ redirect }) => {
           type="primary"
           danger
           style={{ marginTop: "1rem" }}
-          className={styles.profileForm__button}
+          /*className={styles.profileForm__button}*/
           onClick={onLogout}
         >
           Log out

@@ -127,30 +127,7 @@ export default function SendOrderCard() {
                                 <span>NT${cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)}</span>
                             </div>
 
-                            <div className="mb-2 flex justify-between items-center">
-                                <span className="whitespace-nowrap">出貨方式：</span>
-                                <div className="flex gap-2">
-                                    <button
-                                        onClick={() => setShippingMethod("pickup")}
-                                        className={`border px-3 py-1 rounded text-sm ${shippingMethod === "pickup"
-                                            ? "bg-primary "
-                                            : "border"
-                                            }`}
-                                    >
-                                        自取 <span className="text-xs ml-1">(運費+0)</span>
-                                    </button>
-                                    <button
-                                        onClick={() => setShippingMethod("home")}
-                                        className={`border px-3 py-1 rounded text-sm ${shippingMethod === "home"
-                                            ? "bg-primary "
-                                            : "border"
-                                            }`}
-                                    >
-                                        宅配 <span className="text-xs ml-1">(運費+60)</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div></div>
+                            
                             <div className="flex justify-between font-semibold mt-4">
                                 <span>總計</span>
                                 <span>NT${getTotalPrice()}</span>
