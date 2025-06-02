@@ -20,7 +20,7 @@ const LoginCard = ({ redirect }) => {
 
    useEffect(() => {
       if (isSuccess) {
-         navigate(redirect);
+         navigate('/Profile');
       }
    }, [isSuccess, redirect]);
 
