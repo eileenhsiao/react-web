@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, Button } from "antd";
 import { useUpdateProfile, useLogout, useUserInfo } from "../react-query";
+import '@/index.css';
 
 const ProfileInfoTab = ({ redirect }) => {
   const { data: userInfo } = useUserInfo() || {};

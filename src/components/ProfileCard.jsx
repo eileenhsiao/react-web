@@ -1,54 +1,66 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Tabs } from 'antd';
-import { UserOutlined, ShoppingCartOutlined, StarOutlined } from '@ant-design/icons';
+import '@/index.css';
+
+import {
+  UserOutlined,
+  ShoppingCartOutlined,
+  StarOutlined,
+} from '@ant-design/icons';
 import ProfileInfoTab from './ProfileInfoTab';
 import OrdersTab from './OrdersTab';
-/*import FavoritesTab from '../components/FavoritesTab';*/
+// import FavoritesTab from './FavoritesTab';
 
-const ProfileCard = () => {
+const tabItems = [
+  {
+    key: '1',
+    label: (
+      <span className="text-base font-semibold">
+        <UserOutlined className="mr-1" />
+        個人資訊
+      </span>
+    ),
+    content: <ProfileInfoTab />,
+  },
+  {
+    key: '2',
+    label: (
+      <span className="text-base font-semibold">
+        <ShoppingCartOutlined className="mr-1" />
+        訂單
+      </span>
+    ),
+    content: <OrdersTab />,
+  },
+  // {
+  //   key: '3',
+  //   label: (
+  //     <span className="text-base font-semibold">
+  //       <StarOutlined className="mr-1" />
+  //       追蹤清單
+  //     </span>
+  //   ),
+  //   content: <FavoritesTab />,
+  // },
+];
+
+export default function ProfileCard() {
   const [activeKey, setActiveKey] = useState('1');
 
-  const items = [
-    {
-      key: '1',
-      label: (
-        <span>
-          <UserOutlined /> 個人資料
-        </span>
-      ),
-      children: <ProfileInfoTab />,
-    },
-    {
-      key: '2',
-      label: (
-        <span>
-          <ShoppingCartOutlined /> 訂單紀錄
-        </span>
-      ),
-      children: <OrdersTab />,
-    },
-    /*{
-      key: '3',
-      label: (
-        <span>
-          <StarOutlined /> 追蹤清單
-        </span>
-      ),
-      children: <FavoritesTab />,
-    },*/
-  ];
-
   return (
-    <div className="max-w-4xl mx-auto mt-6 p-4 bg-white shadow-md rounded-lg">
-      <h2 className="text-xl font-semibold mb-4">會員中心</h2>
+    <div className="max-w-4xl mx-auto mt-6 ">
+      {/* 自訂 Tabs 外觀，只渲染 tab 標籤 */}
       <Tabs
-        defaultActiveKey="1"
         activeKey={activeKey}
         onChange={setActiveKey}
-        items={items}
+        items={tabItems.map(({ key, label }) => ({ key, label }))}
+        className="custom-tabs"
       />
+
+      {/* 內容區塊樣式像卡片，但不包住 tab 標籤 */}
+      <div className="bg-white pfcard px-6 py-8 border-t-0">
+        {tabItems.find((item) => item.key === activeKey)?.content}
+      </div>
     </div>
   );
-};
-
-export default ProfileCard;
+}

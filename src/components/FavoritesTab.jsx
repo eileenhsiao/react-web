@@ -1,7 +1,8 @@
 /*import { useEffect, useState } from "react";
-import { useUserInfo } from "../../react-query";
-import { getProductById } from "../../api";
+import { useUserInfo } from "../../react-query"; 
+import { getProductById } from "../../api"; 
 import { Card, Spin, Empty } from "antd";
+import '@/index.css'; 
 
 export default function FavoritesTab() {
   const { data: userInfo, isLoading: userLoading } = useUserInfo();
@@ -20,9 +21,7 @@ export default function FavoritesTab() {
       }
 
       try {
-        const productPromises = favorites.map((id) =>
-        getProductById(id)
-        );
+        const productPromises = favorites.map((id) => getProductById(id));
         const products = await Promise.all(productPromises);
         setFavoriteProducts(products);
       } catch (error) {
@@ -33,12 +32,12 @@ export default function FavoritesTab() {
       }
     };
 
-    if (!userLoading) {
+    if (!userLoading && userInfo) {
       fetchFavorites();
     }
   }, [userInfo, userLoading]);
 
-  if (loading) {
+  if (loading || !userInfo) {
     return <Spin tip="載入中..." />;
   }
 
