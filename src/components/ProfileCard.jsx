@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Tabs } from 'antd';
 import '@/index.css';
-
+import Profilehead from '../components/profilehead';
 import {
   UserOutlined,
   ShoppingCartOutlined,
@@ -48,7 +48,7 @@ export default function ProfileCard() {
   const [activeKey, setActiveKey] = useState('1');
 
   return (
-    <div className="max-w-4xl mx-auto mt-6 ">
+    <div className="max-w-4xl mx-auto mt-6 pl-1">
       {/* 自訂 Tabs 外觀，只渲染 tab 標籤 */}
       <Tabs
         activeKey={activeKey}

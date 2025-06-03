@@ -217,10 +217,11 @@
 .custom-tabs .ant-tabs-tab {
   background-color: transparent;
   border: none;
-  
+  margin-left: 1px;
   margin-right: 0rem;
   padding: 8px 16px;
   transition: background-color 0.3s;
+  margin-top: 5px;
 }
 
 .custom-tabs .ant-tabs-tab-active {
@@ -228,11 +229,10 @@
   box-shadow: 1px 0px 6px #DBB985; 
   border-bottom: none;
   margin-top: 5px;
+  margin-left: 1px;
   
 }
-.ant-tabs-tab-active:first-child {
-  box-shadow: 1px 0px 6px #DBB985; /* 增加左邊陰影 */
-}
+
 
 .custom-tabs .ant-tabs-ink-bar {
   display: none !important; /* 移除底部藍線 */

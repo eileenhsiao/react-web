@@ -29,7 +29,7 @@ const ProfileInfoTab = ({ redirect }) => {
     <Form
       onFinish={onUpdate}
       name="normal_login"
-      /*className={styles.profileForm}*/
+      
       form={form}
       initialValues={userInfo}
     >
@@ -83,20 +83,12 @@ const ProfileInfoTab = ({ redirect }) => {
         <Button
           type="primary"
           htmlType="submit"
-          /*className={styles.profileForm__button}*/
+          
         >
           Submit
         </Button>
 
-        <Button
-          type="primary"
-          danger
-          style={{ marginTop: "1rem" }}
-          /*className={styles.profileForm__button}*/
-          onClick={onLogout}
-        >
-          Log out
-        </Button>
+        
       </Form.Item>
     </Form>
   );

@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import Header from '../components/Header'
 import Footer from '@/components/Footer'
 import ProfileCard from '../components/ProfileCard';
+import Profilehead from '../components/profilehead';
 import { useEffect } from 'react';
 
 
@@ -22,8 +23,8 @@ function Profile() {
       </Helmet>
       <Header />
       
-      <div className="mt-[82px] md:mt-[100px] p-0">
-             
+      <div className="mt-[82px] md:mt-[100px] p-0 ">
+            <Profilehead redirect={redirect} /> 
             <ProfileCard redirect={redirect} />
          </div>
       
