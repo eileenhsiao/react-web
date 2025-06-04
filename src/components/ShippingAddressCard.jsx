@@ -10,6 +10,10 @@ import {
 } from "../redux/cartSlice";
 import { Link } from "react-router";
 import '@/index.css';
+import { useState } from "react";
+
+import { Select, DatePicker } from "antd";
+const { Option } = Select;
 
 export default function ShippingAddressCard() {
   const navigate = useNavigate();
@@ -18,6 +22,16 @@ export default function ShippingAddressCard() {
   const paymentMethod = useSelector(selectPaymentMethod);
   const shippingMethod = useSelector(selectShippingMethod);
   const [form] = Form.useForm();
+  
+  const [cardNumberFormatted, setCardNumberFormatted] = useState(
+    shippingAddress?.cardnumber || ""
+  );
+
+  const formatCardNumber = (value) => {
+    const digitsOnly = value.replace(/\D/g, "").slice(0, 16);
+    const spaced = digitsOnly.replace(/(.{4})/g, "$1 ").trim();
+    return spaced;
+  };
 
   const handleSubmit = (values) => {
     // 儲存付款方式與地址
@@ -25,6 +39,25 @@ export default function ShippingAddressCard() {
     dispatch(savePaymentMethod(values.paymentMethod));
 
   };
+
+  const [cardNumber, setCardNumber] = useState(shippingAddress?.cardnumber || "");
+
+  const handleCardNumberChange = (e) => {
+    let raw = e.target.value.replace(/\D/g, "").slice(0, 16);
+    let formatted = raw.match(/.{1,4}/g)?.join(" ") || "";
+    setCardNumber(formatted);
+    form.setFieldsValue({ cardnumber: formatted });
+  };
+  const [cardDate, setCardDate] = useState(shippingAddress?.cardDate || "");
+
+const handleCardDateChange = (e) => {
+  let raw = e.target.value.replace(/\D/g, "").slice(0, 4);
+  let formatted = raw.length <= 2 ? raw : `${raw.slice(0, 2)}/${raw.slice(2)}`;
+  setCardDate(formatted);
+  form.setFieldsValue({ cardDate: formatted });
+};
+
+
 
   return (
     <div>
@@ -91,48 +124,45 @@ export default function ShippingAddressCard() {
               {shippingMethod === "pickup" && (
                 <div>
                   <div className="content text-xl mb-4">取件資料</div>
-                  <Form.Item name="pickupShop"
+                  <Form.Item
+                    name="pickupShop"
                     rules={[
-                      {
-                        type: "string",
-                      },
-                      {
-                        required: true,
-                        message: "請輸入取貨分店",
-                      },
+                      { required: true, message: "請選擇取貨分店" },
                     ]}
                     hasFeedback
                   >
-                    <Input placeholder="取貨分店" autoComplete="off" />
+                    <Select placeholder="選擇取貨分店">
+                      <Option value="Da'an">大安總店</Option>
+                      
+                    </Select>
                   </Form.Item>
-                  <Form.Item name="pickupDate"
-                    rules={[
-                      {
-                        type: "string",
-                      },
-                      {
-                        required: true,
-                        message: "請輸入取貨日期",
-                      },
-                    ]}
+
+                  <Form.Item
+                    name="pickupDate"
+                    rules={[{ required: true, message: "請選擇取貨日期" }]}
                     hasFeedback
                   >
-                    <Input placeholder="日期" autoComplete="off" />
+                    <DatePicker placeholder="選擇日期" className="w-full" />
                   </Form.Item>
-                  <Form.Item name="pickupTime"
-                    rules={[
-                      {
-                        type: "string",
-                      },
-                      {
-                        required: true,
-                        message: "請輸入取貨時間",
-                      },
-                    ]}
+
+                  <Form.Item
+                    name="pickupTime"
+                    rules={[{ required: true, message: "請選擇取貨時間" }]}
                     hasFeedback
                   >
-                    <Input placeholder="時間" autoComplete="off" />
+                    <Select placeholder="選擇時間">
+                      <Option value="12:30">12:30-13:30</Option>
+                      <Option value="13:30">13:30-14:30</Option>
+                      <Option value="14:30">14:30-15:30</Option>
+                      <Option value="15:30">15:30-16:30</Option>
+                      <Option value="16:30">16:30-17:30</Option>
+                      <Option value="17:30">17:30-18:30</Option>
+                      <Option value="18:30">18:30-19:30</Option>
+                      <Option value="19:30">19:30-20:30</Option>
+                      
+                    </Select>
                   </Form.Item>
+
                 </div>
               )}
               {shippingMethod === "home" && (
@@ -161,59 +191,54 @@ export default function ShippingAddressCard() {
           <div className="flex flex-col justify-between h-full">
 
             <div className="content text-xl mb-4">付款資料</div>
-            <Form.Item name="cardnumber"
+            <Form.Item
+              name="cardnumber"
               rules={[
-                {
-                  type: "string",
-                },
-                {
-                  required: true,
-                  message: "請輸入信用卡卡號",
-                },
+                { required: true, message: "請輸入信用卡卡號" },
+                { pattern: /^\d{16}$/, message: "請輸入16位數字卡號" }
               ]}
               hasFeedback
             >
-              <Input placeholder="信用卡卡號" autoComplete="off" />
+              <Input placeholder="信用卡卡號 (16位數)" maxLength={16} />
             </Form.Item>
-            <Form.Item name="cardDate"
+
+            <Form.Item
+              name="cardDate"
               rules={[
-                {
-                  type: "string",
-                },
-                {
-                  required: true,
-                  message: "請輸入信用卡有效期限",
-                },
+                { required: true, message: "請輸入有效期限" },
+                { pattern: /^(0[1-9]|1[0-2])\/\d{2}$/, message: "格式應為 MM/YY" }
               ]}
               hasFeedback
             >
-              <Input placeholder="有效期限" autoComplete="off" />
+              <Input placeholder="有效期限 (MM/YY)" maxLength={5} />
             </Form.Item>
-            <Form.Item name="cardsafenumber"
-              rules={[
-                {
-                  type: "string",
-                },
-                {
-                  required: true,
-                  message: "請輸入信用卡安全碼",
-                },
-              ]}
-              hasFeedback
-            >
-              <Input placeholder="安全碼" autoComplete="off" />
-            </Form.Item>
+
+            <Form.Item
+            name="cardsafenumber"
+            rules={[
+              { required: true, message: "請輸入安全碼" },
+              { pattern: /^\d{3}$/, message: "請輸入3位數安全碼" }
+            ]}
+            hasFeedback
+          >
+            <Input placeholder="安全碼 (3位數)" maxLength={3} />
+          </Form.Item>
+
 
 
             <div className="content text-xl mb-4">其他</div>
-            <Form.Item name="other"
+            <Form.Item
+              name="other"
               rules={[
                 {
                   type: "string",
-                }
+                },
               ]}
             >
-              <Input placeholder="備註（例：需要附上餐具、蠟燭）"/>
+              <Input.TextArea
+                placeholder="備註（例：需要附上餐具、蠟燭）"
+                autoSize={{ minRows: 3, maxRows: 6 }} // 可調整顯示的最小與最大行數
+              />
             </Form.Item>
             <button
               onClick={() => {
