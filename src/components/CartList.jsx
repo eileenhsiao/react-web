@@ -14,11 +14,18 @@ export default function CartList() {
     const shippingFee = shippingMethod === "home" ? 60 : 0;
 
     const getTotalPrice = () => {
-        const itemsTotal = cartItems.length > 0
-            ? cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)
-            : 0;
-        return itemsTotal + shippingFee;
-    };
+  const itemsTotal = cartItems.length > 0
+    ? cartItems.reduce((sum, item) => {
+        if (!item || typeof item.price !== 'number' || typeof item.qty !== 'number') {
+          return sum;
+        }
+        return sum + item.price * item.qty;
+      }, 0)
+    : 0;
+
+  return itemsTotal + (shippingFee || 0);
+};
+
     const navigate = useNavigate();
     
     return (
@@ -66,8 +73,8 @@ export default function CartList() {
                         </div>
 
                         <ul>
-                            {cartItems.map(item => (
-                                <li key={item.id} className="grid grid-cols-[40px_100px_1fr_80px_100px_80px] items-center gap-2 border-b py-3">
+                            {cartItems.filter(item => item && item.id && item.price).map(item => (
+                                <li key={item?.id} className="grid grid-cols-[40px_100px_1fr_80px_100px_80px] items-center gap-2 border-b py-3">
                                     <div className="text-xl cursor-pointer ml-5 opacity-50 hover:opacity-100 transition-opacity" onClick={() => dispatch(removeCartItems(item.id))}>x</div>
 
                                     <Link to={`/products/id/${item.id}?qtyFromBasket=${item.qty}`}>
@@ -110,8 +117,8 @@ export default function CartList() {
                         </div>
 
                         <ul>
-                            {cartItems.map(item => (
-                                <li key={item.id} className="grid grid-cols-[20px_4fr_8fr_4fr] items-center gap-2 border-b py-3">
+                            {cartItems.filter(item => item && item.id && item.price).map(item => (
+                                <li key={item?.id} className="grid grid-cols-[20px_4fr_8fr_4fr] items-center gap-2 border-b py-3">
                                     <div className="text-lg cursor-pointer ml-2 opacity-50 hover:opacity-100 transition-opacity" onClick={() => dispatch(removeCartItems(item.id))}>x</div>
 
                                     <Link to={`/products/id/${item.id}?qtyFromBasket=${item.qty}`}>
@@ -156,7 +163,12 @@ export default function CartList() {
 
                             <div className="flex justify-between mb-2">
                                 <span>小計</span>
-                                <span>NT${cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)}</span>
+                                <span>
+  NT${cartItems.reduce((sum, item) => {
+    if (!item || typeof item.price !== "number" || typeof item.qty !== "number") return sum;
+    return sum + item.price * item.qty;
+  }, 0)}
+</span>
                             </div>
 
                             <div className="mb-2 flex justify-between items-center">

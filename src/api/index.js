@@ -12,8 +12,8 @@ import {
   where,
   initializeFirestore,
 } from "firebase/firestore";
-import { 
-  getAuth, signInWithEmailAndPassword, 
+import {
+  getAuth, signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   initializeAuth,
 } from 'firebase/auth';
@@ -108,7 +108,7 @@ export const getUserInfo = async () => {
       uid: user.uid,
       email: user.email,
       ...userDoc,
-    };    
+    };
   } else {
     return {}
   }
@@ -120,9 +120,9 @@ export const toggleFavoriteProduct = async ({productId, uid}) => {
   const userDoc = docSnap.data();
   const favorites = userDoc?.favorites || [];
   if(favorites.length === _.pull(favorites,productId).length){
-    favorites.push(productId);  
+    favorites.push(productId);
   }
-  await updateDoc(docRef, { favorites }); 
+  await updateDoc(docRef, { favorites });
   return favorites;
 }
 
@@ -163,7 +163,7 @@ export const updateUserInfo = async ({ name, adrs, tel, uid }) => {
 }
 
 export const logout = async () => {
-  await auth.signOut();
+  await auth.signOut();          
   localStorage.removeItem("user");
 }
 
