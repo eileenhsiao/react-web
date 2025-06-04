@@ -139,15 +139,15 @@
     filter: brightness(93%);
   }
   .button1{
-    background-color: #DBB985;
-    color: #FFFFFF;
-    border: 1px solid #DBB985;
+    background-color: #DBB985!important;
+    color: #FFFFFF!important;
+    border: 1px solid #DBB985!important;
   }
   
   .button2{
-    background-color: #FFFFFF;
-    color: #DBB985;
-    border: 1px solid #DBB985;
+    background-color: #FFFFFF!important;
+    color: #DBB985!important;
+    border: 1px solid #DBB985!important;
   }
 
   .button2:hover {
@@ -205,7 +205,7 @@
   .custom-tabs .ant-tabs-nav {
   margin-bottom: 0;
 }
-/* index.css */
+
 
 .custom-tabs .ant-tabs-nav {
   margin-bottom: 0;
@@ -252,10 +252,16 @@
 
 /* 被點選後的標籤文字顏色 */
 .custom-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: #000000; /* 你喜歡的金色或其他主色 */
+  color: #000000!important;
+}
+.ant-form-item-label > label {
+  color:#000000!important;
+  
+}
 }
 
-}
+
+
 
 /*深色模式*/
 [data-theme="dark"] {
@@ -347,9 +353,9 @@
   }
 
   .button1{
-    background-color: #B08968;
-    color: #1E1E1E;
-    border: 1px solid #B08968;
+    background-color: #B08968!important;
+    color: #1E1E1E!important;
+    border: 1px solid #B08968!important;
   }
   .button1:hover {
     background-color: #B08968!important;
@@ -358,9 +364,9 @@
     filter: brightness(93%);
   }
   .button2{
-    background-color: #1E1E1E;
-    color: #D0BFAA;
-    border: 1px solid #D0BFAA;
+    background-color: #1E1E1E!important;
+    color: #D0BFAA!important;
+    border: 1px solid #D0BFAA!important;
   }
   .button2:hover {
     background-color: #1E1E1E!important;
@@ -442,8 +448,66 @@
     background-color: #B08968 !important;
   }
 
+   .tabconent{
+    border-left: 1px solid #B08968 ;
+    border-right: 1px solid #B08968 ;
+  }
+  .custom-tabs .ant-tabs-nav {
+  margin-bottom: 0;
+}
+
+ 
+  .custom-tabs .ant-tabs-nav {
+  margin-bottom: 0;
+  padding-left: 0rem;
+  
+  border-bottom: none;
+}
+
+.custom-tabs .ant-tabs-tab {
+  background-color: transparent;
+  border: none;
+  margin-left: 1px;
+  margin-right: 0rem;
+  padding: 8px 16px;
+  transition: background-color 0.3s;
+  margin-top: 5px;
+}
+
+.custom-tabs .ant-tabs-tab-active {
+  background-color: #1E1E1E;
+  box-shadow: 1px 0px 6px #ffffff; 
+  border-bottom: none;
+  margin-top: 5px;
+  margin-left: 0.5rem;
+  
+}
 
 
+.custom-tabs .ant-tabs-ink-bar {
+  display: none !important; 
+}
+.pfcard{
+  width: 100%;
+  box-shadow: 1px 2px 6px #ffffff;
+  border-bottom: none;
+  z-index: 10;
+  border-radius: 0.5rem 0.5rem 0 0;
+  margin-bottom: 10px;
+}
+.custom-tabs .ant-tabs-tab-btn {
+  color: #666665; /* 預設灰色 */
+  transition: color 0.3s;
+}
+
+/* 被點選後的標籤文字顏色 */
+.custom-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #ffffff!important;
+}
+.ant-form-item-label > label {
+  color:#ffffff!important;
+  
+}
 
 html,
 body {

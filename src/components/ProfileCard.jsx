@@ -61,7 +61,7 @@ export default function ProfileCard() {
       />
 
       {/* 內容區塊樣式像卡片，但不包住 tab 標籤 */}
-      <div className="bg-white pfcard px-6 py-8 border-t-0">
+      <div className=" pfcard px-6 py-8 border-t-0">
         {tabItems.find((item) => item.key === activeKey)?.content}
       </div>
     </div>

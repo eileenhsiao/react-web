@@ -45,6 +45,7 @@ const ProfileInfoTab = ({ redirect }) => {
         {/* 左欄：基本資料 */}
         <Col xs={24} md={12}>
           <Form.Item
+          
             label="姓名"
             name="name"
             rules={[
@@ -152,7 +153,7 @@ const ProfileInfoTab = ({ redirect }) => {
 
           <Form.Item
             name="cardnumber"
-            label="信用卡卡號"
+            //label="信用卡卡號"
             rules={[
               { pattern: /^\d{16}$/, message: "請輸入16位數字卡號" },
             ]}
@@ -165,7 +166,7 @@ const ProfileInfoTab = ({ redirect }) => {
             <Col span={12}>
               <Form.Item
                 name="cardDate"
-                label="有效期限"
+                //label="有效期限"
                 rules={[
                   
                   { pattern: /^(0[1-9]|1[0-2])\/\d{2}$/, message: "格式應為 MM/YY" },
@@ -178,7 +179,7 @@ const ProfileInfoTab = ({ redirect }) => {
             <Col span={12}>
               <Form.Item
                 name="cardsafenumber"
-                label="安全碼"
+                //label="安全碼"
                 rules={[
                   
                   { pattern: /^\d{3}$/, message: "請輸入3位數安全碼" },
@@ -191,10 +192,15 @@ const ProfileInfoTab = ({ redirect }) => {
           </Row>
 
           <Form.Item className="mt-6">
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
+          <div className="flex justify-end gap-4">
+            <Button onClick={() => form.setFieldsValue(userInfo)} className="button2">
+              取消
+            </Button>
+            <Button className="button1" htmlType="submit">
+              儲存變更
+            </Button>
+          </div>
+        </Form.Item>
         </Col>
       </Row>
 
