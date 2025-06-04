@@ -9,14 +9,15 @@ export default function AddToCart({ products, qty }) {
   const [showToast, setShowToast] = useState(false);
 
   const addToCart = () => {
+    console.log("additem:",products);
     setShowToast(true); // 顯示 toast
     dispatch(addCartItems({
-      id: products.id,
+      id: products.id || products._id,
       name: products.name,
       image: products.image,
       price: products.price,
       countInStock: products.countInStock,
-      qty,
+      qty:Number(qty),
     }))
     // 2 秒後自動關閉 toast
     setTimeout(() => {

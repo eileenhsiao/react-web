@@ -6,27 +6,23 @@ const shippingMethod = 'pickup'; // 預設為 pickup
 const cartItems = [];
 const shippingAddress = {};
 const price = {};
-const initialState = { cartItems, shippingAddress, price, shippingMethod };
+const initialState = { cartItems:[], shippingAddress, price, shippingMethod };
 const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState:{
+  },
   reducers: {
     addCartItems: (state, action) => {
-       const item = action.payload;
-
-  if (!item || !item.id || typeof item.qty !== 'number') {
-    console.warn('無效的 item 傳入 cart:', item);
-    return;
-  }
-
-  const product = state.cartItems.find((x) => x?.id === item.id);
-  if (product) {
-    state.cartItems = state.cartItems.map((x) =>
-      x.id === product.id ? item : x
-    );
-  } else {
-    state.cartItems = [...state.cartItems, item];
-  }
+      const newItem = action.payload;
+      const existItem = state.cartItems.find((x) => x?.id === newItem.id);
+      console.log("addcartitem:",action.payload);
+      if (existItem) {
+        state.cartItems = state.cartItems.map((x) =>
+          x?.id === existItem.id ? { ...x, qty: newItem.qty } : x
+        );
+      } else {
+        state.cartItems.push(newItem);
+      }
     },
     removeCartItems: (state, action) => {
       state.cartItems = state.cartItems.filter((x) => x.id !== action.payload);
