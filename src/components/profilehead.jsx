@@ -27,7 +27,7 @@ const Profilehead = ({ redirect }) => {
   return (
     <div className="max-w-4xl mx-auto mt-6 pl-1">
       <div className="flex justify-between items-center mb-4">
-        <div className="text-2xl font-semibold">
+        <div className="text-2xl font-semibold text-primary">
           歡迎 {userInfo?.name || "使用者"}
         </div>
         <Button

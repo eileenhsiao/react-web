@@ -13,7 +13,10 @@ import { useState } from "react";
 
 import { Select, DatePicker } from "antd";
 const { Option } = Select;
+import { clearShippingAddress } from "../redux/cartSlice";
 
+import dayjs from "dayjs";
+import { useEffect } from "react";
 
 const taiwanCities = {
   "台北市": ["中正區", "大同區", "中山區", "松山區", "大安區", "萬華區", "信義區", "士林區", "北投區", "內湖區", "南港區", "文山區"],
@@ -37,11 +40,10 @@ export default function ShippingAddressCard() {
     return spaced;
   };
 
-  const handleSubmit = (values) => {
-    // 儲存付款方式與地址
-    dispatch(saveShippingAddress(values));
-
-  };
+  useEffect(() => {
+  dispatch(clearShippingAddress());
+  form.resetFields(); // 清空表單
+}, []);
 
   const [cardNumber, setCardNumber] = useState(shippingAddress?.cardnumber || "");
 
@@ -58,6 +60,15 @@ export default function ShippingAddressCard() {
     let formatted = raw.length <= 2 ? raw : `${raw.slice(0, 2)}/${raw.slice(2)}`;
     setCardDate(formatted);
     form.setFieldsValue({ cardDate: formatted });
+  };
+  const handleSubmit = (values) => {
+    const cleaned = {
+      ...values,
+      cardnumber: values.cardnumber.replace(/\s/g, ""),
+      pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
+    };
+    dispatch(saveShippingAddress(cleaned));
+    navigate("/SendOrder");
   };
 
 
@@ -88,7 +99,12 @@ export default function ShippingAddressCard() {
       <Form
         form={form}
         onFinish={handleSubmit}
-        initialValues={{ ...shippingAddress }}
+        initialValues={{
+          ...shippingAddress,
+          pickupDate: shippingAddress.pickupDate
+            ? dayjs(shippingAddress.pickupDate)
+            : null,
+        }}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
 
@@ -114,10 +130,12 @@ export default function ShippingAddressCard() {
                 rules={[
                   { type: "string" },
                   { required: true, message: "請輸入聯絡電話" },
+                  { pattern: /^\d{2}-\d{4}-\d{4}$/, message: "請輸入完整的聯絡電話" }
                 ]}
                 hasFeedback
               >
-                <Input placeholder="電話" />
+                <Input placeholder="電話 00-0000-0000" maxLength={12} />
+                
               </Form.Item>
             </div>
 
@@ -135,7 +153,7 @@ export default function ShippingAddressCard() {
                     hasFeedback
                   >
                     <Select placeholder="選擇取貨分店">
-                      <Option value="Da'an">大安總店</Option>
+                      <Option value="大安總店">大安總店</Option>
 
                     </Select>
                   </Form.Item>
@@ -154,14 +172,14 @@ export default function ShippingAddressCard() {
                     hasFeedback
                   >
                     <Select placeholder="選擇時間">
-                      <Option value="12:30">12:30-13:30</Option>
-                      <Option value="13:30">13:30-14:30</Option>
-                      <Option value="14:30">14:30-15:30</Option>
-                      <Option value="15:30">15:30-16:30</Option>
-                      <Option value="16:30">16:30-17:30</Option>
-                      <Option value="17:30">17:30-18:30</Option>
-                      <Option value="18:30">18:30-19:30</Option>
-                      <Option value="19:30">19:30-20:30</Option>
+                      <Option value="12:30-13:30">12:30-13:30</Option>
+                      <Option value="13:30-14:30">13:30-14:30</Option>
+                      <Option value="14:30-15:30">14:30-15:30</Option>
+                      <Option value="15:30-16:30">15:30-16:30</Option>
+                      <Option value="16:30-17:30">16:30-17:30</Option>
+                      <Option value="17:30-18:30">17:30-18:30</Option>
+                      <Option value="18:30-19:30">18:30-19:30</Option>
+                      <Option value="19:30-20:30">19:30-20:30</Option>
 
                     </Select>
                   </Form.Item>
@@ -258,6 +276,7 @@ export default function ShippingAddressCard() {
               <Input placeholder="有效期限 (MM/YY)" maxLength={5} />
             </Form.Item>
 
+
             <Form.Item
               name="cardsafenumber"
               rules={[
@@ -285,16 +304,16 @@ export default function ShippingAddressCard() {
                 autoSize={{ minRows: 3, maxRows: 6 }} // 可調整顯示的最小與最大行數
               />
             </Form.Item>
-            <button
-              onClick={() => {
-
-                navigate("/SendOrder"); // 導向下一頁
-              }}
-
-              className="w-full bg-primary text-white py-3 rounded mt-6"
+           <Form.Item>
+            <Button
+              
+              htmlType="submit"
+              className="button1 w-full  py-3 rounded mt-6"
             >
               送出訂單
-            </button>
+            </Button>
+          </Form.Item>
+
           </div>
 
         </div>

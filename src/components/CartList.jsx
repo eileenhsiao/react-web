@@ -177,8 +177,8 @@ export default function CartList() {
                                     <button
                                         onClick={() => setShippingMethod("pickup")}
                                         className={`border px-3 py-1 rounded text-sm ${shippingMethod === "pickup"
-                                            ? "footer-copyRight"
-                                            : "custom-border header"
+                                            ? "button1"
+                                            : "button2"
                                             }`}
                                     >
                                         自取 <span className="text-xs ml-1">(運費+0)</span>
@@ -186,8 +186,8 @@ export default function CartList() {
                                     <button
                                         onClick={() => setShippingMethod("home")}
                                         className={`border px-3 py-1 rounded text-sm ${shippingMethod === "home"
-                                            ? "footer-copyRight"
-                                            : "custom-border header"
+                                            ? "button1"
+                                            : "button2"
                                             }`}
                                     >
                                         宅配 <span className="text-xs ml-1">(運費+60)</span>

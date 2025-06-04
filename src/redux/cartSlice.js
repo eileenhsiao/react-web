@@ -34,11 +34,15 @@ const cartSlice = createSlice({
     saveShippingAddress: (state, action) => {
       state.shippingAddress = action.payload;
     },
+    
     savePrice: (state, action) => {
       state.price = action.payload;
     },
     saveShippingMethod: (state, action) => {
       state.shippingMethod = action.payload;
+    },
+    clearShippingAddress: (state) => {
+      state.shippingAddress = {};
     },
     setCartItems: (state, action) => {
   state.cartItems = action.payload.filter(
@@ -57,6 +61,7 @@ const cartSlice = createSlice({
 export const selectCartItems = (state) => state.cart.cartItems;
 export const selectShippingAddress = (state) => state.cart.shippingAddress;
 export const selectPrice = (state) => state.cart.price;
+export const {  clearShippingAddress } = cartSlice.actions;
 
 // export actions to global
 export const { addCartItems, removeCartItems, saveShippingAddress, savePrice } = cartSlice.actions;
