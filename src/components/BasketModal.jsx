@@ -11,8 +11,8 @@ export default function BasketModal({ isOpen, toggleModal }) {
    const handleCancel = () => toggleModal(!isOpen);
    const getTotalPrice = () => {
       return (cartItems.length > 0)
-         ? cartItems.reduce((sum, item) => sum + (item.price * item.qty|| 0))
-  : 0;
+         ? cartItems.reduce((sum, item) => sum + (item.price * item.qty || 0), 0)
+         : 0;
    };
 
    return (

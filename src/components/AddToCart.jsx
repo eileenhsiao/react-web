@@ -12,7 +12,7 @@ export default function AddToCart({ products, qty }) {
     console.log("additem:",products);
     setShowToast(true); // 顯示 toast
     dispatch(addCartItems({
-      id: products.id || products._id,
+      id: products.id,
       name: products.name,
       image: products.image,
       price: products.price,
