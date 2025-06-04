@@ -7,6 +7,7 @@ import {
   ShoppingCartOutlined,
   StarOutlined,
 } from '@ant-design/icons';
+import { useSearchParams } from 'react-router-dom';
 import ProfileInfoTab from './ProfileInfoTab';
 import OrdersTab from './OrdersTab';
 // import FavoritesTab from './FavoritesTab';
@@ -45,7 +46,9 @@ const tabItems = [
 ];
 
 export default function ProfileCard() {
-  const [activeKey, setActiveKey] = useState('1');
+  const [searchParams] = useSearchParams();
+  const tabKeyFromURL = searchParams.get('key') || '1'; // 預設為 '1'
+  const [activeKey, setActiveKey] = useState(tabKeyFromURL);
 
   return (
     <div className="max-w-4xl mx-auto mt-6 pl-1">
