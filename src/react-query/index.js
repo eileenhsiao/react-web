@@ -1,4 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
   getProductById,
   getProducts,
@@ -9,7 +10,10 @@ import {
   register,
   updateUserInfo,
   logout,
+  db,
+  auth,
 } from "../api";
+import { onAuthStateChanged } from "firebase/auth";
 
 export const useProducts = () => {
   return useQuery([], getProducts);
@@ -34,9 +38,20 @@ export const useToggleFavoriteProduct = () => {
 
 export const useUserInfo = () => {
   return useQuery({
-    queryKey: ["uid"],
-    queryFn: getUserInfo,
-    initialData: {},
+    queryKey: ["userInfo"],
+    queryFn: async () => {
+      return new Promise((resolve) => {
+        onAuthStateChanged(auth, async (user) => {
+          if (!user) {
+            resolve(null);
+          } else {
+            const docRef = doc(db, "users", user.uid);
+            const docSnap = await getDoc(docRef);
+            resolve({ uid: user.uid, email: user.email, ...docSnap.data() });
+          }
+        });
+      });
+    },
   });
 };
 
@@ -66,11 +81,26 @@ export const useRegisterWithEmailPassword = () => {
 
 export const useUpdateProfile = () => {
   const queryClient = useQueryClient();
-  return useMutation(updateUserInfo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["uid"]);
-    },
-  });
+
+  return useMutation(
+    async ({ uid, ...profileData }) => {
+  const user = auth.currentUser;
+  console.log("Current User:", user?.uid);
+
+  const cleanData = Object.fromEntries(
+    Object.entries(profileData).filter(([_, v]) => v !== undefined)
+  );
+
+  await setDoc(doc(db, "users", uid), cleanData, { merge: true });
+
+  localStorage.setItem("user", JSON.stringify(user));
+},
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("userInfo");
+      },
+    }
+  );
 };
 
 export const useLogout = () => {
