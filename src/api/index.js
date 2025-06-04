@@ -19,6 +19,7 @@ import {
 } from 'firebase/auth';
 import _ from "lodash";
 import products from "../json/products.json";
+import { onAuthStateChanged } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -35,14 +36,13 @@ const app_length = getApps().length > 0;
 const app = app_length ? getApp() : initializeApp(firebaseConfig);
 
 // REFERENCE DB
-const db = app_length ? getFirestore(app) : initializeFirestore(app, { experimentalForceLongPolling: true, });
+export const db = app_length ? getFirestore(app) : initializeFirestore(app, { experimentalForceLongPolling: true, });
 
 // REFERENCE AUTH
-const auth = app_length ? getAuth(app) : initializeAuth(app);
+export const auth = app_length ? getAuth(app) : initializeAuth(app);
 
 // REFERENCE COLLECTION
 const productsCollection = collection(db, "products");
-
 
 
 export const feedProducts = async () => {
@@ -97,22 +97,23 @@ export const getProductsByCategory = async ({ queryKey }) => {
 };
 
 export const getUserInfo = async () => {
-  const storedUser = localStorage.getItem("user");
-  const user = auth?.currentUser || JSON.parse(storedUser) || null;
-
-  if(user) {
-    const docRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(docRef);
-    const userDoc = docSnap.data();
-    return {
-      uid: user.uid,
-      email: user.email,
-      ...userDoc,
-    };
-  } else {
-    return {}
-  }
-}
+  return new Promise((resolve) => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        const userDoc = docSnap.data();
+        resolve({
+          uid: user.uid,
+          email: user.email,
+          ...userDoc,
+        });
+      } else {
+        resolve(null);
+      }
+    });
+  });
+};
 
 export const toggleFavoriteProduct = async ({productId, uid}) => {
   const docRef = doc(db, "users", uid);
@@ -127,40 +128,50 @@ export const toggleFavoriteProduct = async ({productId, uid}) => {
 }
 
 export const login = async ({ email, password }) => {
-
-  await signInWithEmailAndPassword(
-    auth,
-    email,
-    password
-  );
+  await signInWithEmailAndPassword(auth, email, password);
   const user = auth.currentUser;
-  localStorage.setItem("user", JSON.stringify(user));
+
+  localStorage.setItem("user", JSON.stringify({
+    uid: user.uid,
+    email: user.email,
+  }));
 };
 
 export const register = async ({ name, email, password }) => {
-  const userCredential = await createUserWithEmailAndPassword(
-    auth,
-    email,
-    password
-  );
-  const user = userCredential?.user;
-  localStorage.setItem("user", JSON.stringify(user));
-  const docRef = doc(db, "users", user.uid);
-  await setDoc(docRef, {
-  name,
-});
+  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  const user = userCredential.user;
+
+  localStorage.setItem("user", JSON.stringify({
+    uid: user.uid,
+    email: user.email,
+  }));
+
+  await setDoc(doc(db, "users", user.uid), { name });
 };
 
 export const updateUserInfo = async ({ name, adrs, tel, uid }) => {
-  const docRef = doc(db, "users", uid);
-  await updateDoc(docRef, {
-    name,
-    adrs,
-    tel,
-  });
+  const docRef = doc(db, "users", uid); // 用參數 uid 就夠了
+
+  await setDoc(docRef, {
+  name,
+  email,
+  tel,
+  postalCode,
+  city,
+  district,
+  addressDetail,
+  cardnumber,
+  cardDate,
+  cardsafenumber,
+}, { merge: true });
+
   const user = auth.currentUser;
-  localStorage.setItem("user", JSON.stringify(user));
-}
+  console.log("Current User:", user?.uid); // OK 就印 uid，不 OK 就印 undefined
+
+  if (user) {
+    localStorage.setItem("user", JSON.stringify(user));
+  }
+};
 
 export const logout = async () => {
   await auth.signOut();          
