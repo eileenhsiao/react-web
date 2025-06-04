@@ -14,19 +14,23 @@ const cartSlice = createSlice({
   reducers: {
     addCartItems: (state, action) => {
       const newItem = action.payload;
+       if (!newItem || typeof newItem !== 'object' || !newItem.id) {
+    console.warn("⚠️ addCartItems received invalid item:", newItem);
+    return;
+  }
       const existItem = state.cartItems.find((x) => x?.id === newItem.id);
-      console.log("addcartitem:",action.payload);
-      if (existItem) {
-        state.cartItems = state.cartItems.map((x) =>
-          x?.id === existItem.id ? { ...x, qty: newItem.qty } : x
-        );
-      } else {
-        state.cartItems.push(newItem);
-      }
+
+  if (existItem) {
+    state.cartItems = state.cartItems.map((x) =>
+      x?.id === existItem.id ? { ...x, qty: newItem.qty } : x
+    );
+  } else {
+    state.cartItems.push(newItem);
+  }
     },
     removeCartItems: (state, action) => {
-      state.cartItems = state.cartItems.filter((x) => x.id !== action.payload);
-    },
+  state.cartItems = state.cartItems.filter((x) => x && x.id !== action.payload);
+},
     saveShippingAddress: (state, action) => {
       state.shippingAddress = action.payload;
     },
