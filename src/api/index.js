@@ -147,8 +147,8 @@ export const register = async ({ name, email, password }) => {
   localStorage.setItem("user", JSON.stringify(user));
   const docRef = doc(db, "users", user.uid);
   await setDoc(docRef, {
-    name,
-  });
+  name,
+});
 };
 
 export const updateUserInfo = async ({ name, adrs, tel, uid }) => {

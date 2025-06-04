@@ -1,10 +1,16 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AddToCart from "@/components/AddToCart"
 import '@/index.css';
+import { toggleFollow, selectFollowedItems } from "../redux/followSlice";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
 function ProductDetail({ product }) {
 
   const [qty, setQty] = useState(product.countInStock > 0 ? 1 : 0);
+  const dispatch = useDispatch();
+  const followedItems = useSelector(selectFollowedItems);
+  const isFollowed = followedItems.some(item => item.id === product.id);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-24 gap-8 justify-center content md:mb-30 mt-10 md:mt-0">
@@ -38,9 +44,9 @@ function ProductDetail({ product }) {
             <select
               className="select select-bordered w-20"
               defaultValue={product.countInStock > 0 ? 1 : 0}
-              onChange={ event => setQty(Number(event.target.value))}
+              onChange={event => setQty(Number(event.target.value))}
             >
-              {[ ...Array(product.countInStock).keys()].map((x) => (
+              {[...Array(product.countInStock).keys()].map((x) => (
                 <option key={x + 1} value={x + 1}>
                   {x + 1}
                 </option>
@@ -50,6 +56,16 @@ function ProductDetail({ product }) {
           <p>
             <span className="font-bold">總價：</span>{product.price * qty}
           </p>
+          <button
+            onClick={() => dispatch(toggleFollow(product))}
+            aria-label="收藏商品"
+          >
+            {isFollowed ? (
+  <HeartFilled style={{ color: "red", fontSize: 24 }} />
+) : (
+  <HeartOutlined style={{ color: "gray", fontSize: 24 }} />
+)}
+          </button>
           <AddToCart products={product} qty={qty} />
         </div>
       </div>

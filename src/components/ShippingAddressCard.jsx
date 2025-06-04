@@ -4,7 +4,8 @@ import { Form, Input, Button } from "antd";
 import {
   selectShippingAddress,
   saveShippingAddress,
-  selectShippingMethod
+  selectShippingMethod,
+
 } from "../redux/cartSlice";
 import { Link } from "react-router";
 import '@/index.css';
@@ -25,7 +26,7 @@ export default function ShippingAddressCard() {
   const shippingAddress = useSelector(selectShippingAddress);
   const shippingMethod = useSelector(selectShippingMethod);
   const [form] = Form.useForm();
-  
+
   const [cardNumberFormatted, setCardNumberFormatted] = useState(
     shippingAddress?.cardnumber || ""
   );
@@ -52,12 +53,12 @@ export default function ShippingAddressCard() {
   };
   const [cardDate, setCardDate] = useState(shippingAddress?.cardDate || "");
 
-const handleCardDateChange = (e) => {
-  let raw = e.target.value.replace(/\D/g, "").slice(0, 4);
-  let formatted = raw.length <= 2 ? raw : `${raw.slice(0, 2)}/${raw.slice(2)}`;
-  setCardDate(formatted);
-  form.setFieldsValue({ cardDate: formatted });
-};
+  const handleCardDateChange = (e) => {
+    let raw = e.target.value.replace(/\D/g, "").slice(0, 4);
+    let formatted = raw.length <= 2 ? raw : `${raw.slice(0, 2)}/${raw.slice(2)}`;
+    setCardDate(formatted);
+    form.setFieldsValue({ cardDate: formatted });
+  };
 
 
 
@@ -135,7 +136,7 @@ const handleCardDateChange = (e) => {
                   >
                     <Select placeholder="選擇取貨分店">
                       <Option value="Da'an">大安總店</Option>
-                      
+
                     </Select>
                   </Form.Item>
 
@@ -161,7 +162,7 @@ const handleCardDateChange = (e) => {
                       <Option value="17:30">17:30-18:30</Option>
                       <Option value="18:30">18:30-19:30</Option>
                       <Option value="19:30">19:30-20:30</Option>
-                      
+
                     </Select>
                   </Form.Item>
 
@@ -258,15 +259,15 @@ const handleCardDateChange = (e) => {
             </Form.Item>
 
             <Form.Item
-            name="cardsafenumber"
-            rules={[
-              { required: true, message: "請輸入安全碼" },
-              { pattern: /^\d{3}$/, message: "請輸入3位數安全碼" }
-            ]}
-            hasFeedback
-          >
-            <Input placeholder="安全碼 (3位數)" maxLength={3} />
-          </Form.Item>
+              name="cardsafenumber"
+              rules={[
+                { required: true, message: "請輸入安全碼" },
+                { pattern: /^\d{3}$/, message: "請輸入3位數安全碼" }
+              ]}
+              hasFeedback
+            >
+              <Input placeholder="安全碼 (3位數)" maxLength={3} />
+            </Form.Item>
 
 
 
@@ -289,6 +290,7 @@ const handleCardDateChange = (e) => {
 
                 navigate("/SendOrder"); // 導向下一頁
               }}
+
               className="w-full bg-primary text-white py-3 rounded mt-6"
             >
               送出訂單

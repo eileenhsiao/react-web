@@ -3,6 +3,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import cartReducer from './cartSlice';
 import colorReducer from './colorSlice';
+import followReducer from './followSlice';
 
 const persistConfig = {
   key: 'shoppingCart',
@@ -17,6 +18,7 @@ export const store = configureStore({
   reducer: {
     cart: persistedCartReducer,
     color: persistedColorReducer,
+    follow: followReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) =>

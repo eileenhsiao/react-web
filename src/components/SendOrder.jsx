@@ -18,6 +18,10 @@ export default function SendOrderCard() {
             : 0;
         return itemsTotal + shippingFee;
     };
+    const getTotalQuantity = () => {
+        return cartItems.reduce((sum, item) => sum + item.qty, 0);
+    };
+
 
     return (
         <div className="p-4 content w-[98%] mx-auto">
@@ -38,23 +42,10 @@ export default function SendOrderCard() {
 
                                 <div className="text-left">{item.name}</div>
 
-                                <div className="text-sm">NT${item.price}</div>
-
                                 <div>
-                                    <select
-                                        value={item.qty}
-                                        onChange={(e) =>
-                                            dispatch(addCartItems({
-                                                ...item,
-                                                qty: Number(e.target.value),
-                                            }))
-                                        }
-                                        className="select select-bordered select-sm w-[4rem]"
-                                    >
-                                        {[...Array(item.countInStock).keys()].map((x) => (
-                                            <option key={x + 1} value={x + 1}>{x + 1}</option>
-                                        ))}
-                                    </select>
+                                    <div className="text-sm font-medium px-2 py-1  text-center">
+                                        × {item.qty}
+                                    </div>
                                 </div>
 
                                 <div className="text-sm font-semibold">NT${item.price * item.qty}</div>
@@ -79,23 +70,10 @@ export default function SendOrderCard() {
                                     <div className="text-sm text-left items-start h-[40px]">{item.name}</div>
 
                                     <div className="flex flex-row items-end">
-                                        <div className="text-sm w-[50%] h-[30px]">NT${item.price} ×  </div>
-
                                         <div className="text-right w-[40%]">
-                                            <select
-                                                value={item.qty}
-                                                onChange={(e) =>
-                                                    dispatch(addCartItems({
-                                                        ...item,
-                                                        qty: Number(e.target.value),
-                                                    }))
-                                                }
-                                                className="select select-bordered select-sm w-[3.5rem] "
-                                            >
-                                                {[...Array(item.countInStock).keys()].map((x) => (
-                                                    <option key={x + 1} value={x + 1}>{x + 1}</option>
-                                                ))}
-                                            </select>
+                                            <div className="text-sm font-medium px-2 py-1 border rounded w-[3.5rem] text-center">
+                                                {item.qty}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +91,7 @@ export default function SendOrderCard() {
 
 
                         <div className="flex justify-between font-semibold mt-4">
-                            <span>共項</span>
+                            <span>共 {getTotalQuantity()} 項</span>
                         </div>
 
                         <div className="flex justify-between font-semibold mt-4">

@@ -124,7 +124,9 @@ const RegisterCard = ({ redirect }) => {
           )}
         </Form.Item>
       </Form>
+      
     </div>
+    
   );
 };
 
