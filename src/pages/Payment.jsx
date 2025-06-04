@@ -3,7 +3,6 @@ import '@/index.css';
 import Header from '../components/Header';
 import Footer from '@/components/Footer';
 import ShippingAddressCard from '../components/ShippingAddressCard';
-import PaymentMethodCard from '@/components/PaymentCard';
 import { useEffect } from 'react';
 
 function Payment() {

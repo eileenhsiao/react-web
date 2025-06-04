@@ -11,8 +11,8 @@ export default function BasketModal({ isOpen, toggleModal }) {
    const handleCancel = () => toggleModal(!isOpen);
    const getTotalPrice = () => {
       return (cartItems.length > 0)
-         ? cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)
-         : 0;
+         ? cartItems.reduce((sum, item) => sum + (item.price * item.qty|| 0))
+  : 0;
    };
 
    return (
@@ -29,8 +29,8 @@ export default function BasketModal({ isOpen, toggleModal }) {
                   {cartItems.length === 0 ? (
                      <div className="text-center mt-100px md:mt-0px">購物車是空的</div>
                   ) : (
-                     cartItems.map(item => (
-                        <li key={item.id} className="flex justify-between items-center pb-4 mb-4 border-b border-gray-400">
+                     cartItems.filter(item => item && item.id).map(item => (
+                        <li key={item?.id} className="flex justify-between items-center pb-4 mb-4 border-b border-gray-400">
                            <Link to={`/products/id/${item.id}?qtyFromBasket=${item.qty}`} onClick={handleCancel}>
                               <img className="max-w-16 max-h-16 flex-1 cursor-pointer" src={item.image} alt={item.name} />
                            </Link>

@@ -4,8 +4,6 @@ import { Form, Input, Button } from "antd";
 import {
   selectShippingAddress,
   saveShippingAddress,
-  selectPaymentMethod,
-  savePaymentMethod,
   selectShippingMethod
 } from "../redux/cartSlice";
 import { Link } from "react-router";
@@ -15,14 +13,12 @@ export default function ShippingAddressCard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const shippingAddress = useSelector(selectShippingAddress);
-  const paymentMethod = useSelector(selectPaymentMethod);
   const shippingMethod = useSelector(selectShippingMethod);
   const [form] = Form.useForm();
 
   const handleSubmit = (values) => {
     // 儲存付款方式與地址
     dispatch(saveShippingAddress(values));
-    dispatch(savePaymentMethod(values.paymentMethod));
 
   };
 
@@ -52,7 +48,7 @@ export default function ShippingAddressCard() {
       <Form
         form={form}
         onFinish={handleSubmit}
-        initialValues={{ ...shippingAddress, paymentMethod: paymentMethod }}
+        initialValues={{ ...shippingAddress }}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
 

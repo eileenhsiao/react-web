@@ -69,7 +69,7 @@ export const useUpdateProfile = () => {
   return useMutation(updateUserInfo, {
     onSuccess: () => {
       queryClient.invalidateQueries(["uid"]);
-    },  
+    },
   });
 };
 
@@ -77,7 +77,7 @@ export const useLogout = () => {
   const queryClient = useQueryClient();
   return useMutation(logout, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["uid"]);
+      queryClient.invalidateQueries(["uid"]); 
     },
   });
 };
