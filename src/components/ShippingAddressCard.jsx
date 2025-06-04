@@ -13,6 +13,12 @@ import { useState } from "react";
 import { Select, DatePicker } from "antd";
 const { Option } = Select;
 
+
+const taiwanCities = {
+  "台北市": ["中正區", "大同區", "中山區", "松山區", "大安區", "萬華區", "信義區", "士林區", "北投區", "內湖區", "南港區", "文山區"],
+  "新北市": ["板橋區", "三重區", "中和區", "永和區", "新莊區", "新店區", "土城區", "蘆洲區", "汐止區", "樹林區", "淡水區"],
+  // 可繼續補上其他縣市
+};
 export default function ShippingAddressCard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -164,19 +170,61 @@ const handleCardDateChange = (e) => {
               {shippingMethod === "home" && (
                 <div>
                   <div className="content text-xl mb-4">宅配資料</div>
-                  <Form.Item name="address"
-                    rules={[
-                      {
-                        type: "string",
-                      },
-                      {
-                        required: true,
-                        message: "請輸入宅配地址",
-                      },
-                    ]}
-                    hasFeedback
+                  <Form.Item
+                    name="postalCode"
+                    label="郵遞區號"
+                    rules={[{ required: true, message: "請輸入郵遞區號" }]}
                   >
-                    <Input placeholder="宅配地址" autoComplete="off" />
+                    <Input placeholder="如：100" />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="city"
+                    label="縣市"
+                    rules={[{ required: true, message: "請選擇縣市" }]}
+                  >
+                    <Select placeholder="請選擇縣市" allowClear>
+                      {Object.keys(taiwanCities).map((city) => (
+                        <Option key={city} value={city}>
+                          {city}
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+
+                  <Form.Item
+                    shouldUpdate={(prev, curr) => prev.city !== curr.city}
+                    noStyle
+                  >
+                    {({ getFieldValue }) => {
+                      const selectedCity = getFieldValue("city");
+                      return (
+                        <Form.Item
+                          name="district"
+                          label="區域"
+                          rules={[{ required: true, message: "請選擇區域" }]}
+                        >
+                          <Select placeholder="請選擇區域" allowClear disabled={!selectedCity}>
+                            {(taiwanCities[selectedCity] || []).map((district) => (
+                              <Option key={district} value={district}>
+                                {district}
+                              </Option>
+                            ))}
+                          </Select>
+                        </Form.Item>
+                      );
+                    }}
+                  </Form.Item>
+
+                  <Form.Item
+                    name="addressDetail"
+                    label="詳細地址"
+                    rules={[{ required: true, message: "請輸入詳細地址" }]}
+                  >
+                    <Input.TextArea
+                      placeholder="請輸入街道、巷弄、號、樓層等資訊"
+                      autoSize={{ minRows: 2, maxRows: 4 }}
+                    />
                   </Form.Item>
                 </div>
               )}
