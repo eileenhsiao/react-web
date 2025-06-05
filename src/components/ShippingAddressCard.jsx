@@ -84,11 +84,21 @@ postalCode:userInfo.postalCode,
     setCardDate(formatted);
     form.setFieldsValue({ cardDate: formatted });
   };
- const handleSubmit = (values) => {
-  const cleaned = {
-    ...values,
-    cardnumber: values.cardnumber.replace(/\s/g, ""),
-    pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
+  const handleSubmit = (values) => {
+    if (!userInfo || !userInfo.uid) {
+      console.error("userInfo 未正確載入");
+      return;
+    }
+    
+    const cleaned = {
+      ...values,
+      cardnumber: values.cardnumber.replace(/\s/g, ""),
+      pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
+    };
+
+    update.mutate({ ...values, uid: userInfo.uid });
+    dispatch(saveShippingAddress(cleaned));
+    navigate("/SendOrder");
   };
   const update = useUpdateProfile();
 
@@ -101,7 +111,7 @@ postalCode:userInfo.postalCode,
   });
 
   dispatch(clearCartItems());
-};
+
 
 
 
@@ -109,25 +119,33 @@ postalCode:userInfo.postalCode,
   return (
     <div>
       {/* 步驟條 */}
-      <div className="flex items-center justify-center gap-8 mb-20 text-sm text-primary font-semibold ">
-        <div className="flex flex-col items-center">
-          <Link to="/Cart" className="flex flex-col items-center">
-            <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">1</div>
-            <div className="mt-2 text-xl">確認訂單</div>
-          </Link>
-        </div>
-        <div className="flex-1 h-[1px] bg-primary max-w-[60px] mb-7"></div>
-        <div className="flex flex-col items-center">
-          <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">2</div>
-          <div className="mt-2 text-xl">填寫資料</div>
-        </div>
-        <div className="flex-1 h-[1px] bg-primary max-w-[60px] mb-7"></div>
-        <div className="flex flex-col items-center">
-          <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">3</div>
-          <div className="mt-2 text-xl">送出訂單</div>
-        </div>
+      <div className="flex items-center justify-center gap-4 md:gap-8 mb-20 text-sm text-primary font-semibold mt-10">
+      <div className="flex flex-col items-center">
+        <Link to="/Cart" className="flex flex-col items-center">
+          <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">1</div>
+          <div className="mt-2 text-md md:text-xl">確認訂單</div>
+        </Link>
       </div>
 
+      {/* 線段 */}
+      <div className="flex-1 min-w-[40px] h-[1px] bg-primary mb-7"></div>
+
+      <div className="flex flex-col items-center">
+        <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">2</div>
+        <div className="mt-2 text-md md:text-xl">填寫資料</div>
+      </div>
+
+      {/* 線段 */}
+      <div className="flex-1 min-w-[40px] h-[1px] bg-primary mb-7"></div>
+
+      <div className="flex flex-col items-center">
+        <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">3</div>
+        <div className="mt-2 text-md md:text-xl">送出訂單</div>
+      </div>
+    </div>
+
+
+      
       {/* 表單開始 */}
       <Form
         form={form}
@@ -140,7 +158,7 @@ postalCode:userInfo.postalCode,
             : null,
         }}*/
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 md:mb-20">
 
           {/* 左欄：收件人資料 + 付款方式 */}
           <div className="flex flex-col justify-between h-full md:pr-8 md:border-r-2 md:border-primary">

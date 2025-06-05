@@ -56,17 +56,25 @@ function ProductDetail({ product }) {
           <p>
             <span className="font-bold">總價：</span>{product.price * qty}
           </p>
-          <button
-            onClick={() => dispatch(toggleFollow(product))}
-            aria-label="收藏商品"
-          >
-            {isFollowed ? (
-  <HeartFilled style={{ color: "red", fontSize: 24 }} />
-) : (
-  <HeartOutlined style={{ color: "gray", fontSize: 24 }} />
-)}
-          </button>
-          <AddToCart products={product} qty={qty} />
+          <div className="grid grid-cols-[1fr_10fr] items-center items-center gap-6 w-full mt-2">
+            
+            <button
+              onClick={() => dispatch(toggleFollow(product))}
+              aria-label="收藏商品"
+              className="heart-button text-3xl"
+            >
+              {isFollowed ? (
+                <HeartFilled className="heart-filled" />
+              ) : (
+                <HeartOutlined className="heart-outlined" />
+              )}
+            </button>
+
+            {/* 加入購物車，寬度可以自訂，這裡用 flex-grow 讓他變寬 */}
+            <div className="button1 text-center rounded">
+              <AddToCart products={product} qty={qty} />
+            </div>
+          </div>
         </div>
       </div>
       <div className="mb-10px md:mb-0px"></div>

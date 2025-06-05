@@ -31,13 +31,13 @@ export default function SendOrderCard() {
     
 
     return (
-        
-        <div className="p-4 content max-w-4xl mx-auto pfcard px-6 py-8 ">
+        <div >
+        <div className="content max-w-sm md:max-w-4xl mx-auto px-6 py-8 ">
 
-            <div className="flex flex-col gap-8">
+            <div className="p-4 flex flex-col gap-8 pfcard ">
 
                 {/* 左 電腦*/}
-                <div className="hidden md:block">
+                <div >
                     <div className="text-xl font-semibold mb-6 font-bold bottom-border border-primary pb-2 ">訂單資訊</div>
                     <div className=" p-4 mb-6">
                         
@@ -62,56 +62,7 @@ export default function SendOrderCard() {
 
                    
                 </div>
-                {/* 左 手機*/}
-                <div className="md:hidden">
-                    <div className="text-lg grid grid-cols-[2fr_180px__3fr_40px] items-center font-bold border-b-2 border-primary pb-2 mb-4">
-                    </div>
-                    <div className="text-xl font-semibold mb-6 font-bold bottom-border border-primary pb-2 ">訂單資訊</div>
-                    <div className=" p-4 mb-6 ">
-                        
-                        <p>訂單編號：#{Math.floor(100000 + Math.random() * 900000)}</p>
-                        <p>訂購日期：{new Date().toLocaleDateString()}</p>
-                        <p>付款方式：信用卡</p>
-                        <p>取貨方式：{shippingMethod === "home" ? "宅配" : "自取"}</p>
-
-                        {shippingMethod === "home" ? (
-                            <div className="mt-2">
-                            <p>地址：{shippingAddress?.postalCode} {shippingAddress?.city} {shippingAddress?.district} {shippingAddress?.addressDetail}</p>
-                            <p>收件人：{shippingAddress?.fullName}（{shippingAddress?.phonenumber}）</p>
-                            </div>
-                        ) : (
-                            <div className="mt-2">
-                            <p>取貨店鋪：{shippingAddress?.pickupShop}</p>
-                            <p>取貨時間：{shippingAddress?.pickupDate?.format?.("YYYY-MM-DD") || shippingAddress?.pickupDate} {shippingAddress?.pickupTime}</p>
-                            <p>收件人：{shippingAddress?.fullName}（{shippingAddress?.phonenumber}）</p>
-                            </div>
-                        )}
-                        </div>
-                    <ul>
-                        {cartItems.map(item => (
-                            <li key={item.id} className="grid grid-cols-[20px_4fr_8fr_4fr] items-center gap-2 border-b py-3">
-
-
-                                <Link to={`/products/id/${item.id}?qtyFromBasket=${item.qty}`}>
-                                    <img src={item.image} alt={item.name} className="w-[80px] h-[80px] object-cover mx-auto" />
-                                </Link>
-                                <div>
-                                    <div className="text-sm text-left items-start h-[40px]">{item.name}</div>
-
-                                    <div className="flex flex-row items-end">
-                                        <div className="text-right w-[40%]">
-                                            <div className="text-sm font-medium px-2 py-1 border rounded w-[3.5rem] text-center">
-                                                {item.qty}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="text-sm font-semibold text-right">NT${item.price * item.qty}</div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                
 
                 {/* 右 */}
                 <div className="md:pl-4   md:flex md:flex-col md:justify-between md:h-full">
@@ -152,23 +103,23 @@ export default function SendOrderCard() {
                         </div>
                     </div>
 
-                   <div className="mt-6 flex flex-col md:flex-row gap-4 md:justify-end md:items-center">
-                    <Link to="/" className="w-full md:w-auto">
-                        <button className="px-6  py-2 button2 rounded font-semibold hover:bg-primary hover:text-white transition">
-                        回首頁
-                        </button>
-                    </Link>
-                    <Link to="/profile?key=2" className="w-full md:w-auto">
-                        <button className="px-6 py-2 button1 font-semibold  rounded hover:opacity-90 transition">
-                        查看訂單
-                        </button>
-                    </Link>
-                    </div>
-
-
-                </div>
+               
+            </div>
+            </div>
+            <div className="mt-6 flex flex-col md:flex-row gap-4 w-full md:justify-end">
+            <Link to="/" className="w-full md:w-auto">
+                <button className="w-full md:w-auto text-sm md:text-base px-6 py-2 button2 rounded font-semibold hover:bg-primary hover:text-white transition">
+                回首頁
+                </button>
+            </Link>
+            <Link to="/profile?key=2" className="w-full md:w-auto">
+                <button className="w-full md:w-auto text-sm md:text-base px-6 py-2 button1 rounded font-semibold hover:opacity-90 transition">
+                查看訂單
+                </button>
+            </Link>
             </div>
 
+        </div>
         </div>
     );
 }
