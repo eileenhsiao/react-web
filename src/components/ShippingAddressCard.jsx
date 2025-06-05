@@ -13,7 +13,7 @@ import { useState } from "react";
 import { clearCartItems } from "../redux/cartSlice";
 import { selectCartItems } from "../redux/cartSlice";
 
-import { Select, DatePicker } from "antd";
+import { Select, DatePicker ,Row, Col} from "antd";
 const { Option } = Select;
 import { clearShippingAddress } from "../redux/cartSlice";
 import { useUpdateProfile, useUserInfo } from "../react-query";
@@ -64,22 +64,27 @@ export default function ShippingAddressCard() {
     setCardDate(formatted);
     form.setFieldsValue({ cardDate: formatted });
   };
+  
   const handleSubmit = (values) => {
-    if (!userInfo || !userInfo.uid) {
-      console.error("userInfo 未正確載入");
-      return;
-    }
-    
-    const cleaned = {
-      ...values,
-      cardnumber: values.cardnumber.replace(/\s/g, ""),
-      pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
-    };
-
-    update.mutate({ ...values, uid: userInfo.uid });
-    dispatch(saveShippingAddress(cleaned));
-    navigate("/SendOrder");
+  const cleaned = {
+    ...values,
+    cardnumber: values.cardnumber.replace(/\s/g, ""),
+    pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
   };
+
+  dispatch(saveShippingAddress(cleaned));
+
+  // 傳遞 cartItems 資料給 SendOrder 頁面
+  navigate("/SendOrder", {
+    state: {
+      cartItems: cartItems,  // 原本從 Redux 來的資料
+    },
+  });
+
+  // 然後清空 Redux
+  dispatch(clearCartItems());
+};
+
 const { data: userInfo } = useUserInfo() || {};
   const update = useUpdateProfile();
 
@@ -291,7 +296,9 @@ const { data: userInfo } = useUserInfo() || {};
             >
               <Input placeholder="信用卡卡號 (16位數)" maxLength={16} />
             </Form.Item>
-
+             
+            <Row gutter={16}>
+            <Col span={12}>
             <Form.Item
               name="cardDate"
               rules={[
@@ -303,7 +310,8 @@ const { data: userInfo } = useUserInfo() || {};
               <Input placeholder="有效期限 (MM/YY)" maxLength={5} />
             </Form.Item>
 
-
+            </Col>
+            <Col span={12}>
             <Form.Item
               name="cardsafenumber"
               rules={[
@@ -314,7 +322,10 @@ const { data: userInfo } = useUserInfo() || {};
             >
               <Input placeholder="安全碼 (3位數)" maxLength={3} />
             </Form.Item>
+          </Col>
+          </Row>
 
+          
 
 
             <div className="content text-xl mb-4">其他</div>
