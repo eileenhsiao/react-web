@@ -13,7 +13,9 @@ import {
   db,
   auth,
 } from "../api";
-import { onAuthStateChanged } from "firebase/auth";
+import {createUserWithEmailAndPassword, updateProfile ,onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 
 export const useProducts = () => {
   return useQuery([], getProducts);
@@ -65,16 +67,15 @@ export const useSignInWithEmailPassword = () => {
 };
 
 export const useRegisterWithEmailPassword = () => {
-  const queryClient = useQueryClient();
-  return useMutation(register, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["uid"]);
-      window.location.href = '/profile'; // 或用 navigate() 方式
-    },
-    onError: (error) => {
-      // 傳出錯誤，讓外層顯示
-      throw error;
-    }
+  return useMutation(async ({ email, password, name }) => {
+    // 建立帳號
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+
+    // 設定用戶名稱（顯示名稱）
+    await updateProfile(result.user, { displayName: name });
+
+    // Firebase 會自動登入，不需另外登入
+    return result.user; // ← 很重要，這會觸發 Firebase 的 onAuthStateChanged()
   });
 };
 
@@ -111,3 +112,4 @@ export const useLogout = () => {
     },
   });
 };
+
