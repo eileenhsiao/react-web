@@ -150,9 +150,13 @@ const ProfileInfoTab = ({ redirect }) => {
 
           <div className="content text-xl mb-2">付款資料</div>
 
-          <Form.Item
+         
+
+          <Row gutter={16}>
+            <Col span={12}>
+             <Form.Item
             name="cardnumber"
-            //label="信用卡卡號"
+            label="信用卡卡號"
             rules={[
               { pattern: /^\d{16}$/, message: "請輸入16位數字卡號" },
             ]}
@@ -160,12 +164,11 @@ const ProfileInfoTab = ({ redirect }) => {
           >
             <Input placeholder="信用卡卡號 (16位數)" maxLength={16} />
           </Form.Item>
-
-          <Row gutter={16}>
+            </Col>
             <Col span={12}>
               <Form.Item
                 name="cardDate"
-                //label="有效期限"
+                label="有效期限"
                 rules={[
                   
                   { pattern: /^(0[1-9]|1[0-2])\/\d{2}$/, message: "格式應為 MM/YY" },
