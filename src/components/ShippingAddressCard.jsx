@@ -26,6 +26,7 @@ const taiwanCities = {
   // 可繼續補上其他縣市
 };
 
+
 export default function ShippingAddressCard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,7 +43,26 @@ export default function ShippingAddressCard() {
     const spaced = digitsOnly.replace(/(.{4})/g, "$1 ").trim();
     return spaced;
   };
+const { data: userInfo, isLoading } = useUserInfo(); // 取得 Firebase 資料
 
+useEffect(() => {
+  if (userInfo) {
+    form.setFieldsValue({
+      name: userInfo.name || "",
+      tel: userInfo.tel || "", 
+      cardnumber:userInfo.cardnumber,
+      cardDate:userInfo.cardDate,
+addressDetail:userInfo.addressDetail,
+city:userInfo.city,
+district:userInfo.district,
+postalCode:userInfo.postalCode,
+      ...shippingAddress,
+      pickupDate: shippingAddress.pickupDate
+        ? dayjs(shippingAddress.pickupDate)
+        : null,
+    });
+  }
+}, [userInfo, shippingAddress, form]);
   useEffect(() => {
   dispatch(clearShippingAddress());
   form.resetFields(); // 清空表單
@@ -64,32 +84,14 @@ export default function ShippingAddressCard() {
     setCardDate(formatted);
     form.setFieldsValue({ cardDate: formatted });
   };
-<<<<<<< HEAD
-  const handleSubmit = (values) => {
-    const cleaned = {
-      ...values,
-      cardnumber: values.cardnumber.replace(/\s/g, ""),
-      pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
-    };
-    update.mutate({ ...values, uid: userInfo.uid });
-    dispatch(saveShippingAddress(cleaned));
-    navigate("/SendOrder");
-=======
  const handleSubmit = (values) => {
   const cleaned = {
     ...values,
     cardnumber: values.cardnumber.replace(/\s/g, ""),
     pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
->>>>>>> 8f8f32842b1541b63e3fd46c7f23ea42a9c9b14d
   };
-const { data: userInfo } = useUserInfo() || {};
   const update = useUpdateProfile();
 
-<<<<<<< HEAD
-   useEffect(() => {
-    form.setFieldsValue(userInfo);
-  }, [userInfo]);
-=======
   dispatch(saveShippingAddress(cleaned));
 
   navigate("/SendOrder", {
@@ -103,7 +105,6 @@ const { data: userInfo } = useUserInfo() || {};
 
 
 
->>>>>>> 8f8f32842b1541b63e3fd46c7f23ea42a9c9b14d
 
   return (
     <div>
@@ -131,13 +132,13 @@ const { data: userInfo } = useUserInfo() || {};
       <Form
         form={form}
         onFinish={handleSubmit}
-        initialValues={{
+        /*initialValues={{
           userInfo,
           ...shippingAddress,
           pickupDate: shippingAddress.pickupDate
             ? dayjs(shippingAddress.pickupDate)
             : null,
-        }}
+        }}*/
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
 
