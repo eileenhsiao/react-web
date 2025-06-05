@@ -5,6 +5,9 @@ import { addCartItems, removeCartItems, selectCartItems } from "@/redux/cartSlic
 import '@/index.css';
 import { saveShippingMethod } from "@/redux/cartSlice";
 import { useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+
+
 
 export default function CartList() {
     const dispatch = useDispatch();
@@ -201,14 +204,22 @@ export default function CartList() {
                             </div>
                         </div>
                         <button
-                        onClick={() => {
-                            dispatch(saveShippingMethod(shippingMethod)); // 存進 redux
-                            navigate("/Payment"); // 導向下一頁
-                        }}
-                        className="w-full bg-primary text-white py-3 rounded mt-6"
-                        >
-                        結帳
-                        </button>
+  onClick={() => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+      navigate("/login"); // 沒登入就導向登入頁面
+      return;
+    }
+
+    dispatch(saveShippingMethod(shippingMethod)); // 存進 redux
+    navigate("/Payment"); // 導向下一頁
+  }}
+  className="w-full bg-primary text-white py-3 rounded mt-6"
+>
+  結帳
+</button>
 
                     </div>
                 </div>
