@@ -49,13 +49,13 @@ export default function SendOrderCard() {
                         {shippingMethod === "home" ? (
                             <div className="mt-2">
                             <p>地址：{shippingAddress?.postalCode} {shippingAddress?.city} {shippingAddress?.district} {shippingAddress?.addressDetail}</p>
-                            <p>收件人：{shippingAddress?.fullName}（{shippingAddress?.phonenumber}）</p>
+                            <p>收件人：{shippingAddress?.name}（{shippingAddress?.tel}）</p>
                             </div>
                         ) : (
                             <div className="mt-2">
                             <p>取貨店鋪：{shippingAddress?.pickupShop}</p>
                             <p>取貨時間：{shippingAddress?.pickupDate?.format?.("YYYY-MM-DD") || shippingAddress?.pickupDate} {shippingAddress?.pickupTime}</p>
-                            <p>收件人：{shippingAddress?.fullName}（{shippingAddress?.phonenumber}）</p>
+                            <p>收件人：{shippingAddress?.name}（{shippingAddress?.tel}）</p>
                             </div>
                         )}
                         </div>

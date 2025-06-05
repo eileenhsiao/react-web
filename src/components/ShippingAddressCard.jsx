@@ -43,30 +43,30 @@ export default function ShippingAddressCard() {
     const spaced = digitsOnly.replace(/(.{4})/g, "$1 ").trim();
     return spaced;
   };
-const { data: userInfo, isLoading } = useUserInfo(); // 取得 Firebase 資料
+  const { data: userInfo, isLoading } = useUserInfo(); // 取得 Firebase 資料
 
-useEffect(() => {
-  if (userInfo) {
-    form.setFieldsValue({
-      name: userInfo.name || "",
-      tel: userInfo.tel || "", 
-      cardnumber:userInfo.cardnumber,
-      cardDate:userInfo.cardDate,
-addressDetail:userInfo.addressDetail,
-city:userInfo.city,
-district:userInfo.district,
-postalCode:userInfo.postalCode,
-      ...shippingAddress,
-      pickupDate: shippingAddress.pickupDate
-        ? dayjs(shippingAddress.pickupDate)
-        : null,
-    });
-  }
-}, [userInfo, shippingAddress, form]);
   useEffect(() => {
-  dispatch(clearShippingAddress());
-  form.resetFields(); // 清空表單
-}, []);
+    if (userInfo) {
+      form.setFieldsValue({
+        name: userInfo.name || "",
+        tel: userInfo.tel || "",
+        cardnumber: userInfo.cardnumber,
+        cardDate: userInfo.cardDate,
+        addressDetail: userInfo.addressDetail,
+        city: userInfo.city,
+        district: userInfo.district,
+        postalCode: userInfo.postalCode,
+        ...shippingAddress,
+        pickupDate: shippingAddress.pickupDate
+          ? dayjs(shippingAddress.pickupDate)
+          : null,
+      });
+    }
+  }, [userInfo, shippingAddress, form]);
+  useEffect(() => {
+    dispatch(clearShippingAddress());
+    form.resetFields(); // 清空表單
+  }, []);
 
   const [cardNumber, setCardNumber] = useState(shippingAddress?.cardnumber || "");
 
@@ -89,28 +89,30 @@ postalCode:userInfo.postalCode,
       console.error("userInfo 未正確載入");
       return;
     }
-    
+
     const cleaned = {
       ...values,
       cardnumber: values.cardnumber.replace(/\s/g, ""),
       pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
     };
 
-    update.mutate({ ...values, uid: userInfo.uid });
+    
     dispatch(saveShippingAddress(cleaned));
     navigate("/SendOrder");
+    const update = useUpdateProfile();
+
+    dispatch(saveShippingAddress(cleaned));
+
+    navigate("/SendOrder", {
+      state: {
+        cartItems: cartItems,
+      },
+    });
+
+    dispatch(clearCartItems());
+    update.mutate({ ...values, uid: userInfo.uid });
   };
-  const update = useUpdateProfile();
 
-  dispatch(saveShippingAddress(cleaned));
-
-  navigate("/SendOrder", {
-    state: {
-      cartItems: cartItems,
-    },
-  });
-
-  dispatch(clearCartItems());
 
 
 
@@ -120,43 +122,43 @@ postalCode:userInfo.postalCode,
     <div>
       {/* 步驟條 */}
       <div className="flex items-center justify-center gap-4 md:gap-8 mb-20 text-sm text-primary font-semibold mt-10">
-      <div className="flex flex-col items-center">
-        <Link to="/Cart" className="flex flex-col items-center">
-          <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">1</div>
-          <div className="mt-2 text-md md:text-xl">確認訂單</div>
-        </Link>
+        <div className="flex flex-col items-center">
+          <Link to="/Cart" className="flex flex-col items-center">
+            <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">1</div>
+            <div className="mt-2 text-md md:text-xl">確認訂單</div>
+          </Link>
+        </div>
+
+        {/* 線段 */}
+        <div className="flex-1 min-w-[40px] h-[1px] bg-primary mb-7"></div>
+
+        <div className="flex flex-col items-center">
+          <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">2</div>
+          <div className="mt-2 text-md md:text-xl">填寫資料</div>
+        </div>
+
+        {/* 線段 */}
+        <div className="flex-1 min-w-[40px] h-[1px] bg-primary mb-7"></div>
+
+        <div className="flex flex-col items-center">
+          <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">3</div>
+          <div className="mt-2 text-md md:text-xl">送出訂單</div>
+        </div>
       </div>
 
-      {/* 線段 */}
-      <div className="flex-1 min-w-[40px] h-[1px] bg-primary mb-7"></div>
-
-      <div className="flex flex-col items-center">
-        <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">2</div>
-        <div className="mt-2 text-md md:text-xl">填寫資料</div>
-      </div>
-
-      {/* 線段 */}
-      <div className="flex-1 min-w-[40px] h-[1px] bg-primary mb-7"></div>
-
-      <div className="flex flex-col items-center">
-        <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">3</div>
-        <div className="mt-2 text-md md:text-xl">送出訂單</div>
-      </div>
-    </div>
 
 
-      
       {/* 表單開始 */}
       <Form
         form={form}
         onFinish={handleSubmit}
-        /*initialValues={{
-          userInfo,
-          ...shippingAddress,
-          pickupDate: shippingAddress.pickupDate
-            ? dayjs(shippingAddress.pickupDate)
-            : null,
-        }}*/
+      /*initialValues={{
+        userInfo,
+        ...shippingAddress,
+        pickupDate: shippingAddress.pickupDate
+          ? dayjs(shippingAddress.pickupDate)
+          : null,
+      }}*/
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 md:mb-20">
 
@@ -171,7 +173,7 @@ postalCode:userInfo.postalCode,
                   { type: "string" },
                   { required: true, message: "請輸入收件人姓名" },
                 ]}
-                
+
               >
                 <Input placeholder="姓名" />
               </Form.Item>
@@ -184,10 +186,10 @@ postalCode:userInfo.postalCode,
                   { required: true, message: "請輸入聯絡電話" },
                   { pattern: /^\d{2}-\d{4}-\d{4}$/, message: "請輸入完整的聯絡電話" }
                 ]}
-                
+
               >
                 <Input placeholder="電話 00-0000-0000" maxLength={12} />
-                
+
               </Form.Item>
             </div>
 
@@ -202,7 +204,7 @@ postalCode:userInfo.postalCode,
                     rules={[
                       { required: true, message: "請選擇取貨分店" },
                     ]}
-                    
+
                   >
                     <Select placeholder="選擇取貨分店">
                       <Option value="大安總店">大安總店</Option>
@@ -213,7 +215,7 @@ postalCode:userInfo.postalCode,
                   <Form.Item
                     name="pickupDate"
                     rules={[{ required: true, message: "請選擇取貨日期" }]}
-                    
+
                   >
                     <DatePicker placeholder="選擇日期" className="w-full" />
                   </Form.Item>
@@ -221,7 +223,7 @@ postalCode:userInfo.postalCode,
                   <Form.Item
                     name="pickupTime"
                     rules={[{ required: true, message: "請選擇取貨時間" }]}
-                    
+
                   >
                     <Select placeholder="選擇時間">
                       <Option value="12:30-13:30">12:30-13:30</Option>
@@ -245,7 +247,7 @@ postalCode:userInfo.postalCode,
                     name="postalCode"
                     label="郵遞區號"
                     rules={[{ required: true, message: "請輸入郵遞區號" }]}
-                    
+
                   >
                     <Input placeholder="如：100" />
                   </Form.Item>
@@ -254,7 +256,7 @@ postalCode:userInfo.postalCode,
                     name="city"
                     label="縣市"
                     rules={[{ required: true, message: "請選擇縣市" }]}
-                    
+
                   >
                     <Select placeholder="請選擇縣市" allowClear>
                       {Object.keys(taiwanCities).map((city) => (
@@ -276,7 +278,7 @@ postalCode:userInfo.postalCode,
                           name="district"
                           label="區域"
                           rules={[{ required: true, message: "請選擇區域" }]}
-                          
+
                         >
                           <Select placeholder="請選擇區域" allowClear disabled={!selectedCity}>
                             {(taiwanCities[selectedCity] || []).map((district) => (
@@ -294,7 +296,7 @@ postalCode:userInfo.postalCode,
                     name="addressDetail"
                     label="詳細地址"
                     rules={[{ required: true, message: "請輸入詳細地址" }]}
-                    
+
                   >
                     <Input.TextArea
                       placeholder="請輸入街道、巷弄、號、樓層等資訊"
@@ -316,7 +318,7 @@ postalCode:userInfo.postalCode,
                 { required: true, message: "請輸入信用卡卡號" },
                 { pattern: /^\d{16}$/, message: "請輸入16位數字卡號" }
               ]}
-              
+
             >
               <Input placeholder="信用卡卡號 (16位數)" maxLength={16} />
             </Form.Item>
@@ -327,7 +329,7 @@ postalCode:userInfo.postalCode,
                 { required: true, message: "請輸入有效期限" },
                 { pattern: /^(0[1-9]|1[0-2])\/\d{2}$/, message: "格式應為 MM/YY" }
               ]}
-              
+
             >
               <Input placeholder="有效期限 (MM/YY)" maxLength={5} />
             </Form.Item>
@@ -339,7 +341,7 @@ postalCode:userInfo.postalCode,
                 { required: true, message: "請輸入安全碼" },
                 { pattern: /^\d{3}$/, message: "請輸入3位數安全碼" }
               ]}
-              
+
             >
               <Input placeholder="安全碼 (3位數)" maxLength={3} />
             </Form.Item>
@@ -360,15 +362,15 @@ postalCode:userInfo.postalCode,
                 autoSize={{ minRows: 3, maxRows: 6 }} // 可調整顯示的最小與最大行數
               />
             </Form.Item>
-           <Form.Item>
-            <Button
-              
-              htmlType="submit"
-              className="button1 w-full  py-3 rounded mt-6"
-            >
-              送出訂單
-            </Button>
-          </Form.Item>
+            <Form.Item>
+              <Button
+
+                htmlType="submit"
+                className="button1 w-full  py-3 rounded mt-6"
+              >
+                送出訂單
+              </Button>
+            </Form.Item>
 
           </div>
 
