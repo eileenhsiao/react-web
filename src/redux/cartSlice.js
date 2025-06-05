@@ -44,6 +44,9 @@ const cartSlice = createSlice({
     clearShippingAddress: (state) => {
       state.shippingAddress = {};
     },
+    clearCartItems: (state) => {
+      state.cartItems = [];
+    },
     setCartItems: (state, action) => {
   state.cartItems = action.payload.filter(
     item =>
@@ -53,6 +56,7 @@ const cartSlice = createSlice({
       typeof item.qty === "number"
   );
 }
+
   },
   
 });
@@ -71,3 +75,4 @@ export default cartSlice.reducer;
 
 export const selectShippingMethod = (state) => state.cart.shippingMethod;
 export const { saveShippingMethod } = cartSlice.actions;
+export const { clearCartItems } = cartSlice.actions;
