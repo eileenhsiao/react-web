@@ -10,6 +10,8 @@ import {
 import { Link } from "react-router";
 import '@/index.css';
 import { useState } from "react";
+import { clearCartItems } from "../redux/cartSlice";
+import { selectCartItems } from "../redux/cartSlice";
 
 import { Select, DatePicker } from "antd";
 const { Option } = Select;
@@ -23,13 +25,14 @@ const taiwanCities = {
   "新北市": ["板橋區", "三重區", "中和區", "永和區", "新莊區", "新店區", "土城區", "蘆洲區", "汐止區", "樹林區", "淡水區"],
   // 可繼續補上其他縣市
 };
+
 export default function ShippingAddressCard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const shippingAddress = useSelector(selectShippingAddress);
   const shippingMethod = useSelector(selectShippingMethod);
   const [form] = Form.useForm();
-
+  const cartItems = useSelector(selectCartItems);
   const [cardNumberFormatted, setCardNumberFormatted] = useState(
     shippingAddress?.cardnumber || ""
   );
@@ -61,15 +64,24 @@ export default function ShippingAddressCard() {
     setCardDate(formatted);
     form.setFieldsValue({ cardDate: formatted });
   };
-  const handleSubmit = (values) => {
-    const cleaned = {
-      ...values,
-      cardnumber: values.cardnumber.replace(/\s/g, ""),
-      pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
-    };
-    dispatch(saveShippingAddress(cleaned));
-    navigate("/SendOrder");
+ const handleSubmit = (values) => {
+  const cleaned = {
+    ...values,
+    cardnumber: values.cardnumber.replace(/\s/g, ""),
+    pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
   };
+
+  dispatch(saveShippingAddress(cleaned));
+
+  navigate("/SendOrder", {
+    state: {
+      cartItems: cartItems,
+    },
+  });
+
+  dispatch(clearCartItems());
+};
+
 
 
 

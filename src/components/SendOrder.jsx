@@ -5,11 +5,14 @@ import { addCartItems, removeCartItems, selectCartItems } from "@/redux/cartSlic
 import '@/index.css';
 import { selectShippingAddress, selectShippingMethod } from "@/redux/cartSlice";
 
-
+import { useLocation } from "react-router-dom";
 export default function SendOrderCard() {
     const dispatch = useDispatch();
-    const cartItems = useSelector(selectCartItems);
+    //const cartItems = useSelector(selectCartItems);
+    const location = useLocation();
+    const tempCartItems = location.state?.cartItems || [];
 
+    const cartItems = tempCartItems;
     const [shippingMethod, setShippingMethod] = useState("pickup");
     const shippingFee = shippingMethod === "home" ? 60 : 0;
 
@@ -24,7 +27,8 @@ export default function SendOrderCard() {
     };
     const shippingAddress = useSelector(selectShippingAddress);
     
-
+   
+    
 
     return (
         
@@ -137,13 +141,14 @@ export default function SendOrderCard() {
                     <div>
 
 
-                        <div className="flex justify-between font-semibold mt-4">
-                            <span>共 {getTotalQuantity()} 項</span>
-                        </div>
+                       
 
                         <div className="flex justify-between font-semibold mt-4">
+                            <span>共 {getTotalQuantity()} 項</span>
+                            <div>
                             <span>總計</span>
                             <span>NT${getTotalPrice()}</span>
+                            </div>
                         </div>
                     </div>
 
