@@ -33,7 +33,31 @@ export default function SendOrderCard() {
     return (
         <div >
         <div className="content max-w-sm md:max-w-4xl mx-auto px-6 py-8 ">
+            <div className="flex items-center justify-center gap-8 mb-20 text-sm text-primary font-semibold">
+                        {/* 步驟 1 */}
+                        <div className="flex flex-col items-center">
+                            <div className="w-8 h-8 rounded-full border-2 border-primary flex items-center justify-center">1</div>
+                            <div className="mt-2 text-md md:text-xl">確認訂單</div>
+                        </div>
 
+                        {/* 線 */}
+                        <div className="flex-1 h-[1px] bg-primary max-w-[60px] mb-7"></div>
+
+                        {/* 步驟 2 */}
+                        <div className="flex flex-col items-center">
+                            <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">2</div>
+                            <div className="mt-2 text-md md:text-xl">填寫資料</div>
+                        </div>
+
+                        {/* 線 */}
+                        <div className="flex-1 h-[1px] bg-primary max-w-[60px] mb-7"></div>
+
+                        {/* 步驟 3 */}
+                        <div className="flex flex-col items-center">
+                            <div className="w-8 h-8 rounded-full bg-primary text-white text-primary flex items-center justify-center">3</div>
+                            <div className="mt-2 text-md md:text-xl">送出訂單</div>
+                        </div>
+                        </div>
             <div className="p-4 flex flex-col gap-8 pfcard ">
 
                 {/* 左 電腦*/}
@@ -55,7 +79,7 @@ export default function SendOrderCard() {
                             <div className="mt-2">
                             <p>取貨店鋪：{shippingAddress?.pickupShop}</p>
                             <p>取貨時間：{shippingAddress?.pickupDate?.format?.("YYYY-MM-DD") || shippingAddress?.pickupDate} {shippingAddress?.pickupTime}</p>
-                            <p>收件人：{shippingAddress?.fullName}（{shippingAddress?.phonenumber}）</p>
+                            <p>收件人：{shippingAddress?.name}（{shippingAddress?.tel}）</p>
                             </div>
                         )}
                         </div>
