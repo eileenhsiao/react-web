@@ -16,7 +16,7 @@ import { selectCartItems } from "../redux/cartSlice";
 import { Select, DatePicker } from "antd";
 const { Option } = Select;
 import { clearShippingAddress } from "../redux/cartSlice";
-
+import { useUpdateProfile, useUserInfo } from "../react-query";
 import dayjs from "dayjs";
 import { useEffect } from "react";
 
@@ -64,13 +64,32 @@ export default function ShippingAddressCard() {
     setCardDate(formatted);
     form.setFieldsValue({ cardDate: formatted });
   };
+<<<<<<< HEAD
+  const handleSubmit = (values) => {
+    const cleaned = {
+      ...values,
+      cardnumber: values.cardnumber.replace(/\s/g, ""),
+      pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
+    };
+    update.mutate({ ...values, uid: userInfo.uid });
+    dispatch(saveShippingAddress(cleaned));
+    navigate("/SendOrder");
+=======
  const handleSubmit = (values) => {
   const cleaned = {
     ...values,
     cardnumber: values.cardnumber.replace(/\s/g, ""),
     pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
+>>>>>>> 8f8f32842b1541b63e3fd46c7f23ea42a9c9b14d
   };
+const { data: userInfo } = useUserInfo() || {};
+  const update = useUpdateProfile();
 
+<<<<<<< HEAD
+   useEffect(() => {
+    form.setFieldsValue(userInfo);
+  }, [userInfo]);
+=======
   dispatch(saveShippingAddress(cleaned));
 
   navigate("/SendOrder", {
@@ -84,6 +103,7 @@ export default function ShippingAddressCard() {
 
 
 
+>>>>>>> 8f8f32842b1541b63e3fd46c7f23ea42a9c9b14d
 
   return (
     <div>
@@ -112,6 +132,7 @@ export default function ShippingAddressCard() {
         form={form}
         onFinish={handleSubmit}
         initialValues={{
+          userInfo,
           ...shippingAddress,
           pickupDate: shippingAddress.pickupDate
             ? dayjs(shippingAddress.pickupDate)
@@ -126,25 +147,25 @@ export default function ShippingAddressCard() {
               <div className="content text-xl mb-4">收件人資料</div>
 
               <Form.Item
-                name="fullName"
+                name="name"
                 rules={[
                   { type: "string" },
                   { required: true, message: "請輸入收件人姓名" },
                 ]}
-                hasFeedback
+                
               >
                 <Input placeholder="姓名" />
               </Form.Item>
 
               <Form.Item
 
-                name="phonenumber"
+                name="tel"
                 rules={[
                   { type: "string" },
                   { required: true, message: "請輸入聯絡電話" },
                   { pattern: /^\d{2}-\d{4}-\d{4}$/, message: "請輸入完整的聯絡電話" }
                 ]}
-                hasFeedback
+                
               >
                 <Input placeholder="電話 00-0000-0000" maxLength={12} />
                 
@@ -162,7 +183,7 @@ export default function ShippingAddressCard() {
                     rules={[
                       { required: true, message: "請選擇取貨分店" },
                     ]}
-                    hasFeedback
+                    
                   >
                     <Select placeholder="選擇取貨分店">
                       <Option value="大安總店">大安總店</Option>
@@ -173,7 +194,7 @@ export default function ShippingAddressCard() {
                   <Form.Item
                     name="pickupDate"
                     rules={[{ required: true, message: "請選擇取貨日期" }]}
-                    hasFeedback
+                    
                   >
                     <DatePicker placeholder="選擇日期" className="w-full" />
                   </Form.Item>
@@ -181,7 +202,7 @@ export default function ShippingAddressCard() {
                   <Form.Item
                     name="pickupTime"
                     rules={[{ required: true, message: "請選擇取貨時間" }]}
-                    hasFeedback
+                    
                   >
                     <Select placeholder="選擇時間">
                       <Option value="12:30-13:30">12:30-13:30</Option>
@@ -205,6 +226,7 @@ export default function ShippingAddressCard() {
                     name="postalCode"
                     label="郵遞區號"
                     rules={[{ required: true, message: "請輸入郵遞區號" }]}
+                    
                   >
                     <Input placeholder="如：100" />
                   </Form.Item>
@@ -213,6 +235,7 @@ export default function ShippingAddressCard() {
                     name="city"
                     label="縣市"
                     rules={[{ required: true, message: "請選擇縣市" }]}
+                    
                   >
                     <Select placeholder="請選擇縣市" allowClear>
                       {Object.keys(taiwanCities).map((city) => (
@@ -234,6 +257,7 @@ export default function ShippingAddressCard() {
                           name="district"
                           label="區域"
                           rules={[{ required: true, message: "請選擇區域" }]}
+                          
                         >
                           <Select placeholder="請選擇區域" allowClear disabled={!selectedCity}>
                             {(taiwanCities[selectedCity] || []).map((district) => (
@@ -251,6 +275,7 @@ export default function ShippingAddressCard() {
                     name="addressDetail"
                     label="詳細地址"
                     rules={[{ required: true, message: "請輸入詳細地址" }]}
+                    
                   >
                     <Input.TextArea
                       placeholder="請輸入街道、巷弄、號、樓層等資訊"
@@ -272,7 +297,7 @@ export default function ShippingAddressCard() {
                 { required: true, message: "請輸入信用卡卡號" },
                 { pattern: /^\d{16}$/, message: "請輸入16位數字卡號" }
               ]}
-              hasFeedback
+              
             >
               <Input placeholder="信用卡卡號 (16位數)" maxLength={16} />
             </Form.Item>
@@ -283,7 +308,7 @@ export default function ShippingAddressCard() {
                 { required: true, message: "請輸入有效期限" },
                 { pattern: /^(0[1-9]|1[0-2])\/\d{2}$/, message: "格式應為 MM/YY" }
               ]}
-              hasFeedback
+              
             >
               <Input placeholder="有效期限 (MM/YY)" maxLength={5} />
             </Form.Item>
@@ -295,7 +320,7 @@ export default function ShippingAddressCard() {
                 { required: true, message: "請輸入安全碼" },
                 { pattern: /^\d{3}$/, message: "請輸入3位數安全碼" }
               ]}
-              hasFeedback
+              
             >
               <Input placeholder="安全碼 (3位數)" maxLength={3} />
             </Form.Item>

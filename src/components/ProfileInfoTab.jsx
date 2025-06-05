@@ -63,7 +63,6 @@ const ProfileInfoTab = ({ redirect }) => {
                       { type: "email", message: "不是有效的電子郵件" },
                       { required: true, message: "請輸入你的電子郵件" },
                     ]}
-                    hasFeedback
                   >
                     <Input  placeholder="電子郵件" />
                   </Form.Item>
@@ -157,7 +156,7 @@ const ProfileInfoTab = ({ redirect }) => {
             rules={[
               { pattern: /^\d{16}$/, message: "請輸入16位數字卡號" },
             ]}
-            hasFeedback
+           
           >
             <Input placeholder="信用卡卡號 (16位數)" maxLength={16} />
           </Form.Item>
@@ -171,7 +170,7 @@ const ProfileInfoTab = ({ redirect }) => {
                   
                   { pattern: /^(0[1-9]|1[0-2])\/\d{2}$/, message: "格式應為 MM/YY" },
                 ]}
-                hasFeedback
+               
               >
                 <Input placeholder="MM/YY" maxLength={5} />
               </Form.Item>
@@ -184,7 +183,7 @@ const ProfileInfoTab = ({ redirect }) => {
                   
                   { pattern: /^\d{3}$/, message: "請輸入3位數安全碼" },
                 ]}
-                hasFeedback
+                
               >
                 <Input.Password placeholder="安全碼 (3位數)" maxLength={3} />
               </Form.Item>

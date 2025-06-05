@@ -141,12 +141,25 @@ export const register = async ({ name, email, password }) => {
   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
   const user = userCredential.user;
 
-  localStorage.setItem("user", JSON.stringify({
-    uid: user.uid,
-    email: user.email,
-  }));
+  // 更新 Firebase Profile 的 displayName（可選）
+  await updateProfile(user, { displayName: name });
 
-  await setDoc(doc(db, "users", user.uid), { name });
+  // 存入 Firestore 資料
+  await setDoc(doc(db, "users", user.uid), {
+    name,
+    email,
+    createdAt: new Date(),
+  });
+
+  // ✅ 等 Firebase 登入狀態 ready，再 resolve
+  return new Promise((resolve) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        unsubscribe();
+        resolve(user);
+      }
+    });
+  });
 };
 
 export const updateUserInfo = async ({ name, adrs, tel, uid }) => {
