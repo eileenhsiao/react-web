@@ -56,7 +56,7 @@ function ProductDetail({ product }) {
           <p>
             <span className="font-bold">總價：</span>{product.price * qty}
           </p>
-          <div className="grid grid-cols-[1fr_8fr] items-center items-center gap-6 w-full mt-2">
+          <div className="grid grid-cols-[1fr_10fr] items-center items-center gap-6 w-full mt-2">
             
             <button
               onClick={() => dispatch(toggleFollow(product))}

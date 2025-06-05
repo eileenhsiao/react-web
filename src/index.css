@@ -258,7 +258,6 @@
   color:#000000!important;
   
 }
-}
 @keyframes heart-beat {
   0%, 100% {
     transform: scale(1);
@@ -283,6 +282,8 @@
   color: #DBB985;
   animation: heart-beat 0.6s ease-in-out infinite;
 }
+
+
 
 
 /*深色模式*/

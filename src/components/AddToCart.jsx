@@ -27,9 +27,11 @@ export default function AddToCart({ products, qty }) {
 
   return (
     <>
-      <button className="btn btn-primary px-8 py-5" onClick={addToCart}>
+      <button className="btn-primary px-8 py-5 " onClick={addToCart}>
+        <div className="flex items-center h-1">
         <ShoppingCart strokeWidth={1} className="w-5 h-5 md:w-6 md:h-6 btext group-hover:scale-105 transition-transform" />
         <span className="font-thin ml-3 btext">加入購物車</span>
+        </div>
       </button>
       {showToast && (
         <div className="toast toast-end">
