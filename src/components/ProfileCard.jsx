@@ -51,7 +51,7 @@ export default function ProfileCard() {
   const [activeKey, setActiveKey] = useState(tabKeyFromURL);
 
   return (
-    <div className="max-w-4xl mx-auto mt-6 pl-1">
+    <div className="max-w-sm md:max-w-4xl mx-auto mt-6 pl-1 mb-10 md:mb-20">
       {/* 自訂 Tabs 外觀，只渲染 tab 標籤 */}
       <Tabs
         activeKey={activeKey}

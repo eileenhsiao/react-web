@@ -64,7 +64,6 @@ export default function ShippingAddressCard() {
     setCardDate(formatted);
     form.setFieldsValue({ cardDate: formatted });
   };
-<<<<<<< HEAD
   const handleSubmit = (values) => {
     const cleaned = {
       ...values,
@@ -74,36 +73,13 @@ export default function ShippingAddressCard() {
     update.mutate({ ...values, uid: userInfo.uid });
     dispatch(saveShippingAddress(cleaned));
     navigate("/SendOrder");
-=======
- const handleSubmit = (values) => {
-  const cleaned = {
-    ...values,
-    cardnumber: values.cardnumber.replace(/\s/g, ""),
-    pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
->>>>>>> 8f8f32842b1541b63e3fd46c7f23ea42a9c9b14d
   };
 const { data: userInfo } = useUserInfo() || {};
   const update = useUpdateProfile();
 
-<<<<<<< HEAD
    useEffect(() => {
     form.setFieldsValue(userInfo);
   }, [userInfo]);
-=======
-  dispatch(saveShippingAddress(cleaned));
-
-  navigate("/SendOrder", {
-    state: {
-      cartItems: cartItems,
-    },
-  });
-
-  dispatch(clearCartItems());
-};
-
-
-
->>>>>>> 8f8f32842b1541b63e3fd46c7f23ea42a9c9b14d
 
   return (
     <div>

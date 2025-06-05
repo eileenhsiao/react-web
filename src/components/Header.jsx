@@ -34,9 +34,11 @@ export default function Header() {
 
                     {/* 右側：亮暗模式和購物車按鈕 */}
                     <div className="flex flex-col items-end gap-2">
-                        <SetColorMode />
-                        <UserInfo/>
+                    <SetColorMode />
+                    <div className="flex flex-row gap-4 items-center">
+                        <UserInfo />
                         <CartSummary />
+                    </div>
                     </div>
                 </div>
                 {isOpen && (
