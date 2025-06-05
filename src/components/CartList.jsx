@@ -38,7 +38,7 @@ export default function CartList() {
                         {/* 步驟 1 */}
                         <div className="flex flex-col items-center">
                             <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">1</div>
-                            <div className="mt-2 text-xl">確認訂單</div>
+                            <div className="mt-2 text-md md:text-xl">確認訂單</div>
                         </div>
 
                         {/* 線 */}
@@ -47,7 +47,7 @@ export default function CartList() {
                         {/* 步驟 2 */}
                         <div className="flex flex-col items-center">
                             <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">2</div>
-                            <div className="mt-2 text-xl">填寫資料</div>
+                            <div className="mt-2 text-md md:text-xl">填寫資料</div>
                         </div>
 
                         {/* 線 */}
@@ -56,7 +56,7 @@ export default function CartList() {
                         {/* 步驟 3 */}
                         <div className="flex flex-col items-center">
                             <div className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center">3</div>
-                            <div className="mt-2 text-xl">送出訂單</div>
+                            <div className="mt-2 text-md md:text-xl">送出訂單</div>
                         </div>
                         </div>
 
