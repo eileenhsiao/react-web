@@ -4,8 +4,41 @@ import AddToCart from "@/components/AddToCart"
 import '@/index.css';
 import { toggleFollow, selectFollowedItems } from "../redux/followSlice";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
+import { db } from "../api"; // 根據你的檔案位置調整
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
+import { useUserInfo } from "../react-query";
 
 function ProductDetail({ product }) {
+  const { data: userInfo } = useUserInfo();
+
+  const handleToggleFollow = async () => {
+    if (!userInfo?.uid) {
+      alert("請先登入才能收藏商品！");
+      return;
+    }
+
+    const followRef = doc(db, "users", userInfo.uid, "follows", String(product.id));
+
+
+    try {
+      if (isFollowed) {
+        // 已收藏 → 要取消收藏
+        await deleteDoc(followRef);
+      } else {
+        // 未收藏 → 要加入收藏
+        await setDoc(followRef, {
+          id: product.id,
+          name: product.name,
+          image: product.image,
+          price: product.price,
+          createdAt: new Date(),
+        });
+      }
+      dispatch(toggleFollow(product));
+    } catch (error) {
+      console.error("更新收藏狀態失敗：", error);
+    }
+  };
 
   const [qty, setQty] = useState(product.countInStock > 0 ? 1 : 0);
   const dispatch = useDispatch();
@@ -57,16 +90,16 @@ function ProductDetail({ product }) {
             <span className="font-bold">總價：</span>{product.price * qty}
           </p>
           <div className="grid grid-cols-[1fr_10fr] items-center items-center gap-6 w-full mt-2">
-            
+
             <button
-              onClick={() => dispatch(toggleFollow(product))}
+              onClick={handleToggleFollow}
               aria-label="收藏商品"
               className="heart-button text-3xl"
             >
               {isFollowed ? (
-                <HeartFilled className="heart-filled" />
+                <HeartFilled className="heart-filled text-red-500" />
               ) : (
-                <HeartOutlined className="heart-outlined" />
+                <HeartOutlined className="heart-outlined text-gray-500" />
               )}
             </button>
 
