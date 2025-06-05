@@ -163,7 +163,10 @@
   .word2{
     color: #7D6E5B;
   }
-
+  .word3{
+    color: #4b4b4b;
+  }
+  
   .title{
     color: #DBB985;
     text-align: center;
@@ -417,7 +420,9 @@
   .word2{
     color: #F5F5F5;
   }
-
+  .word3{
+    color: #cbcbcb;
+  }
   .title{
     color: #B08968;
     text-align: center;
@@ -582,6 +587,7 @@
   
 
 }
+
 }
 
 
