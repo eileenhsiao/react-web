@@ -5,7 +5,7 @@ import Profilehead from '../components/profilehead';
 import {
   UserOutlined,
   ShoppingCartOutlined,
-  StarOutlined,
+  HeartOutlined,
 } from '@ant-design/icons';
 import { useSearchParams } from 'react-router-dom';
 import ProfileInfoTab from './ProfileInfoTab';
@@ -28,7 +28,7 @@ const tabItems = [
     label: (
       <span className="text-base font-semibold">
         <ShoppingCartOutlined className="mr-1" />
-        訂單
+        訂單紀錄
       </span>
     ),
     content: <OrdersTab />,
@@ -37,7 +37,7 @@ const tabItems = [
     key: '3',
     label: (
       <span className="text-base font-semibold">
-        <StarOutlined className="mr-1" />
+        <HeartOutlined className="mr-1" />
         追蹤清單
       </span>
     ),

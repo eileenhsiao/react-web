@@ -97,9 +97,9 @@ function ProductDetail({ product }) {
               className="heart-button text-3xl"
             >
               {isFollowed ? (
-                <HeartFilled className="heart-filled text-red-500" />
+                <HeartFilled className="heart-filled" />
               ) : (
-                <HeartOutlined className="heart-outlined text-gray-500" />
+                <HeartOutlined className="heart-outlined transition-transform hover:scale-110" />
               )}
             </button>
 
