@@ -52,21 +52,21 @@ const OrdersTab = () => {
         <p>目前沒有任何訂單紀錄。</p>
       ) : (
         orders.map((order) => (
-          <div key={order.orderNumber} className="bottom-border p-4 mb-4 ">
-          <div className="flex justify-between items-start">
+          <div key={order.orderNumber} className="relative bottom-border p-4 mb-4 ">
+          <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center">
             <div>
               <p className="font-bold">訂單編號：{order.orderNumber}</p>
               <p className="text-sm word3">
-                訂購時間：
                 {order.createdAt?.seconds
-                  ? new Date(order.createdAt.seconds * 1000).toLocaleString()
+                  ? new Date(order.createdAt.seconds * 1000).toLocaleDateString()
                   : "未知"}
               </p>
             </div>
-            <div className="text-right text-primary">
-              <p className="text-sm">狀態：{order.status}</p>
+            <div className="absolute right-4 top-4 text-sm text-primary md:hidden">
+              狀態：{order.status}
             </div>
           </div>
+
 
           <div className="mt-4">
             {order.cartItems?.[0] && (
@@ -76,38 +76,40 @@ const OrdersTab = () => {
                     alt={order.cartItems[0].name}
                     className="w-16 h-16 object-cover mr-4 flex-shrink-0"
                   />
-                  <div className="grid grid-cols-[1fr_2fr_auto] gap-4 w-full items-center">
+                  <div className="grid grid-cols-[70%_30%] md:grid-cols-[20%_20%_auto_20%] gap-4 w-full items-center">
                     <p className="font-medium">
                       {order.cartItems[0].name} × {order.cartItems[0].qty}
                     </p>
                     <p className="text-sm whitespace-nowrap">
                       NT${order.cartItems[0].price}
                     </p>
-                    <p ></p>
+                    <p className="hidden md:block"></p>
+                    <div className="text-right text-primary hidden md:block">
+                      <p className="text-sm">狀態：{order.status}</p>
+                    </div>
                   </div>
                 </div>
 
 
             )}
             {expandedOrders[order.orderNumber] &&
-              order.cartItems.slice(1).map((item) => (
-                <div key={item.id} className="flex items-center mb-2">
-                  <img
-                    src={order.cartItems[0].image}
-                    alt={order.cartItems[0].name}
-                    className="w-16 h-16 object-cover mr-4 flex-shrink-0"
-                  />
-                  <div className="grid grid-cols-[1fr_2fr_auto] gap-4 w-full items-center">
-                    <p className="font-medium">
-                      {order.cartItems[0].name} × {order.cartItems[0].qty}
-                    </p>
-                    <p className="text-sm whitespace-nowrap">
-                      NT${order.cartItems[0].price}
-                    </p>
-                    <p ></p>
-                  </div>
+            order.cartItems.slice(1).map((item) => (
+              <div key={item.id} className="flex items-center mb-2">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-16 h-16 object-cover mr-4 flex-shrink-0"
+                />
+                <div className="grid grid-cols-[70%_30%] md:grid-cols-[20%_20%_auto] gap-4 w-full items-center">
+                  <p className="font-medium">
+                    {item.name} × {item.qty}
+                  </p>
+                  <p className="text-sm whitespace-nowrap">NT${item.price}</p>
+                  <p className="hidden md:block"></p>
                 </div>
-              ))}
+              </div>
+            ))}
+
 
             {order.cartItems?.length > 1 && (
               <div
