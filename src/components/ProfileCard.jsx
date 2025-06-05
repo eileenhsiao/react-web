@@ -10,7 +10,7 @@ import {
 import { useSearchParams } from 'react-router-dom';
 import ProfileInfoTab from './ProfileInfoTab';
 import OrdersTab from './OrdersTab';
-// import FavoritesTab from './FavoritesTab';
+import FavoritesTab from './FavoritesTab';
 
 const tabItems = [
   {
@@ -33,16 +33,16 @@ const tabItems = [
     ),
     content: <OrdersTab />,
   },
-  // {
-  //   key: '3',
-  //   label: (
-  //     <span className="text-base font-semibold">
-  //       <StarOutlined className="mr-1" />
-  //       追蹤清單
-  //     </span>
-  //   ),
-  //   content: <FavoritesTab />,
-  // },
+  {
+    key: '3',
+    label: (
+      <span className="text-base font-semibold">
+        <StarOutlined className="mr-1" />
+        追蹤清單
+      </span>
+    ),
+    content: <FavoritesTab />,
+  },
 ];
 
 export default function ProfileCard() {
