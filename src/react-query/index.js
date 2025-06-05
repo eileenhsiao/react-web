@@ -71,11 +71,17 @@ export const useRegisterWithEmailPassword = () => {
     // 建立帳號
     const result = await createUserWithEmailAndPassword(auth, email, password);
 
-    // 設定用戶名稱（顯示名稱）
+    // 設定用戶名稱
     await updateProfile(result.user, { displayName: name });
 
-    // Firebase 會自動登入，不需另外登入
-    return result.user; // ← 很重要，這會觸發 Firebase 的 onAuthStateChanged()
+    // 寫入 Firestore 資料
+    await setDoc(doc(db, "users", result.user.uid), {
+      uid: result.user.uid,
+      name,
+      email,
+    });
+
+    return result.user; // 這會觸發 onAuthStateChanged
   });
 };
 
