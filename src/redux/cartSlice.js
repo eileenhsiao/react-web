@@ -3,14 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 // Part1: Define Slice (including reducers and actions)
 const shippingMethod = 'pickup'; // 預設為 pickup
 
-const cartItems = [];
-const shippingAddress = {};
-const price = {};
-const initialState = { cartItems:[], shippingAddress, price, shippingMethod };
+const initialState = {
+  cartItems: [],
+  shippingAddress: {},
+  price: {},
+  shippingMethod: 'pickup',
+};
 const cartSlice = createSlice({
   name: 'cart',
-  initialState:{
-  },
+  initialState,
   reducers: {
     addCartItems: (state, action) => {
       const newItem = action.payload;
