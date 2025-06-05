@@ -6,33 +6,34 @@ import { collection, getDocs, query, orderBy } from "firebase/firestore";
 const OrdersTab = () => {
   const { data: userInfo } = useUserInfo(); 
   const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // 👈 載入狀態
   const [expandedOrders, setExpandedOrders] = useState({});
 
   useEffect(() => {
-  const fetchOrders = async () => {
-    if (loading) return <p>載入中...</p>;
-    if (!userInfo?.uid) return;
+    const fetchOrders = async () => {
+      if (!userInfo?.uid) return;
 
-    try {
-      const uid = userInfo.uid;
-      const ordersRef = collection(db, `users/${uid}/orders`);
-      
-      const q = query(ordersRef, orderBy("createdAt", "desc"));
-      
-      const querySnapshot = await getDocs(q);
-      const fetchedOrders = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+      try {
+        const uid = userInfo.uid;
+        const ordersRef = collection(db, `users/${uid}/orders`);
+        const q = query(ordersRef, orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
 
-      setOrders(fetchedOrders);
-    } catch (error) {
-      console.error("無法取得訂單紀錄：", error);
-    }
-  };
+        const fetchedOrders = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
-  fetchOrders();
-}, [userInfo]);
+        setOrders(fetchedOrders);
+      } catch (error) {
+        console.error("無法取得訂單紀錄：", error);
+      } finally {
+        setIsLoading(false); // 👈 無論成功或失敗都結束 loading
+      }
+    };
+
+    fetchOrders();
+  }, [userInfo]);
 
   const toggleOrder = (orderNumber) => {
     setExpandedOrders((prev) => ({
@@ -44,7 +45,10 @@ const OrdersTab = () => {
   return (
     <div>
       <h3 className="text-lg font-bold mb-2">訂單紀錄</h3>
-      {orders.length === 0 ? (
+
+      {isLoading ? ( // 👈 加上 loading 顯示邏輯
+        <p className="text-gray-500">載入中...</p>
+      ) : orders.length === 0 ? (
         <p>目前沒有任何訂單紀錄。</p>
       ) : (
         orders.map((order) => (
