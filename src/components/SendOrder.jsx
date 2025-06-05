@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartItems, removeCartItems, selectCartItems } from "@/redux/cartSlice";
 import '@/index.css';
-import { selectShippingAddress, selectShippingMethod } from "@/redux/cartSlice";
+import { selectShippingAddress, selectShippingMethod} from "@/redux/cartSlice";
 
 import { useLocation } from "react-router-dom";
 export default function SendOrderCard() {
@@ -26,7 +26,6 @@ export default function SendOrderCard() {
         return cartItems.reduce((sum, item) => sum + item.qty, 0);
     };
     const shippingAddress = useSelector(selectShippingAddress);
-    
    
     
 
@@ -65,7 +64,7 @@ export default function SendOrderCard() {
                     <div className="text-xl font-semibold mb-6 font-bold bottom-border border-primary pb-2 ">訂單資訊</div>
                     <div className=" p-4 mb-6">
                         
-                        <p>訂單編號：#{Math.floor(100000 + Math.random() * 900000)}</p>
+                        <p>訂單編號：#{location.state?.orderNumber}</p>
                         <p>訂購日期：{new Date().toLocaleDateString()}</p>
                         <p>付款方式：信用卡</p>
                         <p>取貨方式：{shippingMethod === "home" ? "宅配" : "自取"}</p>

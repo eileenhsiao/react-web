@@ -15,10 +15,12 @@ import { selectCartItems } from "../redux/cartSlice";
 
 import { Select, DatePicker ,Row, Col} from "antd";
 const { Option } = Select;
-import { clearShippingAddress } from "../redux/cartSlice";
+import { clearShippingAddress, generateOrderNumber } from "../redux/cartSlice";
 import { useUpdateProfile, useUserInfo } from "../react-query";
 import dayjs from "dayjs";
 import { useEffect } from "react";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../api";
 
 const taiwanCities = {
   "台北市": ["中正區", "大同區", "中山區", "松山區", "大安區", "萬華區", "信義區", "士林區", "北投區", "內湖區", "南港區", "文山區"],
@@ -36,7 +38,14 @@ export default function ShippingAddressCard() {
   const [cardNumberFormatted, setCardNumberFormatted] = useState(
     shippingAddress?.cardnumber || ""
   );
+    const shippingFee = shippingMethod === "home" ? 60 : 0;
 
+    const getTotalPrice = () => {
+        const itemsTotal = cartItems.length > 0
+            ? cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)
+            : 0;
+        return itemsTotal + shippingFee;
+    };
   const formatCardNumber = (value) => {
     const digitsOnly = value.replace(/\D/g, "").slice(0, 16);
     const spaced = digitsOnly.replace(/(.{4})/g, "$1 ").trim();
@@ -47,7 +56,7 @@ export default function ShippingAddressCard() {
   dispatch(clearShippingAddress());
   form.resetFields(); // 清空表單
 }, []);
-
+const price=getTotalPrice();
   const [cardNumber, setCardNumber] = useState(shippingAddress?.cardnumber || "");
 
   const handleCardNumberChange = (e) => {
@@ -64,28 +73,63 @@ export default function ShippingAddressCard() {
     setCardDate(formatted);
     form.setFieldsValue({ cardDate: formatted });
   };
+  const { data: userInfo } = useUserInfo() || {};
   
-  const handleSubmit = (values) => {
-  const cleaned = {
-    ...values,
-    cardnumber: values.cardnumber.replace(/\s/g, ""),
-    pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
-  };
+  const removeUndefinedFields = (obj) =>
+  Object.fromEntries(Object.entries(obj).filter(([_, v]) => v !== undefined));
+  const handleSubmit = async (values) => {
+    
+  try {
+    const cleaned = removeUndefinedFields({
+  ...values,
+  cardnumber: values.cardnumber?.replace(/\s/g, ""),
+  pickupDate: values.pickupDate?.format?.("YYYY-MM-DD"),
+});
+console.log("values from form", values);
+    dispatch(saveShippingAddress(cleaned));
+console.log("cleaned shipping address:", cleaned);
+    // 🔢 產生訂單編號（例如 A123456）
+    const orderNumber = generateOrderNumber();
 
-  dispatch(saveShippingAddress(cleaned));
+    // 👤 使用者 ID
+    const uid = userInfo?.uid; // 假設你有用 useAuth 或 Firebase Auth 拿到目前登入使用者
+    if (!uid) {
+      navigate("/login");
+      return;
+    }
 
-  // 傳遞 cartItems 資料給 SendOrder 頁面
-  navigate("/SendOrder", {
-    state: {
-      cartItems: cartItems,  // 原本從 Redux 來的資料
-    },
-  });
+    // 📝 準備訂單資料
+    const orderData = {
+      orderNumber,
+      uid,
+      shippingAddress: cleaned,
+      cartItems: cartItems,
+      price,
+      createdAt: serverTimestamp(),
+    };
 
-  // 然後清空 Redux
-  dispatch(clearCartItems());
+    // 🔥 儲存到 Firestore（/users/{uid}/orders/{orderNumber}）
+    await setDoc(doc(db, `users/${uid}/orders/${orderNumber}`), orderData);
+
+    // ✅ 清空 Redux 中的購物車
+    dispatch(clearCartItems());
+
+    // 👉 導向確認頁
+    navigate("/SendOrder", {
+      state: {
+        cartItems,
+        orderNumber, // 傳入以便顯示
+      },
+    });
+    await setDoc(doc(db, `users/${uid}/orders/${orderNumber}`), orderData);
+  console.log("✅ 訂單已儲存");
+  } catch (error) {
+    
+    console.error("❌ 發送訂單失敗：", error);
+  }
 };
 
-const { data: userInfo } = useUserInfo() || {};
+
   const update = useUpdateProfile();
 
    useEffect(() => {
@@ -313,7 +357,7 @@ const { data: userInfo } = useUserInfo() || {};
             </Col>
             <Col span={12}>
             <Form.Item
-              name="cardsafenumber"
+              
               rules={[
                 { required: true, message: "請輸入安全碼" },
                 { pattern: /^\d{3}$/, message: "請輸入3位數安全碼" }

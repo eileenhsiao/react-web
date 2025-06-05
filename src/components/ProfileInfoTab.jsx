@@ -175,19 +175,6 @@ const ProfileInfoTab = ({ redirect }) => {
                 <Input placeholder="MM/YY" maxLength={5} />
               </Form.Item>
             </Col>
-            <Col span={12}>
-              <Form.Item
-                name="cardsafenumber"
-                //label="安全碼"
-                rules={[
-                  
-                  { pattern: /^\d{3}$/, message: "請輸入3位數安全碼" },
-                ]}
-                
-              >
-                <Input.Password placeholder="安全碼 (3位數)" maxLength={3} />
-              </Form.Item>
-            </Col>
           </Row>
 
           <Form.Item className="mt-6">

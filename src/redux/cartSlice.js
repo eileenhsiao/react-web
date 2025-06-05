@@ -76,3 +76,8 @@ export default cartSlice.reducer;
 export const selectShippingMethod = (state) => state.cart.shippingMethod;
 export const { saveShippingMethod } = cartSlice.actions;
 export const { clearCartItems } = cartSlice.actions;
+
+export const generateOrderNumber = () => {
+  const randomNumber = Math.floor(100000 + Math.random() * 900000); // 6 digits
+  return `${randomNumber}`;
+};
