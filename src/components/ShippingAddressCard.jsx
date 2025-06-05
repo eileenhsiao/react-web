@@ -5,7 +5,6 @@ import {
   selectShippingAddress,
   saveShippingAddress,
   selectShippingMethod,
-
 } from "../redux/cartSlice";
 import { Link } from "react-router";
 import '@/index.css';
@@ -105,6 +104,7 @@ export default function ShippingAddressCard() {
         cartItems: cartItems,
         price,
         createdAt: serverTimestamp(),
+        status: '準備中',
       };
 
 
