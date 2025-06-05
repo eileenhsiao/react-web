@@ -151,7 +151,7 @@ export const register = async ({ name, email, password }) => {
     createdAt: new Date(),
   });
 
-  // ✅ 等 Firebase 登入狀態 ready，再 resolve
+  //等 Firebase 登入狀態 ready，再 resolve
   return new Promise((resolve) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {

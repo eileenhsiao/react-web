@@ -6,7 +6,7 @@ import { collection, getDocs, query, orderBy } from "firebase/firestore";
 const OrdersTab = () => {
   const { data: userInfo } = useUserInfo(); 
   const [orders, setOrders] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // 👈 載入狀態
+  const [isLoading, setIsLoading] = useState(true); 
   const [expandedOrders, setExpandedOrders] = useState({});
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const OrdersTab = () => {
       } catch (error) {
         console.error("無法取得訂單紀錄：", error);
       } finally {
-        setIsLoading(false); // 👈 無論成功或失敗都結束 loading
+        setIsLoading(false); 
       }
     };
 
@@ -46,7 +46,7 @@ const OrdersTab = () => {
     <div>
       
 
-      {isLoading ? ( // 👈 加上 loading 顯示邏輯
+      {isLoading ? ( 
         <p className="word3 text-center">載入中...</p>
       ) : orders.length === 0 ? (
         <p className='text-center'>目前沒有任何訂單紀錄</p>

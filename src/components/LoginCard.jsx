@@ -11,7 +11,7 @@ const LoginCard = ({ redirect }) => {
    const [form] = Form.useForm();
    const navigate = useNavigate();
 
-   const passwordInputRef = useRef(null); // 密碼欄位的 ref
+   const passwordInputRef = useRef(null); 
 
    const onFinish = (values) => {
       console.log("Received values of form: ", values);

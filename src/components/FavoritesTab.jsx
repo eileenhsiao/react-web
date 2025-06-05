@@ -51,7 +51,7 @@ export default function FavoritesTab() {
 
     setFavoriteProducts((prev) => prev.filter((_, i) => i !== index));
     setDeletedItems((prev) => [...prev, { product, index }]);
-    dispatch(toggleFollow(product)); // <== 加上這行！
+    dispatch(toggleFollow(product)); 
     message.success("已取消收藏");
 
     // 自動 5 秒後移除提示

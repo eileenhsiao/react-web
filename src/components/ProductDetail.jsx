@@ -4,7 +4,7 @@ import AddToCart from "@/components/AddToCart"
 import '@/index.css';
 import { toggleFollow, selectFollowedItems } from "../redux/followSlice";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
-import { db } from "../api"; // 根據你的檔案位置調整
+import { db } from "../api"; 
 import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { useUserInfo } from "../react-query";
 
@@ -22,10 +22,8 @@ function ProductDetail({ product }) {
 
     try {
       if (isFollowed) {
-        // 已收藏 → 要取消收藏
         await deleteDoc(followRef);
       } else {
-        // 未收藏 → 要加入收藏
         await setDoc(followRef, {
           id: product.id,
           name: product.name,
@@ -103,7 +101,7 @@ function ProductDetail({ product }) {
               )}
             </button>
 
-            {/* 加入購物車，寬度可以自訂，這裡用 flex-grow 讓他變寬 */}
+            {/* 加入購物車 */}
             <div className="button1 text-center rounded">
               <AddToCart products={product} qty={qty} />
             </div>

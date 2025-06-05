@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 // Part1: Define Slice (including reducers and actions)
-const shippingMethod = 'pickup'; // 預設為 pickup
+const shippingMethod = 'pickup'; 
 
 const initialState = {
   cartItems: [],
@@ -16,7 +16,7 @@ const cartSlice = createSlice({
     addCartItems: (state, action) => {
       const newItem = action.payload;
        if (!newItem || typeof newItem !== 'object' || !newItem.id) {
-    console.warn("⚠️ addCartItems received invalid item:", newItem);
+    console.warn("addCartItems received invalid item:", newItem);
     return;
   }
       const existItem = state.cartItems.find((x) => x?.id === newItem.id);

@@ -381,7 +381,7 @@ export default function ShippingAddressCard() {
             >
               <Input.TextArea
                 placeholder="備註（例：需要附上餐具、蠟燭）"
-                autoSize={{ minRows: 3, maxRows: 6 }} // 可調整顯示的最小與最大行數
+                autoSize={{ minRows: 3, maxRows: 6 }}
               />
             </Form.Item>
             <Form.Item>

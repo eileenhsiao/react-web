@@ -47,7 +47,7 @@ const tabItems = [
 
 export default function ProfileCard() {
   const [searchParams] = useSearchParams();
-  const tabKeyFromURL = searchParams.get('key') || '1'; // 預設為 '1'
+  const tabKeyFromURL = searchParams.get('key') || '1'; 
   const [activeKey, setActiveKey] = useState(tabKeyFromURL);
 
   return (

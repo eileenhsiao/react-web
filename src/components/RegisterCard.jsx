@@ -17,7 +17,7 @@ const RegisterCard = ({ redirect }) => {
 
   useEffect(() => {
   if (isSuccess) {
-    navigate(redirect); // 這樣跳轉時，Firebase 已經登入了
+    navigate(redirect); 
   }
 }, [isSuccess, redirect]);
 
