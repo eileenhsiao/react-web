@@ -19,7 +19,7 @@ function Register() {
       <Header />
       
       <div className="mt-[72px] md:mt-[61.6px] p-0 layoutContent container">
-            <RegisterCard redirect={redirect} />
+            <RegisterCard redirect="/profile" />
          </div>
       
       <Footer className="footer" />

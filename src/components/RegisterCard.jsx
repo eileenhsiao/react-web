@@ -16,10 +16,10 @@ const RegisterCard = ({ redirect }) => {
   };
 
   useEffect(() => {
-  if (isSuccess) {
-    navigate(redirect); 
-  }
-}, [isSuccess, redirect]);
+    if (isSuccess) {
+      navigate(redirect);
+    }
+  }, [isSuccess, redirect]);
 
   return (
     <div className="login-wrapper">
@@ -51,7 +51,7 @@ const RegisterCard = ({ redirect }) => {
           ]}
           hasFeedback
         >
-          <Input  placeholder="電子郵件" />
+          <Input placeholder="電子郵件" />
         </Form.Item>
 
         {/* 密碼 */}
@@ -61,7 +61,7 @@ const RegisterCard = ({ redirect }) => {
           rules={[{ required: true, message: "請輸入你的密碼" }]}
           hasFeedback
         >
-          <Input.Password  placeholder="密碼" />
+          <Input.Password placeholder="密碼" />
         </Form.Item>
 
         {/* 再次輸入密碼 */}
@@ -95,18 +95,22 @@ const RegisterCard = ({ redirect }) => {
               : Promise.reject(new Error("請勾選同意使用者條款"))
           }]}
         >
-          <Checkbox className="word2"> 
+          <Checkbox className="word2">
             我已閱讀 <Link to="/">使用者條款</Link>
           </Checkbox>
         </Form.Item>
 
         {/* 提交按鈕與錯誤訊息 */}
         <Form.Item>
-          <Link to="/profile">
-          <Button className="button1 mb-10 " htmlType="submit" loading={isLoading} block>
+          <Button
+            className="button1 mb-10"
+            htmlType="submit"
+            loading={isLoading}
+            block
+          >
             加入會員
           </Button>
-          </Link>
+
           <div className="not-member-text mb-2">已經是會員？</div>
 
           <div className="register-section">
@@ -125,9 +129,9 @@ const RegisterCard = ({ redirect }) => {
           )}
         </Form.Item>
       </Form>
-      
+
     </div>
-    
+
   );
 };
 
