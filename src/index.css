@@ -299,7 +299,14 @@
   
 }
 
+.custom-link {
+  color: #DBB985;
+  transition: color 0.3s;
+}
 
+.custom-link:hover {
+  color: #7D6E5B!important;
+}
 
 }
 
@@ -587,6 +594,15 @@
   border-color: #B08968!important; 
   
 
+}
+
+.custom-link {
+  color: #DBB985;
+  transition: color 0.3s;
+}
+
+.custom-link:hover {
+  color: #F8F6F4!important;
 }
 
 }

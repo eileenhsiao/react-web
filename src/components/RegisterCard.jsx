@@ -3,12 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Checkbox, Button } from "antd";
 import { WarningOutlined, MailOutlined, LockOutlined } from "@ant-design/icons";
 import { useRegisterWithEmailPassword } from "../react-query";
+import TermsModal from "./TermsModal";
 import "@/index.css";
 
 const RegisterCard = ({ redirect }) => {
   const { mutate, error, isLoading, isError, isSuccess } = useRegisterWithEmailPassword();
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
@@ -96,7 +98,7 @@ const RegisterCard = ({ redirect }) => {
           }]}
         >
           <Checkbox className="word2">
-            我已閱讀 <Link to="/">使用者條款</Link>
+            我已閱讀 <TermsModal />
           </Checkbox>
         </Form.Item>
 
