@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, Button, Row, Col, Select } from "antd";
 import { useUpdateProfile, useLogout, useUserInfo } from "../react-query";
+import SaveProfile from "./SaveProfile"
 import '@/index.css';
 
 const { Option } = Select;
@@ -182,12 +183,8 @@ const ProfileInfoTab = ({ redirect }) => {
 
           <Form.Item className="mt-6">
           <div className="flex justify-end gap-4">
-            <Button onClick={() => form.setFieldsValue(userInfo)} className="button2">
-              取消
-            </Button>
-            <Button className="button1" htmlType="submit">
-              儲存變更
-            </Button>
+            <SaveProfile/>
+            
           </div>
         </Form.Item>
         </Col>

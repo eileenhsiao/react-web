@@ -6,6 +6,7 @@ import '@/index.css';
 import { useSignInWithEmailPassword } from "../react-query";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../api"; 
+import SendRePassword from "./SendRePassword"
 
 const ForgetPasswordCard = ({ redirect }) => {
   const {isSuccess } = useSignInWithEmailPassword();
@@ -53,9 +54,8 @@ const ForgetPasswordCard = ({ redirect }) => {
   </Form.Item>
 
   <Form.Item>
-    <Button className="button1" htmlType="submit" block>
-      寄送密碼重設信
-    </Button>
+    <SendRePassword/>
+    
   </Form.Item>
 
   <div className="register-section mt-10">
